@@ -2,6 +2,8 @@ import { cn } from '@/lib/utils'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 
+import Footer from '@/components/footer'
+import Header from '@/components/header'
 import '@/styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('flex flex-col h-dvh', inter.className)}>
-        {children}
+        <Header />
+        <div className='flex-1 py-4 max-w-[1140px] w-full mx-auto'>
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   )

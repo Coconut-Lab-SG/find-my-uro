@@ -70,7 +70,28 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  ol.list-decimal>li {
+    counter-reset: item;
+  }
+
+  ol.list-decimal>li::marker {
+    font-weight: bold;
+  }
+
+  ol.list-decimal>li>ol>li::marker {
+    content: counters(item, ".") ". ";
+  }
+
+  ol.list-decimal>li>ol>li>ol>li::marker {
+    content: counters(item, ".") ". ";
+  }
+
+  a {
+    @apply text-blue-600 hover:text-blue-800 visited:text-purple-600
   }
 }
