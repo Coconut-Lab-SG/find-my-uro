@@ -10,7 +10,7 @@ export default function Footer() {
             <span>© 2023 WPE Digital, Inc.</span>
             <Link href='/terms-of-use' className="hover:text-[#432f91]">Terms</Link>
             <Link href='/privacy' className="hover:text-[#432f91]">Privacy</Link>
-            <Link href='/#' className="hover:text-[#432f91]">FAQ</Link>
+            <Link href='/frequently-asked-questions' className="hover:text-[#432f91]">FAQ</Link>
             <Link href='/#' className="hover:text-[#432f91]">Sitemap</Link>
           </div>
           <Image alt="hipaa-badge" src='/assets/images/HIPAA-badge.webp' width={100} height={35} />
