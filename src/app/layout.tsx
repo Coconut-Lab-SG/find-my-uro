@@ -29,9 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn('flex flex-col h-dvh', inter.className)}>
         <Header />
-        <div className='flex-1 py-4 max-w-[1140px] w-full mx-auto'>
-          {children}
-        </div>
+        <div className="flex-1 py-4 max-w-[1140px] w-full mx-auto">{children}</div>
         <Footer />
       </body>
     </html>

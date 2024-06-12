@@ -75,23 +75,21 @@
     @apply bg-background text-foreground;
   }
 
-  ol.list-decimal>li {
+  ol {
     counter-reset: item;
   }
 
-  ol.list-decimal>li::marker {
-    font-weight: bold;
+  li {
+    display: block;
   }
 
-  ol.list-decimal>li>ol>li::marker {
-    content: counters(item, ".") ". ";
-  }
-
-  ol.list-decimal>li>ol>li>ol>li::marker {
-    content: counters(item, ".") ". ";
+  li:before {
+    content: counters(item, '.') ' ';
+    counter-increment: item;
+    padding-right: 12px;
   }
 
   a {
-    @apply text-blue-600 hover:text-blue-800 visited:text-purple-600
+    @apply text-blue-600 hover:text-blue-800 visited:text-purple-600;
   }
 }
