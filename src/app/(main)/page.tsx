@@ -1,5 +1,5 @@
-import FindUrologist from "./find-urologist/page";
-import PromotionBanner from "./find-urologist/promotion-banner";
+import FindUrologist from './find-urologist/page'
+import PromotionBanner from './find-urologist/promotion-banner'
 
 export default function Home() {
   return (
