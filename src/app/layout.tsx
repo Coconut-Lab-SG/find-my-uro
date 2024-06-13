@@ -1,12 +1,15 @@
 import { cn } from '@/lib/utils'
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import '@/styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'Find My Uro',
@@ -27,9 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn('flex flex-col h-dvh', inter.className)}>
+      <body className={cn('flex flex-col h-dvh', roboto.className)}>
         <Header />
-        <div className="flex-1 py-4 max-w-[1140px] w-full mx-auto">{children}</div>
+        <div className="flex-1 py-4 max-w-[1140px] w-full mx-auto px-5">{children}</div>
         <Footer />
       </body>
     </html>
