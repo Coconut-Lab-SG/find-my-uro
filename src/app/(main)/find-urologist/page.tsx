@@ -4,7 +4,7 @@ import { UrologistRatingCard } from "./urologist-rating-card";
 
 export default function FindUrologist() {
   return (
-    <div className="flex flex-col gap-y-16 max-w-[1140px]">
+    <div className="flex flex-col gap-y-16 max-w-[1140px] mx-auto w-full px-5">
       <div className="flex flex-col gap-y-5">
         <p className="text-[40px] italic font-bold">Find <span className="text-[#42328d]">Urologist</span></p>
         <p className="text-2xl italic font-medium">Vouched for by <span className="text-[#42328d]">Real Patients</span> like You</p>

@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         <Header />
-        <div className="flex-1 py-4 max-w-[1140px] w-full mx-auto px-5">{children}</div>
+        <div className="flex-1 py-4 w-full">{children}</div>
         <Footer />
       </body>
     </html>
