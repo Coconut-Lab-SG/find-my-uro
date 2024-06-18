@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className="bg-[#eee] px-5">
       <div className="flex flex-col gap-y-5 max-w-[1140px] py-5 mx-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 items-center justify-between mobileL:flex-row">
           <div className="flex items-center gap-x-3">
             <span>© 2023 WPE Digital, Inc.</span>
             <Link href="/terms-of-use" className="hover:text-[#432f91]">

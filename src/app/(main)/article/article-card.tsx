@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 export function ArticleCard() {
   return (
-    <div className="flex items-center gap-5">
-      <Image alt="article-thumbnail" src="/assets/images/home/stone-supplement-thumbnail.webp" width={200} height={130} />
+    <div className="flex flex-col items-center gap-5 mobileL:flex-row">
+      <Image alt="article-thumbnail" src="/assets/images/home/stone-supplement-thumbnail.webp" width={200} height={130} className='w-full mobileL:w-[200px]' />
       <div className="flex flex-col">
         <span className="text-xl italic font-medium mb-2.5">Kidney Stones Supplements: What’s Actually Good For You?</span>
         <span className="text-xs text-[#9d9d9d] mb-1.5">Expert Opinion</span>
