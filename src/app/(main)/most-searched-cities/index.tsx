@@ -1,9 +1,7 @@
 export function MostSearchedCities() {
   return (
     <div className="flex flex-col gap-y-2 max-w-[1140px] mx-auto w-full px-5">
-      <p className="text-2xl italic font-medium">
-        Most Searched Cities
-      </p>
+      <p className="text-2xl italic font-medium">Most Searched Cities</p>
       <div className="grid grid-cols-2 p-4 gap-3 mobileL:grid-cols-4">
         <a href="/#">New York, NY</a>
         <a href="/#">Chicago, IL</a>
@@ -13,10 +11,10 @@ export function MostSearchedCities() {
         <a href="/#">Philadelphia, PA</a>
         <a href="/#">Phoenix, AZ</a>
         <a href="/#">El Paso, TX</a>
-        <a href='/#'>Dallas, TX</a>
-        <a href='/#'>Detroit, MI</a>
-        <a href='/#'>Indianapolis, IN</a>
-        <a href='/#'>Louisville, KY</a>
+        <a href="/#">Dallas, TX</a>
+        <a href="/#">Detroit, MI</a>
+        <a href="/#">Indianapolis, IN</a>
+        <a href="/#">Louisville, KY</a>
         <a href="/#">Jacksonville, FL</a>
         <a href="/#">Oklahoma City, OK</a>
         <a href="/#">Memphis, TN</a>
