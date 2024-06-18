@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { UrologistRatingCard } from './urologist-rating-card'
 
-export default function FindUrologist() {
+export function FindUrologist() {
   return (
     <div className="flex flex-col gap-y-16 max-w-[1140px] mx-auto w-full px-5">
       <div className="flex flex-col gap-y-5">

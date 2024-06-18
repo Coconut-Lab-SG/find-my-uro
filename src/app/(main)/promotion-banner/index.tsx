@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-export default function PromotionBanner() {
+export function PromotionBanner() {
   return (
-    <div className="bg-[#40318c] py-12 text-white">
+    <section className="bg-[#40318c] py-12 text-white">
       <div className="flex flex-col gap-12 max-w-[1140px] mx-auto w-full">
         <p className="italic text-3xl font-semibold text-center">
           We Put the <span className="text-[#ea9c16]">You</span> in <span className="text-[#ea9c16]">Urology</span>
@@ -22,6 +22,6 @@ export default function PromotionBanner() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
