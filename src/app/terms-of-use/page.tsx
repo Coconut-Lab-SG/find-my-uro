@@ -1,6 +1,6 @@
 export default function TermsOfUse() {
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-4 px-5 max-w-[1140px] mx-auto">
       <h1 className="text-2xl font-bold">Terms of Use</h1>
       <div className="flex flex-col gap-y-3">
         <p>

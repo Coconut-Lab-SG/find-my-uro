@@ -1,6 +1,6 @@
 export default function FrequentlyAskedQuestions() {
   return (
-    <div className="flex flex-col gap-y-4 px-5">
+    <div className="flex flex-col gap-y-4 px-5 max-w-[1140px] mx-auto">
       <h1 className="text-3xl font-bold">Frequently Asked Questions</h1>
       <div className="flex flex-col gap-y-5">
         <div className="flex flex-col gap-y-4">

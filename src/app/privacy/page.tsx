@@ -1,6 +1,6 @@
 export default function Privacy() {
   return (
-    <div className="flex flex-col gap-y-4 px-5">
+    <div className="flex flex-col gap-y-4 px-5 max-w-[1140px] mx-auto">
       <h1 className="text-3xl font-bold">Privacy Policy</h1>
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-3 mt-6">
