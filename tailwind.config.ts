@@ -17,8 +17,8 @@ const config = {
       mobileS: '360px',
       // => @media (min-width: 480px) { ... }
       mobileM: '480px',
-      // => @media (min-width: 640px) { ... }
-      mobileL: '640px',
+      // => @media (min-width: 576px) { ... }
+      mobileL: '576px',
       // => @media (min-width: 768px) { ... }
       tablet: '768px',
       // => @media (min-width: 960px) { ... }
