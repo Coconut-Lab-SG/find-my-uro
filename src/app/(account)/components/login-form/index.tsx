@@ -41,7 +41,7 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl">Sign In</Button>
+        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">Sign In</Button>
       </form>
     </Form>
   )
