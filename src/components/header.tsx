@@ -15,7 +15,7 @@ export default function Header() {
           </div>
           <span className="bg-[#f6a404] text-xs text-center px-1 text-[#432f91] self-end italic font-bold rounded-sm">BETA</span>
         </div>
-        <Link href="/#">
+        <Link href="/account/login">
           <Image className="rounded-full" alt="user-avatar" src="/assets/icons/user-avatar.webp" width={40} height={40} />
         </Link>
       </div>
