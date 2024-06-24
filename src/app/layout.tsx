@@ -2,7 +2,6 @@ import { cn } from '@/lib/utils'
 import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 
-import { CookieModal } from '@/components/cookie-modal'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import '@/styles/globals.css'
@@ -34,7 +33,7 @@ export default function RootLayout({
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         <Header />
         <div className="flex-1 py-4 w-full">{children}</div>
-        <CookieModal />
+        {/* <CookieModal /> */}
         <Footer />
       </body>
     </html>
