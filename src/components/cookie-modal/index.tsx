@@ -1,14 +1,21 @@
 'use client'
 
 import { XIcon } from "lucide-react";
-import { useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
-import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
+import { useCookieModal } from "./useCookieModal";
 
 export function CookieModal() {
-  const [showModal, setShowModal] = useState(true)
-  const [showManagePanel, setShowManagePanel] = useState(false)
+  const {
+    checkbox,
+    showModal,
+    showManagePanel,
+    setShowManagePanel,
+    handleCheckboxChange,
+    acceptPartialCookies,
+    acceptAllCookies,
+    closeModal } = useCookieModal()
 
   if (!showModal) {
     return <></>
@@ -19,7 +26,7 @@ export function CookieModal() {
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold italic">This website uses cookies.</span>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={closeModal}>
             <XIcon size={24} />
           </Button>
         </div>
@@ -28,12 +35,12 @@ export function CookieModal() {
             <div className="flex flex-col gap-4">
               <p className="leading-5">We use cookies to personalize content and ads, to provide social media features and to analyze our traffic. We also share information about your use of our site with our social media advertising and analytics partners who may combine it with other information that you’ve provided to them or that they’ve collected from your use of their services.</p>
               <div className="flex items-center gap-2 justify-center">
-                <Button className="bg-[#f6a404] rounded-lg h-[50px] italic px-7 hover:bg-orange-500">Accept All</Button>
+                <Button className="bg-[#f6a404] rounded-lg h-[50px] italic px-7 hover:bg-orange-500" onClick={acceptAllCookies}>Accept All</Button>
                 <Button className="bg-[#dadada] rounded-lg h-[50px] text-black px-7 hover:bg-gray-300" onClick={() => setShowManagePanel(true)}>Manage</Button>
               </div>
             </div>
           ) : (
-            <ManageCookiePanel />
+            <ManageCookiePanel checkbox={checkbox} handleCheckboxChange={handleCheckboxChange} acceptPartialCookies={acceptPartialCookies} acceptAllCookies={acceptAllCookies} />
           )
         }
       </div>
@@ -42,25 +49,18 @@ export function CookieModal() {
 }
 
 // Composing component
-function ManageCookiePanel() {
-  const [checkbox, setCheckbox] = useState({
-    necessary: true,
-    statistics: true,
-    preferences: false,
-    marketing: false,
-  })
+type CookiePanelProps = {
+  checkbox: {
+    statistics_cookie: boolean,
+    preferences_cookie: boolean,
+    marketing_cookie: boolean,
+  },
+  handleCheckboxChange: (name: string) => (checked: boolean) => void,
+  acceptPartialCookies: () => void,
+  acceptAllCookies: () => void
+}
 
-  function handleCheckbox(e: any) {
-    console.log(e);
-    //   const { name, checked } = e.target
-    //   console.log(name, checked);
-    //   setCheckbox(prev => ({
-    //     ...prev,
-    //     [name]: checked
-    //   }))
-  }
-
-  console.log(checkbox);
+function ManageCookiePanel({ checkbox, handleCheckboxChange, acceptPartialCookies, acceptAllCookies }: CookiePanelProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col">
@@ -74,7 +74,7 @@ function ManageCookiePanel() {
                 The website cannot function properly without these cookies.
               </AccordionContent>
             </AccordionItem>
-            <Checkbox name="necessary" checked={checkbox.necessary} disabled />
+            <Checkbox name="necessary" checked disabled />
           </div>
         </Accordion>
         {/* Statistics cookie */}
@@ -86,7 +86,7 @@ function ManageCookiePanel() {
                 Statistic cookies help website owners to understand how visitors interact with websites by collecting and reporting information anonymously.
               </AccordionContent>
             </AccordionItem>
-            <Checkbox name="statistics" checked={checkbox.statistics} disabled />
+            <Checkbox name="statistics" checked disabled />
           </div>
         </Accordion>
         {/* Preferences cookie */}
@@ -98,7 +98,7 @@ function ManageCookiePanel() {
                 Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.
               </AccordionContent>
             </AccordionItem>
-            <Checkbox name="preferences" checked={checkbox.preferences} onCheckedChange={val => handleCheckbox(val)} />
+            <Checkbox name="preferences" checked={checkbox.preferences_cookie} onCheckedChange={handleCheckboxChange("preferences_cookie")} />
           </div>
         </Accordion>
         {/* Marketing cookie */}
@@ -111,13 +111,13 @@ function ManageCookiePanel() {
                 and engaging for the individual user and thereby more valuable for publishers and third party advertisers.
               </AccordionContent>
             </AccordionItem>
-            <Checkbox id="marketing" name="marketing" onCheckedChange={handleCheckbox} />
+            <Checkbox id="marketing" name="marketing" checked={checkbox.marketing_cookie} onCheckedChange={handleCheckboxChange("marketing_cookie")} />
           </div>
         </Accordion>
       </div>
       <div className="flex items-center gap-2 justify-center">
-        <Button className="bg-[#dadada] rounded-lg h-[50px] text-black px-7 hover:bg-gray-300" onClick={() => { }}>Accept Selection</Button>
-        <Button className="bg-[#f6a404] rounded-lg h-[50px] italic px-7 hover:bg-orange-500">Accept All</Button>
+        <Button className="bg-[#dadada] rounded-lg h-[50px] text-black px-7 hover:bg-gray-300" onClick={acceptPartialCookies}>Accept Selection</Button>
+        <Button className="bg-[#f6a404] rounded-lg h-[50px] italic px-7 hover:bg-orange-500" onClick={acceptAllCookies}>Accept All</Button>
       </div>
     </div>
   )

@@ -2,9 +2,11 @@ import { cn } from '@/lib/utils'
 import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 
+import { CookieModal } from '@/components/cookie-modal'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
 import '@/styles/globals.css'
+import { cookies } from 'next/headers'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -28,12 +30,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieConsent = cookies().get("cookie_consent")
+
   return (
     <html lang="en">
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         <Header />
         <div className="flex-1 py-4 w-full">{children}</div>
-        {/* <CookieModal /> */}
+        {!cookieConsent && <CookieModal />}
         <Footer />
       </body>
     </html>
