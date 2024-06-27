@@ -1,15 +1,9 @@
 'use client'
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useRegisterForm } from "./useRegisterForm";
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { useRegisterForm } from './useRegisterForm'
 
 export function RegisterForm() {
   const { form, onSubmit } = useRegisterForm()
@@ -77,7 +71,9 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">Sign Up</Button>
+        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">
+          Sign Up
+        </Button>
       </form>
     </Form>
   )

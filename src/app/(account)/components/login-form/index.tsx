@@ -1,15 +1,9 @@
 'use client'
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useLoginForm } from "./useLoginForm";
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { useLoginForm } from './useLoginForm'
 
 export function LoginForm() {
   const { form, onSubmit } = useLoginForm()
@@ -41,7 +35,9 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">Sign In</Button>
+        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">
+          Sign In
+        </Button>
       </form>
     </Form>
   )

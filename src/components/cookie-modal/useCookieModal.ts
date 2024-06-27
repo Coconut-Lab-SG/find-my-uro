@@ -1,14 +1,14 @@
-import { COOKIES_ENUM } from "@/constants/cookie-enum";
-import { setCookie } from 'cookies-next';
-import { useState } from "react";
+import { COOKIES_ENUM } from '@/constants/cookie-enum'
+import { setCookie } from 'cookies-next'
+import { useState } from 'react'
 
 export function useCookieModal() {
   const [showModal, setShowModal] = useState(true)
   const [showManagePanel, setShowManagePanel] = useState(false)
 
   // Cookies state
-  const expirationDate = new Date();
-  expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+  const expirationDate = new Date()
+  expirationDate.setFullYear(expirationDate.getFullYear() + 1)
 
   const [checkbox, setCheckbox] = useState({
     statistics_cookie: true,
@@ -21,12 +21,12 @@ export function useCookieModal() {
       setCheckbox((prevState) => ({
         ...prevState,
         [name]: checked,
-      }));
+      }))
     }
   }
 
   function acceptCookieConsent() {
-    setCookie("cookie_consent", "yes", { expires: expirationDate })
+    setCookie('cookie_consent', 'yes', { expires: expirationDate })
     setShowModal(false)
   }
 
@@ -68,6 +68,6 @@ export function useCookieModal() {
     handleCheckboxChange,
     acceptPartialCookies,
     acceptAllCookies,
-    closeModal
+    closeModal,
   }
 }

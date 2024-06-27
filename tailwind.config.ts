@@ -68,6 +68,9 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      backgroundImage: {
+        'urologist-top-bg': "url('/assets/images/urologist/urologist-profile-top-bg.png')",
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

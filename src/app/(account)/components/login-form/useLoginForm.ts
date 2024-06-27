@@ -1,23 +1,23 @@
-import { loginSchema } from "@/definitions/authentication-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { loginSchema } from '@/definitions/authentication-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 export function useLoginForm() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: ''
+      email: '',
+      password: '',
     },
   })
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values);
+    console.log(values)
   }
 
   return {
     form,
-    onSubmit
+    onSubmit,
   }
 }

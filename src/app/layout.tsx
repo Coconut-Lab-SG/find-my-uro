@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieConsent = cookies().get("cookie_consent")
+  const cookieConsent = cookies().get('cookie_consent')
 
   return (
     <html lang="en">

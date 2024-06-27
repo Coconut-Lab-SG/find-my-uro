@@ -1,5 +1,6 @@
-import { Star } from 'lucide-react'
+import { StarIcon } from '@/components/icons'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function UrologistRatingCard() {
   // TODO: change into dynamic data from API later
@@ -14,22 +15,21 @@ export function UrologistRatingCard() {
   }
 
   return (
-    <div
-      className="flex italic items-center px-5 py-[30px] gap-x-[30px] rounded-[20px] h-[150px]"
-      style={{ boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important' }}
-    >
+    <Link href="/urologist" className="flex italic px-5 py-[30px] gap-x-[30px] rounded-[20px] h-[150px] shadow-lg">
       <Image className="rounded-full" alt="urologist-img" src={dummyData.imgSrc} width={80} height={80} />
-      <div className="flex flex-col gap-y-2.5">
+      <div className="flex flex-col gap-y-2.5 text-black">
         <span className="text-lg font-medium">{dummyData.name}</span>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <span className="text-sm">
             {dummyData.rating.number} ({dummyData.rating.count})
           </span>
-          {Array.from({ length: dummyData.rating.stars }, (_, idx) => (
-            <Star key={idx} size="17" fill="#ffbc0b" strokeWidth={0} />
-          ))}
+          <div className="flex items-center">
+            {Array.from({ length: dummyData.rating.stars }, (_, idx) => (
+              <StarIcon key={idx} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

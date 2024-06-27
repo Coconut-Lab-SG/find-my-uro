@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { FacebookAuth } from "../../components/facebook-auth";
-import { RegisterForm } from "../../components/register-form";
+import Link from 'next/link'
+import { FacebookAuth } from '../../components/facebook-auth'
+import { RegisterForm } from '../../components/register-form'
 
 export default function Register() {
   return (
@@ -20,9 +20,7 @@ export default function Register() {
       <RegisterForm />
 
       <div className="flex items-center justify-center gap-4">
-        <Link href='/account/login'>
-          Sign In instead
-        </Link>
+        <Link href="/account/login">Sign In instead</Link>
       </div>
     </div>
   )
