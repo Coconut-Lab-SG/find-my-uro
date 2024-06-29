@@ -1,12 +1,13 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/(main)/page": "app/(main)/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/frequently-asked-questions/page": "app/frequently-asked-questions/page.js",
-  "/privacy/page": "app/privacy/page.js",
   "/terms-of-use/page": "app/terms-of-use/page.js",
-  "/(account)/account/login/page": "app/(account)/account/login/page.js",
+  "/privacy/page": "app/privacy/page.js",
+  "/urologist/page": "app/urologist/page.js",
   "/(account)/account/forgot-password/page": "app/(account)/account/forgot-password/page.js",
+  "/(account)/account/login/page": "app/(account)/account/login/page.js",
   "/(account)/account/profile/page": "app/(account)/account/profile/page.js",
   "/(account)/account/register/page": "app/(account)/account/register/page.js"
 }
