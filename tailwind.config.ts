@@ -70,7 +70,7 @@ const config = {
       },
       backgroundImage: {
         'urologist-top-bg': "url('/assets/images/urologist/urologist-profile-top-bg.png')",
-        'kidney-top-homepage-bg': "url('/assets/images/home/kidney-top-homepage.webp')"
+        'kidney-top-homepage-bg': "url('/assets/images/home/kidney-top-homepage.webp')",
       },
       keyframes: {
         'accordion-down': {

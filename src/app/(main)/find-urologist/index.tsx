@@ -6,10 +6,10 @@ import { UrologistRatingCard } from './urologist-rating-card'
 export function FindUrologist() {
   return (
     <div className="flex flex-col gap-y-16 max-w-[1140px] mx-auto w-full px-5 relative">
-      <div className='flex flex-col gap-y-12 relative'>
+      <div className="flex flex-col gap-y-12 relative">
         {/* Kidney background */}
-        <div className='hidden mobileL:absolute w-[424px] mobileL:block h-[400px] -z-10 right-[15%] -top-4'>
-          <Image alt='kidney-top' src="/assets/images/home/kidney-top-homepage.webp" style={{ clipPath: "inset(0 0 22% 0)" }} fill />
+        <div className="hidden mobileL:absolute w-[424px] mobileL:block h-[400px] -z-10 right-[15%] -top-4">
+          <Image alt="kidney-top" src="/assets/images/home/kidney-top-homepage.webp" style={{ clipPath: 'inset(0 0 22% 0)' }} fill />
         </div>
         <div className="flex flex-col gap-y-2.5">
           <p className="text-[40px] italic font-bold">

@@ -1,0 +1,3 @@
+.button-chip {
+  @apply text-[#767676] border border-[#767676] p-1 text-sm w-fit rounded-lg h-fit;
+}
