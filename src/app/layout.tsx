@@ -5,8 +5,10 @@ import { Roboto } from 'next/font/google'
 import { CookieModal } from '@/components/cookie-modal'
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import '@/styles/globals.css'
 import { cookies } from 'next/headers'
+
+import '@/styles/common.css'
+import '@/styles/globals.css'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],

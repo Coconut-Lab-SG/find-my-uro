@@ -1,7 +1,7 @@
-import { StarGenerator } from "@/components/star-generator";
-import { Button } from "@/components/ui/button";
-import { Map, Star } from "lucide-react";
-import Image from "next/image";
+import { StarGenerator } from '@/components/star-generator'
+import { Button } from '@/components/ui/button'
+import { Map, Star } from 'lucide-react'
+import Image from 'next/image'
 
 export function UrologistResultCard() {
   return (
@@ -9,7 +9,9 @@ export function UrologistResultCard() {
       {/* Urologist profile image */}
       <div className="relative">
         <Image alt="urologist-pict" src="/assets/images/urologist/dummy-urologist-img.png" width={80} height={80} className="rounded-full" />
-        <div className="flex items-center justify-center absolute top-0 -left-2.5 bg-[#432f91] text-white w-[30px] h-[30px] rounded-full text-center font-bold">1</div>
+        <div className="flex items-center justify-center absolute top-0 -left-2.5 bg-[#432f91] text-white w-[30px] h-[30px] rounded-full text-center font-bold">
+          1
+        </div>
       </div>
 
       <div className="flex flex-col gap-1">
