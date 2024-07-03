@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { FacebookAuth } from '../../components/facebook-auth'
 import { LoginForm } from '../../components/login-form'
 
 export default function Login() {
@@ -11,13 +10,6 @@ export default function Login() {
           Find recommendations from people with similar treatments and more. <br />
           It’s easy, free and private.
         </p>
-      </div>
-
-      <div className="flex flex-col gap-y-5">
-        <FacebookAuth />
-        <div className="flex justify-center">
-          <span className="text-lg">Or, Continue with email</span>
-        </div>
       </div>
 
       {/* Email login form */}
