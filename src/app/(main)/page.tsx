@@ -1,7 +1,7 @@
-import { ArticleSection } from './article'
-import { FindUrologist } from './find-urologist'
-import { MostSearchedCities } from './most-searched-cities'
-import { PromotionBanner } from './promotion-banner'
+import { ArticleSection } from './components/article'
+import { FindUrologist } from './components/find-urologist'
+import { MostSearchedCities } from './components/most-searched-cities'
+import { PromotionBanner } from './components/promotion-banner'
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
-import { BackButton } from "@/components/ui/back-button";
-import { ArticleThumbnail } from "./components/article-thumbnail";
+import { BackButton } from '@/components/ui/back-button'
+import { ArticleThumbnail } from './components/article-thumbnail'
 
 export default function ArticleList() {
   return (
