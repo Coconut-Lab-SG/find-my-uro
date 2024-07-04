@@ -1,7 +1,7 @@
-import { BackButton } from "@/components/ui/back-button"
-import { Facebook, Linkedin, Twitter } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { BackButton } from '@/components/ui/back-button'
+import { Facebook, Linkedin, Twitter } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Article({ params }: { params: { slug: string } }) {
   return (
@@ -16,7 +16,7 @@ export default function Article({ params }: { params: { slug: string } }) {
           width={0}
           height={0}
           src="/assets/images/home/stone-supplement-thumbnail.webp"
-          style={{ width: "auto", height: "auto", objectFit: 'contain' }}
+          style={{ width: 'auto', height: 'auto', objectFit: 'contain' }}
           sizes="100vw"
         />
       </div>
@@ -24,9 +24,11 @@ export default function Article({ params }: { params: { slug: string } }) {
       {/* Article content */}
       <div className="flex flex-col gap-10 pt-7 text-xl">
         <span>May 22, 2024</span>
-        <p><strong>Introduction</strong>
+        <p>
+          <strong>Introduction</strong>
           <br /> <br />
-          Thinking of taking supplements to meet your daily nutritional goals? You’re not alone! We teamed up with The Kidney Dietitian, Melanie Betz, to uncover the truth behind popular health supplements, and how they truly fair when it comes to kidney stone prevention.
+          Thinking of taking supplements to meet your daily nutritional goals? You’re not alone! We teamed up with The Kidney Dietitian, Melanie Betz,
+          to uncover the truth behind popular health supplements, and how they truly fair when it comes to kidney stone prevention.
         </p>
       </div>
 

@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { MoveLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Button } from "./button";
+import { MoveLeft } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Button } from './button'
 
 export function BackButton() {
   const router = useRouter()

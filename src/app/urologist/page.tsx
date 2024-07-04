@@ -1,7 +1,7 @@
-import { AboutUrologist } from './about-urologist'
-import { UrologistDescription } from './urologist-description'
-import { UrologistLocation } from './urologist-location'
-import { UrologistReview } from './urologist-review'
+import { AboutUrologist } from './components/about-urologist'
+import { UrologistDescription } from './components/urologist-description'
+import { UrologistLocation } from './components/urologist-location'
+import { UrologistReview } from './components/urologist-review'
 
 export default function Urologist() {
   return (
