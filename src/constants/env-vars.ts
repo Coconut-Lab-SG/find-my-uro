@@ -1,3 +1,3 @@
-export const ENV_VARS_BASE_URL = {
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+export const envVars = {
+  GOOGLE_MAP_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY
 }

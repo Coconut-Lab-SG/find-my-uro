@@ -1,5 +1,6 @@
-'use client'
+"use client"
 
+import { GoogleMapsComponent } from '@/components/maps/google-maps-component'
 import { Button } from '@/components/ui/button'
 import { Calendar, Phone } from 'lucide-react'
 
@@ -16,7 +17,10 @@ export function UrologistLocation() {
   return (
     <div className="flex flex-col bg-white gap-4 shadow tablet:flex-row tablet:w-[455px]">
       {/* Google Map container */}
-      <div className="h-[172px] tablet:w-[220px] tablet:h-auto bg-slate-400 w-full">{/* Embeed Google Map component here */}</div>
+      <div className="h-[172px] tablet:w-[220px] tablet:h-auto bg-slate-400 w-full">
+        {/* TODO: Change lat lng accordingly based on API data later */}
+        <GoogleMapsComponent location={{ lat: 40.7127837, lng: -74.0059413 }} />
+      </div>
 
       {/* Urologist Appointment */}
       <div className="flex flex-col gap-2.5 px-2 py-4 text-center tablet:text-left">
