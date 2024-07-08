@@ -1,3 +1,4 @@
+import { GoogleMapsComponent } from '@/components/maps/google-maps-component'
 import { Button } from '@/components/ui/button'
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -16,7 +17,10 @@ export default function SearchUrologists() {
         <div className="flex flex-col gap-4 laptop:flex-row-reverse">
           {/* Map section */}
           <div className="relative -mx-5 laptopM:mx-0">
-            <div className="h-[230px] w-screen bg-gray-400 mx-auto laptopM:h-[824px] laptopM:w-[360px]"></div>
+            <div className="h-[230px] w-screen bg-gray-400 mx-auto laptopM:h-[824px] laptopM:w-[360px]">
+              {/* TODO: Change lat lng accordingly based on API data later */}
+              <GoogleMapsComponent location={{ lat: 40.7127837, lng: -74.0059413 }} />
+            </div>
           </div>
 
           <div className="flex flex-col gap-2.5">
