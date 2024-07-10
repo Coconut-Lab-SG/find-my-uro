@@ -25,7 +25,7 @@ export function UrologistRatingCard() {
           </span>
           <div className="flex items-center">
             {Array.from({ length: dummyData.rating.stars }, (_, idx) => (
-              <StarIcon key={idx} />
+              <StarIcon key={idx} size={17} fill='#ffbc0b' />
             ))}
           </div>
         </div>

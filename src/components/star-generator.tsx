@@ -10,7 +10,7 @@ export function StarGenerator({ count }: Props) {
       <div className="flex items-center">
         {/* TODO: change later */}
         {Array.from({ length: count }, (_, idx) => (
-          <StarIcon key={idx} />
+          <StarIcon key={idx} size={17} fill='#ffbc0b' />
         ))}
       </div>
       <span className="text-sm">
