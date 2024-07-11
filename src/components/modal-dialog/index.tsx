@@ -1,6 +1,5 @@
-
-import { ReactNode } from "react"
-import { Dialog, DialogContent } from "../ui/dialog"
+import { ReactNode } from 'react'
+import { Dialog, DialogContent } from '../ui/dialog'
 
 type ModalDialogProps = {
   isOpen: boolean
@@ -12,15 +11,16 @@ type ModalDialogProps = {
 export function ModalDialog({ isOpen, title, setOpen, children }: ModalDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setOpen}>
-      <DialogContent className="max-w-[500px] flex flex-col p-0 justify-center bg-transparent rounded-2xl border-0 gap-0 px-6" >
+      <DialogContent className="max-w-[500px] max-h-dvh py-4 flex flex-col justify-center bg-transparent rounded-2xl border-0 gap-0 px-6">
         {/* Modal Title */}
-        <div className="flex justify-center w-full text-center p-2.5 rounded-t-2xl" style={{ background: 'linear-gradient(90.49deg, #243b6c 0.28%, #432f91 96.69%)' }}>
+        <div
+          className="flex justify-center w-full text-center p-2.5 rounded-t-2xl"
+          style={{ background: 'linear-gradient(90.49deg, #243b6c 0.28%, #432f91 96.69%)' }}
+        >
           <span className="text-2xl italic font-medium text-white">{title}</span>
         </div>
         {/* Modal Content */}
-        <div className="flex bg-white rounded-b-2xl">
-          {children}
-        </div>
+        <div className="flex bg-white rounded-b-2xl overflow-y-auto">{children}</div>
       </DialogContent>
     </Dialog>
   )

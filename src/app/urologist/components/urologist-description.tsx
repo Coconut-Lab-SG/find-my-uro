@@ -39,10 +39,20 @@ export function UrologistDescription() {
 
         {/* CTA */}
         <div className="flex items-center justify-between gap-3">
-          <Button variant="default" className="rounded-lg w-[135px]" style={{ background: 'linear-gradient(96.65deg, #b20000 0%, #ff7c52 95.82%)' }} onClick={() => toggleVouchDialog(true)}>
+          <Button
+            variant="default"
+            className="rounded-lg w-[135px]"
+            style={{ background: 'linear-gradient(96.65deg, #b20000 0%, #ff7c52 95.82%)' }}
+            onClick={() => toggleVouchDialog(true)}
+          >
             <Heart size="16" />
           </Button>
-          <Button variant="default" className="rounded-lg w-[135px]" style={{ background: 'linear-gradient(90.49deg,#243b6c .28%,#432f91 96.69%)' }} onClick={() => toggleReviewDialog(true)}>
+          <Button
+            variant="default"
+            className="rounded-lg w-[135px]"
+            style={{ background: 'linear-gradient(90.49deg,#243b6c .28%,#432f91 96.69%)' }}
+            onClick={() => toggleReviewDialog(true)}
+          >
             <Star size="16" />
           </Button>
           <Button variant="default" className="rounded-lg w-[135px] bg-[#dadada]">
@@ -51,11 +61,11 @@ export function UrologistDescription() {
         </div>
       </div>
 
-      <ModalDialog title='Find My Uro!' isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
+      <ModalDialog title="Find My Uro!" isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
         <VouchDialog />
       </ModalDialog>
 
-      <ModalDialog title='Write a review' isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
+      <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
         <ReviewDialog />
       </ModalDialog>
     </>

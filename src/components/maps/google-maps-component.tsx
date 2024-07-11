@@ -16,7 +16,7 @@ type GoogleMapProps = {
 
 const defaultMapLocation = {
   lat: 35.8799866,
-  lng: 76.5048004
+  lng: 76.5048004,
 }
 
 export function GoogleMapsComponent({ location = defaultMapLocation }: GoogleMapProps) {
@@ -29,7 +29,7 @@ export function GoogleMapsComponent({ location = defaultMapLocation }: GoogleMap
       q={`${location.lat},${location.lng}`}
       center={`${location.lat},${location.lng}`}
       allowfullscreen
-      loading='lazy'
+      loading="lazy"
     />
   )
-};
+}
