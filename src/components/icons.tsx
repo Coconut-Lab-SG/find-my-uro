@@ -1,5 +1,10 @@
 import { Star } from 'lucide-react'
 
-export function StarIcon() {
-  return <Star size="17" fill="#ffbc0b" strokeWidth={0} />
+type StarIconProps = {
+  size: number
+  fill: string
+}
+
+export function StarIcon({ size, fill }: StarIconProps) {
+  return <Star size={size} fill={fill} strokeWidth={0} />
 }

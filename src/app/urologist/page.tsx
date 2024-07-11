@@ -51,6 +51,5 @@ export default function Urologist() {
         </div>
       </div>
     </div>
-
   )
 }
