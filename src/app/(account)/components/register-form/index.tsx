@@ -17,7 +17,7 @@ export function RegisterForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Email address" className="h-[50px] border-[#ced4da]" {...field} />
+                <Input placeholder="Email Address" className="h-[50px] border-[#ced4da]" {...field} />
               </FormControl>
               <FormMessage className="text-base" />
             </FormItem>
