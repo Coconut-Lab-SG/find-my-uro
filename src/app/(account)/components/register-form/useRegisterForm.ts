@@ -1,4 +1,4 @@
-import { loginSchema, registerSchema } from '@/definitions/authentication-form'
+import { loginSchema, registerSchema } from '@/app/_lib/definitions/authentication-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

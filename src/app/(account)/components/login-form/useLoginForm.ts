@@ -1,5 +1,5 @@
-import { loginSchema } from '@/definitions/authentication-form'
-import { Login } from '@/services/authentication/login'
+import { loginSchema } from '@/app/_lib/definitions/authentication-form'
+import { Login } from '@/app/_lib/services/authentication/login'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -9,9 +9,8 @@ export function useLoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState({
     isError: false,
-    message: ''
+    message: '',
   })
-
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -25,14 +24,17 @@ export function useLoginForm() {
     setLoading(true)
     setError({ ...error, isError: false })
     try {
-      await Login({ body: values })
+      await Login({ body: values }).then((data) => {
+        console.log(data)
+        console.log('login success')
+      })
     } catch (error: any) {
       console.error(error)
       const statusCode = error.code
       if (statusCode === 401) {
         setError({
           isError: true,
-          message: error.message
+          message: error.message,
         })
       }
     } finally {
