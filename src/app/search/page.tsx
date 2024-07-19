@@ -1,5 +1,5 @@
-import { GoogleMapsComponent } from '@/components/maps/google-maps-component'
-import { Button } from '@/components/ui/button'
+import { GoogleMapsComponent } from '@/app/_components/maps/google-maps-component'
+import { Button } from '@/app/_components/ui/button'
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
 import { UrologistResultCard } from './components/urologist-result-card'

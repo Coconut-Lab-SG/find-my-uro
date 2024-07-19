@@ -1,4 +1,4 @@
-import { BackButton } from '@/components/ui/back-button'
+import { BackButton } from '@/app/_components/back-button'
 import { Facebook, Linkedin, Twitter } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'

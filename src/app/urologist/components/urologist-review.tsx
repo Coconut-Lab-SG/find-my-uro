@@ -1,5 +1,5 @@
-import { StarGenerator } from '@/components/star-generator'
-import { Button } from '@/components/ui/button'
+import { StarGenerator } from '@/app/_components/star-generator'
+import { Button } from '@/app/_components/ui/button'
 
 export function UrologistReview() {
   return (

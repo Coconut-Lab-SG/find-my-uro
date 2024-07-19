@@ -1,9 +1,9 @@
 'use client'
 
-import { GoogleMapsComponent } from '@/components/maps/google-maps-component'
-import { ModalDialog } from '@/components/modal-dialog'
-import { AppointmentDialog } from '@/components/modal-dialog/contents/appointment-dialog'
-import { Button } from '@/components/ui/button'
+import { GoogleMapsComponent } from '@/app/_components/maps/google-maps-component'
+import { ModalDialog } from '@/app/_components/modal-dialog'
+import { AppointmentDialog } from '@/app/_components/modal-dialog/contents/appointment-dialog'
+import { Button } from '@/app/_components/ui/button'
 import { Calendar, Phone } from 'lucide-react'
 import { useState } from 'react'
 

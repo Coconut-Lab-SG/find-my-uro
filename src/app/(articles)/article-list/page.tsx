@@ -1,4 +1,4 @@
-import { BackButton } from '@/components/ui/back-button'
+import { BackButton } from '@/app/_components/back-button'
 import { ArticleThumbnail } from './components/article-thumbnail'
 
 export default function ArticleList() {

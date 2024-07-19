@@ -1,14 +1,14 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/app/_lib/utils'
 import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 
-import { CookieModal } from '@/components/cookie-modal'
-import Footer from '@/components/footer'
-import Header from '@/components/header'
+import { CookieModal } from '@/app/_components/cookie-modal'
+import Footer from '@/app/_components/footer'
+import Header from '@/app/_components/header'
 import { cookies } from 'next/headers'
 
-import '@/styles/common.css'
-import '@/styles/globals.css'
+import './_styles/common.css'
+import './_styles/globals.css'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],

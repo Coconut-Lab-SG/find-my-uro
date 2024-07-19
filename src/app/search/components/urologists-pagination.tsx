@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/app/_components/ui/button'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 export function UrologistsPagination() {

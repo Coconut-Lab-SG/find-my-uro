@@ -1,4 +1,4 @@
-import { StarIcon } from '@/components/icons'
+import { StarIcon } from '@/app/_components/icons'
 import Image from 'next/image'
 import Link from 'next/link'
 
