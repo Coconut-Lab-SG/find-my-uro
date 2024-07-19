@@ -1,3 +1,4 @@
+import { LoginResponseType } from '@/app/_lib/types/authentication'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
 type Props = {
@@ -14,6 +15,6 @@ export async function Login({ body }: Props) {
     method: 'POST',
   }
 
-  const response = await fetcher(fetchConfig)
-  return response
+  const response = await fetcher<LoginResponseType>(fetchConfig)
+  return response.data
 }

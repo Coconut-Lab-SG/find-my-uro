@@ -1,13 +1,11 @@
 'use client'
 
-import { getCookie } from 'cookies-next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export default function Header() {
   const router = useRouter()
-  const isAuth = getCookie('auth')
 
   return (
     <div style={{ background: 'linear-gradient(90.49deg, #243b6c 0.28%, #432f91 96.69%)' }}>
@@ -18,7 +16,7 @@ export default function Header() {
           </div>
           <span className="bg-[#f6a404] h-fit self-end mb-1.5 text-xs text-center px-1 text-[#432f91] italic font-bold rounded-sm">BETA</span>
         </div>
-        <Link href={`${isAuth ? '/account/profile' : '/account/login'}`}>
+        <Link prefetch={false} href="/account/profile">
           <Image className="rounded-full" alt="user-avatar" src="/assets/icons/user-avatar.webp" width={40} height={40} />
         </Link>
       </div>

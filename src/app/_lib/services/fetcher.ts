@@ -4,7 +4,7 @@ export type FetchConfigType = {
   method: 'POST' | 'GET'
 }
 
-const fetcher = ({ url, bodyData, method }: FetchConfigType) => {
+function fetcher<T>({ url, bodyData, method }: FetchConfigType): Promise<T> {
   const params = {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bodyData),

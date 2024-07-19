@@ -6,13 +6,13 @@ export function middleware(req: NextRequest) {
   const unauthenticatedRoutes = ['/account/login', '/account/register', '/account/forgot-password']
   const protectedRoutes = ['/account/profile']
 
-  const isAuthenticated = cookies().get('auth') // Adjust the cookie name as per your auth cookie
+  const isAuthenticated = cookies().get('access_token') // Adjust the cookie name as per your auth cookie
 
   // Guard unauthenticated routes -> User has logged in
   if (unauthenticatedRoutes.includes(pathname)) {
     // If authenticated, redirect to the home page or any other page
     if (isAuthenticated) {
-      return NextResponse.redirect(new URL('/', req.url))
+      return NextResponse.redirect(new URL('/account/profile', req.url))
     }
   }
 
@@ -20,7 +20,7 @@ export function middleware(req: NextRequest) {
   if (protectedRoutes.includes(pathname)) {
     // If not authenticated, return to home page
     if (!isAuthenticated) {
-      return NextResponse.redirect(new URL('/', req.url))
+      return NextResponse.redirect(new URL('/account/login', req.url))
     }
   }
 
