@@ -12,7 +12,7 @@ export function decodeJWTCookie(token: string): AccessTokenType | null {
 }
 
 export function getUserData() {
-  const token = cookies().get("access_token")?.value ?? ""
+  const token = cookies().get('access_token')?.value ?? ''
   const userData: AccessTokenType | null = decodeJWTCookie(token)
 
   if (userData) {
