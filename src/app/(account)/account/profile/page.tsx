@@ -1,5 +1,5 @@
-import { getUserData } from '@/app/_lib/helpers/SessionHelpers';
-import { UserInformation } from './components/UserInformation';
+import { getUserData } from '@/app/_lib/helpers/SessionHelpers'
+import { UserInformation } from './components/UserInformation'
 
 export default function Profile() {
   const userData = getUserData()

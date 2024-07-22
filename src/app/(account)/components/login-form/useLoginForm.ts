@@ -37,6 +37,7 @@ export function useLoginForm() {
 
         // Redirect to user profile page
         router.push('/account/profile')
+        router.refresh()
       })
     } catch (error: any) {
       console.error(error)

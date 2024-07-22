@@ -5,7 +5,7 @@ import { AccessTokenType } from '../types/authentication'
 // NOTE: Call this hooks inside RSC (Server Component)
 export function useUser() {
   function getUserData() {
-    const token = cookies().get("access_token")?.value ?? ""
+    const token = cookies().get('access_token')?.value ?? ''
     const userData: AccessTokenType | null = decodeJWTCookie(token)
 
     if (userData) {
@@ -13,7 +13,7 @@ export function useUser() {
         email: userData.email,
         first_name: userData.first_name,
         last_name: userData.last_name,
-        token: token
+        token: token,
       }
       return effectiveData
     }
@@ -22,6 +22,6 @@ export function useUser() {
   }
 
   return {
-    getUserData
+    getUserData,
   }
 }
