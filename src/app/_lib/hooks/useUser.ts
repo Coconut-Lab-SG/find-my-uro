@@ -1,28 +1,27 @@
-import { useEffect, useState } from 'react'
+import { cookies } from 'next/headers'
 import { decodeJWTCookie } from '../helpers/SessionHelpers'
 import { AccessTokenType } from '../types/authentication'
-import { UserType } from '../types/user'
 
+// NOTE: Call this hooks inside RSC (Server Component)
 export function useUser() {
-  const [user, setUser] = useState<UserType | null>(null)
-
   function getUserData() {
-    const userToken: AccessTokenType | null = decodeJWTCookie()
+    const token = cookies().get("access_token")?.value ?? ""
+    const userData: AccessTokenType | null = decodeJWTCookie(token)
 
-    if (userToken) {
-      setUser({
-        email: userToken.email,
-        first_name: userToken.first_name,
-        last_name: userToken.last_name,
-      })
+    if (userData) {
+      const effectiveData = {
+        email: userData.email,
+        first_name: userData.first_name,
+        last_name: userData.last_name,
+        token: token
+      }
+      return effectiveData
     }
+
+    return null
   }
 
-  useEffect(() => {
-    getUserData()
-  }, [])
-
   return {
-    user,
+    getUserData
   }
 }
