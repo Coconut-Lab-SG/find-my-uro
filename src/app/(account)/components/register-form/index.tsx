@@ -3,10 +3,11 @@
 import { Button } from '@/app/_components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
+import { LoaderCircle } from 'lucide-react'
 import { useRegisterForm } from './useRegisterForm'
 
 export function RegisterForm() {
-  const { form, onSubmit } = useRegisterForm()
+  const { form, loading, onSubmit } = useRegisterForm()
 
   return (
     <Form {...form}>
@@ -61,7 +62,7 @@ export function RegisterForm() {
         />
         <FormField
           control={form.control}
-          name="confirm_password"
+          name="password_confirm"
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -71,7 +72,12 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">
+        <Button
+          type="submit"
+          disabled={loading}
+          className="flex items-center gap-2 w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]"
+        >
+          {loading && <LoaderCircle size={20} className="animate-spin" />}
           Sign Up
         </Button>
       </form>
