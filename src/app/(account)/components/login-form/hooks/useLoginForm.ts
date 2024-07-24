@@ -3,7 +3,7 @@ import { Login } from '@/app/_lib/services/authentication/login'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -23,6 +23,19 @@ export function useLoginForm() {
       password: '',
     },
   })
+
+  const { watch } = form
+
+  useEffect(() => {
+    const subscription = watch(() => {
+      // Remove error message if a particular field is changed
+      if (error.isError) {
+        setError({ isError: false, message: '' })
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [watch, error.isError])
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setLoading(true)
