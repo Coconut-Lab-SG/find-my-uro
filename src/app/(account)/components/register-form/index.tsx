@@ -3,14 +3,15 @@
 import { Button } from '@/app/_components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
-import { useRegisterForm } from './useRegisterForm'
+import { LoaderCircle } from 'lucide-react'
+import { useRegisterForm } from './hooks/useRegisterForm'
 
 export function RegisterForm() {
-  const { form, onSubmit } = useRegisterForm()
+  const { form, loading, error, onSubmit } = useRegisterForm()
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-5">
         <FormField
           control={form.control}
           name="email"
@@ -61,7 +62,7 @@ export function RegisterForm() {
         />
         <FormField
           control={form.control}
-          name="confirm_password"
+          name="password_confirm"
           render={({ field }) => (
             <FormItem>
               <FormControl>
@@ -71,7 +72,15 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">
+
+        {error.isError && <span className="text-red-500 font-semibold">{error.message}</span>}
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="flex items-center gap-2 w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]"
+        >
+          {loading && <LoaderCircle size={20} className="animate-spin" />}
           Sign Up
         </Button>
       </form>

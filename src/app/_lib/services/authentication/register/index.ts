@@ -1,17 +1,14 @@
+import { registerSchema } from '@/app/_lib/definitions/authentication-form'
 import { AuthenticationResponseType } from '@/app/_lib/types/authentication'
+import { z } from 'zod'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
-type Props = {
-  body: {
-    email: string
-    password: string
-  }
-}
+type RegisterBodyProps = z.infer<typeof registerSchema>
 
-export async function Login({ body }: Props) {
+export async function Register(props: RegisterBodyProps) {
   const fetchConfig: FetchConfigType = {
-    url: '/api/login',
-    bodyData: body,
+    url: '/api/register',
+    bodyData: props,
     method: 'POST',
   }
 

@@ -1,6 +1,5 @@
-import { Button } from '@/app/_components/ui/button'
-import { Input } from '@/app/_components/ui/input'
 import Link from 'next/link'
+import { ForgotPasswordForm } from '../../components/forgot-password-form'
 
 export default function ForgotPassword() {
   return (
@@ -13,12 +12,7 @@ export default function ForgotPassword() {
         </p>
       </div>
 
-      <div className="flex flex-col gap-y-5">
-        <Input placeholder="Email address" className="h-[50px] border-[#ced4da]" />
-        <Button type="submit" className="w-full h-[50px] bg-[#f6a404] text-white rounded-lg text-xl hover:bg-[#f6a404]">
-          Send Email
-        </Button>
-      </div>
+      <ForgotPasswordForm />
 
       <div className="flex items-start">
         <Link href="/account/login">Back to Sign In</Link>

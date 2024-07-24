@@ -1,4 +1,4 @@
-import { getUserData } from '@/app/_lib/helpers/SessionHelpers'
+import { getUserData } from '@/app/_lib/helpers/UserHelpers'
 import { UserInformation } from './components/UserInformation'
 
 export default function Profile() {
