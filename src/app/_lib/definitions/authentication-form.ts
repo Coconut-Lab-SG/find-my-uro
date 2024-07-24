@@ -13,6 +13,10 @@ export const registerSchema = z.object({
   password_confirm: z.string().min(1, { message: 'Please confirm your password' }),
 })
 
+export const forgotPasswordSchema = z.object({
+  email: z.string().min(1, { message: 'Please enter your email' }),
+})
+
 export const appointmentSchema = z.object({
   name: z.string().min(1, { message: 'Please provide a name' }),
   phone_number: z.string().min(1, { message: 'Please provide a phone number' }),
@@ -23,4 +27,5 @@ export const appointmentSchema = z.object({
 
 export type LoginForm = z.infer<typeof loginSchema>
 export type RegisterForm = z.infer<typeof registerSchema>
+export type ForgotPasswordForm = z.infer<typeof forgotPasswordSchema>
 export type AppointmentForm = z.infer<typeof appointmentSchema>
