@@ -4,7 +4,7 @@ import { Button } from '@/app/_components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
 import { LoaderCircle, MailCheck } from 'lucide-react'
-import { useForgotPasswordForm } from './useForgotPasswordForm'
+import { useForgotPasswordForm } from './hooks/useForgotPasswordForm'
 
 export function ForgotPasswordForm() {
   const { form, loading, error, success, onSubmit } = useForgotPasswordForm()

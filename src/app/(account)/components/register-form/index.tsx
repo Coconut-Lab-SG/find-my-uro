@@ -4,7 +4,7 @@ import { Button } from '@/app/_components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
 import { LoaderCircle } from 'lucide-react'
-import { useRegisterForm } from './useRegisterForm'
+import { useRegisterForm } from './hooks/useRegisterForm'
 
 export function RegisterForm() {
   const { form, loading, error, onSubmit } = useRegisterForm()
