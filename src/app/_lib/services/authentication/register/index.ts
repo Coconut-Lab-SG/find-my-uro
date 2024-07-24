@@ -1,5 +1,5 @@
 import { registerSchema } from '@/app/_lib/definitions/authentication-form'
-import { LoginResponseType } from '@/app/_lib/types/authentication'
+import { AuthenticationResponseType } from '@/app/_lib/types/authentication'
 import { z } from 'zod'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
@@ -12,6 +12,6 @@ export async function Register(props: RegisterBodyProps) {
     method: 'POST',
   }
 
-  const response = await fetcher<LoginResponseType>(fetchConfig)
+  const response = await fetcher<AuthenticationResponseType>(fetchConfig)
   return response.data
 }

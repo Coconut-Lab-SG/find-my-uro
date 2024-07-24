@@ -29,13 +29,14 @@ export function useLoginForm() {
     setError({ ...error, isError: false })
     try {
       await Login({ body: values }).then((data) => {
+        const token = data.access_token
+
         // Set user session by cookie
-        const access_token = data.access_token
-        setCookie('access_token', access_token, {
+        setCookie('access_token', token, {
           maxAge: data.expires_in,
         })
 
-        // Redirect to user profile page
+        // Redirect to profile page
         router.push('/account/profile')
         router.refresh()
       })

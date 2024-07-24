@@ -1,15 +1,6 @@
-import { jwtDecode } from 'jwt-decode'
 import { cookies } from 'next/headers'
 import { AccessTokenType } from '../types/authentication'
-
-export function decodeJWTCookie(token: string): AccessTokenType | null {
-  if (token) {
-    const decodedToken: AccessTokenType = jwtDecode(token as string)
-    return decodedToken
-  }
-
-  return null
-}
+import { decodeJWTCookie } from './CookieHelpers'
 
 export function getUserData() {
   const token = cookies().get('access_token')?.value ?? ''

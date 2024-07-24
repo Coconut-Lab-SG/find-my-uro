@@ -1,4 +1,4 @@
-export type LoginResponseType = {
+export type AuthenticationResponseType = {
   data: {
     id: string
     first_name: string
@@ -8,6 +8,9 @@ export type LoginResponseType = {
     token_type: string
     expires_in: number
   }
+}
+export type ResetPasswordResponseType = {
+  message: string
 }
 
 export type AccessTokenType = {

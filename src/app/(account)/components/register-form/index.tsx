@@ -7,11 +7,11 @@ import { LoaderCircle } from 'lucide-react'
 import { useRegisterForm } from './useRegisterForm'
 
 export function RegisterForm() {
-  const { form, loading, onSubmit } = useRegisterForm()
+  const { form, loading, error, onSubmit } = useRegisterForm()
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-5">
         <FormField
           control={form.control}
           name="email"
@@ -72,6 +72,9 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
+
+        {error.isError && <span className="text-red-500 font-semibold">{error.message}</span>}
+
         <Button
           type="submit"
           disabled={loading}
