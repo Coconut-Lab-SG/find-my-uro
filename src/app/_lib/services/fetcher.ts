@@ -2,11 +2,15 @@ export type FetchConfigType = {
   url: string
   bodyData: unknown
   method: 'POST' | 'GET'
+  token?: string
 }
 
-function fetcher<T>({ url, bodyData, method }: FetchConfigType): Promise<T> {
+function fetcher<T>({ url, bodyData, method, token }: FetchConfigType): Promise<T> {
   const params = {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token ?? ''}` }),
+    },
     body: JSON.stringify(bodyData),
     method,
   }
