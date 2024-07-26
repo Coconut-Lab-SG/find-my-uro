@@ -29,10 +29,10 @@ export function useForgotPasswordForm() {
       })
     } catch (error: any) {
       console.error(error)
-      const statusCode = error.statusCode
+      const statusCode = error.code
       if (statusCode === 400) {
         // Email not found error
-        setError({
+        return setError({
           isError: true,
           message: error.message,
         })

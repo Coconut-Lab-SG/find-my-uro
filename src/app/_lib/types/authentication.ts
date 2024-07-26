@@ -9,7 +9,8 @@ export type AuthenticationResponseType = {
     expires_in: number
   }
 }
-export type ResetPasswordResponseType = {
+
+export type MessageResponseType = {
   message: string
 }
 

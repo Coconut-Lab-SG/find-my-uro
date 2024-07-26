@@ -11,7 +11,7 @@ function fetcher<T>({ url, bodyData, method, token }: FetchConfigType): Promise<
       'Content-Type': 'application/json',
       ...(token && { Authorization: `Bearer ${token ?? ''}` }),
     },
-    body: JSON.stringify(bodyData),
+    body: bodyData ? JSON.stringify(bodyData) : undefined,
     method,
   }
 
