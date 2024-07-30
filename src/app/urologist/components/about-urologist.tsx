@@ -1,19 +1,26 @@
+import { UrologistType } from '@/app/_lib/types/urologist'
 import { Check, Clock, Info, MapPin, Phone } from 'lucide-react'
 
-export function AboutUrologist() {
+type Props = {
+  data: UrologistType
+}
+
+export function AboutUrologist({ data }: Props) {
+  const { practice } = data
+
   return (
     <div className="flex flex-col gap-3">
       {/* Urologist About */}
       <div className="flex flex-col gap-3 border-b border-gray-300 py-4">
-        <span className="italic text-lg font-medium text-center">About Yaniv Larish</span>
+        <span className="italic text-lg font-medium text-center">About {data.name}</span>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">NPI</span>
-            <span>1841515376</span>
+            <span>{data.npi_id}</span>
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Experience</span>
-            <span>15 years</span>
+            <span>{data.year_of_experience} year(s)</span>
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Language Spoken</span>
@@ -29,14 +36,16 @@ export function AboutUrologist() {
           <div className="flex gap-3">
             <MapPin size={20} />
             <div className="flex flex-col flex-1">
-              <span className="font-bold">Dr. Yaniv M. Larish</span>
-              <span>Upper East Side Manhattan</span>
-              <span>New York, NY 10021</span>
+              <span className="font-bold">{data.name}</span>
+              <span>{practice.address}</span>
+              <span>
+                {practice.city}, {practice.zip_code}
+              </span>
             </div>
           </div>
           <div className="flex gap-3 items-center">
             <Phone size={20} />
-            <a className="flex-1">(212) 370-4170</a>
+            <a className="flex-1">{practice.phone_number}</a>
           </div>
           <div className="flex gap-3 items-center">
             <Check size={20} />

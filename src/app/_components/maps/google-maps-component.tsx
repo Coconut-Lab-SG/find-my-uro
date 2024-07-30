@@ -14,12 +14,12 @@ type GoogleMapProps = {
   }
 }
 
-const defaultMapLocation = {
+export const defaultMapLocation = {
   lat: 35.8799866,
   lng: 76.5048004,
 }
 
-export function GoogleMapsComponent({ location = defaultMapLocation }: GoogleMapProps) {
+export function GoogleMapsComponent({ location }: GoogleMapProps) {
   return (
     <GoogleMapsEmbed
       apiKey={envVars.GOOGLE_MAP_API_KEY!}

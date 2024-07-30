@@ -5,11 +5,17 @@ import { ReviewDialog } from '@/app/_components/modal-dialog/contents/review-dia
 import { VouchDialog } from '@/app/_components/modal-dialog/contents/vouch-dialog'
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
+import { UrologistType } from '@/app/_lib/types/urologist'
 import { Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-export function UrologistDescription() {
+type Props = {
+  data: UrologistType
+}
+
+export function UrologistDescription({ data }: Props) {
+  console.log(data)
   const [openVouchDialog, setOpenVouchDialog] = useState(false)
   const [openReviewDialog, setOpenReviewDialog] = useState(false)
 
@@ -27,15 +33,15 @@ export function UrologistDescription() {
         {/* Urologist Description */}
         <div className="flex items-center gap-x-8">
           <div className="relative h-[105px] w-[105px]">
-            <Image alt="urologist-img" className="border-4 border-white rounded-full" src="/assets/images/urologist/dummy-urologist-img.png" fill />
+            <Image alt="urologist-img" className="border-4 border-white rounded-full" src={data.avatar} fill />
           </div>
           <div className="flex flex-col gap-y-8">
-            <span className="text-lg italic font-medium text-white">Yaniv Larish, M.D</span>
-            <span className="text-sm">Vouch or leave a review for Dr. Larish!</span>
+            <span className="text-lg italic font-medium text-white">{data.name}</span>
+            <span className="text-sm">Vouch or leave a review for {data.name}!</span>
           </div>
         </div>
         {/* Urologist Rating */}
-        <StarGenerator count={5} />
+        <StarGenerator rating={data.rate} />
 
         {/* CTA */}
         <div className="flex items-center justify-between gap-3">

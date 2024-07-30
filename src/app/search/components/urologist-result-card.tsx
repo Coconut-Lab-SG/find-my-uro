@@ -16,7 +16,7 @@ export function UrologistResultCard() {
 
       <div className="flex flex-col gap-1">
         <span className="italic font-medium">Yaniv Larish, M.D</span>
-        <StarGenerator count={5} />
+        <StarGenerator rating={5} />
         <UrologistLabel />
         <Button variant="ghost" className="flex items-center justify-start gap-1 text-[#432f91] p-0">
           <Map size={18} />
