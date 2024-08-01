@@ -1,4 +1,5 @@
-import { UrologistType } from '@/app/_lib/types/urologist'
+import { UrologistType } from '@/app/_lib/definitions/urologist'
+import { convertTo12HourFormat } from '@/app/_lib/helpers/DateTimeHelpers'
 import { Check, Clock, Info, MapPin, Phone } from 'lucide-react'
 
 type Props = {
@@ -24,7 +25,7 @@ export function AboutUrologist({ data }: Props) {
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Language Spoken</span>
-            <span>English, Japanese, Sundanese</span>
+            <span>{data.language}</span>
           </div>
         </div>
       </div>
@@ -39,7 +40,7 @@ export function AboutUrologist({ data }: Props) {
               <span className="font-bold">{data.name}</span>
               <span>{practice.address}</span>
               <span>
-                {practice.city}, {practice.zip_code}
+                {practice.city.name}, {practice.city.country_code}, {practice.zip_code}
               </span>
             </div>
           </div>
@@ -54,11 +55,14 @@ export function AboutUrologist({ data }: Props) {
           <div className="flex gap-3">
             <Clock size={20} />
             <div className="flex flex-col flex-1">
-              <span>Monday 08:00 am - 05:00 pm</span>
-              <span>Tuesday 08:00 am - 05:00 pm</span>
-              <span>Wednesday 08:00 am - 05:00 pm</span>
-              <span>Thursday 08:00 am - 05:00 pm</span>
-              <span>Friday 08:00 am - 05:00 pm</span>
+              {practice.hours.map(
+                (time) =>
+                  time.is_practice === 1 && (
+                    <span
+                      key={time.id}
+                    >{`${time.day} ${convertTo12HourFormat(time.practice_start)} - ${convertTo12HourFormat(time.practice_end)}`}</span>
+                  )
+              )}
             </div>
           </div>
           <div className="flex gap-3">

@@ -1,7 +1,7 @@
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
+import { UrologistReviewType } from '@/app/_lib/definitions/urologist'
 import { formatDate } from '@/app/_lib/helpers/DateTimeHelpers'
-import { UrologistReviewType } from '@/app/_lib/types/urologist'
 
 type UrologistReviewProps = {
   data: UrologistReviewType[]

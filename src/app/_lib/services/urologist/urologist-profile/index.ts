@@ -1,5 +1,5 @@
 import { envVars } from '@/app/_lib/constants/env-vars'
-import { UrologistResponse } from '@/app/_lib/types/urologist'
+import { UrologistResponseSchema } from '@/app/_lib/definitions/urologist'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
 type Props = {
@@ -14,6 +14,8 @@ export async function getUrologistProfile({ name }: Props) {
     method: 'GET',
   }
 
-  const response = await fetcher<UrologistResponse>(fetchConfig)
-  return response.data
+  const response = await fetcher(fetchConfig)
+  const parsedData = UrologistResponseSchema.parse(response)
+
+  return parsedData.data
 }

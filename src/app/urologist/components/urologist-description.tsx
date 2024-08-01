@@ -5,7 +5,7 @@ import { ReviewDialog } from '@/app/_components/modal-dialog/contents/review-dia
 import { VouchDialog } from '@/app/_components/modal-dialog/contents/vouch-dialog'
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
-import { UrologistType } from '@/app/_lib/types/urologist'
+import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -33,7 +33,7 @@ export function UrologistDescription({ data }: Props) {
         {/* Urologist Description */}
         <div className="flex items-center gap-x-8">
           <div className="relative h-[105px] w-[105px]">
-            <Image alt="urologist-img" className="border-4 border-white rounded-full" src={data.avatar} fill />
+            <Image alt="urologist-img" className="border-4 border-white rounded-full h-fit" src={data.avatar} fill />
           </div>
           <div className="flex flex-col gap-y-8">
             <span className="text-lg italic font-medium text-white">{data.name}</span>

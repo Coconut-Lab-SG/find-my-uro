@@ -1,11 +1,11 @@
 'use client'
 
-import { defaultMapLocation, GoogleMapsComponent } from '@/app/_components/maps/google-maps-component'
+import { GoogleMapsComponent } from '@/app/_components/maps/google-maps-component'
 import { ModalDialog } from '@/app/_components/modal-dialog'
 import { AppointmentDialog } from '@/app/_components/modal-dialog/contents/appointment-dialog'
 import { Button } from '@/app/_components/ui/button'
+import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { formatPhoneNumber } from '@/app/_lib/helpers/NumberHelpers'
-import { UrologistType } from '@/app/_lib/types/urologist'
 import { Calendar, Phone } from 'lucide-react'
 import { useState } from 'react'
 
@@ -32,9 +32,7 @@ export function UrologistLocation({ data }: Props) {
         {/* Google Map container */}
         <div className="h-[172px] tablet:w-[220px] tablet:h-auto bg-slate-400 w-full">
           {/* TODO: Change lat lng accordingly based on API data later */}
-          <GoogleMapsComponent
-            location={{ lat: parseInt(practice.latitude) || defaultMapLocation.lat, lng: parseInt(practice.longitude) || defaultMapLocation.lng }}
-          />
+          <GoogleMapsComponent location={{ lat: data.latitude, lng: data.longitude }} />
         </div>
 
         {/* Urologist Appointment */}
@@ -43,13 +41,10 @@ export function UrologistLocation({ data }: Props) {
             <span className="font-bold">{data.name}</span>
             <span>{practice.address}</span>
             <p>
-              <a
-                href="http://maps.google.com/?q=Dr.%20Yaniv%20M.%20Larish,%20Upper%20East%20Side%20Manhattan,%20New%20York,%20NY,%2010021"
-                target="_blank"
-              >
+              <a href={practice.map_url} target="_blank">
                 (Directions)
               </a>{' '}
-              {practice.city}, {practice.zip_code}
+              {practice.city.name}, {practice.city.country_code}, {practice.zip_code}
             </p>
           </div>
           <div className="flex flex-col gap-3 text-white">
