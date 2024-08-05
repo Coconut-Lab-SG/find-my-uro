@@ -47,7 +47,7 @@ export function ReviewDialog() {
       </div>
 
       <div className="px-6">
-        <Button variant="ghost" className="bg-[#f6a404] w-full text-xl text-white h-11">
+        <Button variant="ghost" className="bg-[#f6a404] w-full text-xl text-white h-11 hover:bg-[#f6a404] hover:text-white">
           Submit Review
         </Button>
       </div>
