@@ -1,27 +1,27 @@
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
-import { UrologistReviewType } from '@/app/_lib/definitions/urologist'
+import { UrologistReviewData, UrologistReviewResponse } from '@/app/_lib/definitions/urologist-review'
 import { formatDate } from '@/app/_lib/helpers/DateTimeHelpers'
 
 type UrologistReviewProps = {
-  data: UrologistReviewType[]
+  reviewData: UrologistReviewResponse
 }
 
-export function UrologistReview({ data }: UrologistReviewProps) {
+export function UrologistReview({ reviewData }: UrologistReviewProps) {
   return (
     <div className="flex flex-col gap-4">
       <span className="text-lg italic font-medium text-center">Reviews here and beyond</span>
 
       <div className="flex flex-col gap-3">
         <span>Rating and Reviews</span>
-        <StarGenerator rating={5} />
-        <span className="text-xs text-gray-400">71 ratings, 71 reviews</span>
+        <StarGenerator rating={reviewData.average_rating} />
+        <span className="text-xs text-gray-400">
+          {reviewData.number_of_rating} ratings, {reviewData.number_of_review} reviews
+        </span>
       </div>
-      {data.map((review) => (
-        <ReviewCard key={review.id} data={review} />
-      ))}
+      {reviewData.data?.map((review) => <ReviewCard key={review.id} data={review} />)}
 
-      {data.length > 5 && (
+      {reviewData?.data.length > 5 && (
         <Button variant="ghost" className="text-[#432f91] w-fit p-0">
           Show More
         </Button>
@@ -32,7 +32,7 @@ export function UrologistReview({ data }: UrologistReviewProps) {
 
 // Composing component
 type ReviewCardProps = {
-  data: UrologistReviewType
+  data: UrologistReviewData
 }
 
 function ReviewCard({ data }: ReviewCardProps) {
@@ -40,11 +40,11 @@ function ReviewCard({ data }: ReviewCardProps) {
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-1 bg-[#f2f2f2] rounded-xl p-4">
         <p className="text-sm line-clamp-2">{data.review}</p>
-        <StarGenerator rating={5} />
+        <StarGenerator rating={data.rating} />
       </div>
       <p className="text-sm">
-        <a href="https://www.zocdoc.com/doctor/yaniv-larish-md-176843" target="_blank">
-          {data.author || 'Unknown User'}
+        <a href={data.link} target="_blank">
+          {data.user?.name || 'Unknown User'}
         </a>{' '}
         {formatDate(data.date)}
       </p>

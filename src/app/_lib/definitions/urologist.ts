@@ -1,16 +1,6 @@
 import { z } from 'zod'
 import { CitySchema } from './region'
 
-const UrologistReviewTypeSchema = z.object({
-  id: z.string(),
-  rating: z.number(),
-  date: z.string(),
-  link: z.string(),
-  source: z.string(),
-  review: z.string(),
-  author: z.string(),
-})
-
 const AmthAffiliationTypeSchema = z.object({
   name: z.string(),
 })
@@ -51,25 +41,37 @@ const UrologistPracticeTypeSchema = z.object({
   description: z.string().nullable(),
 })
 
+const UrologistInsuranceTypeSchema = z.object({
+  id: z.string(),
+  insurance_name: z.string(),
+  insurance_code: z.string().nullable(),
+  plan_name: z.string(),
+  plan_code: z.string().nullable(),
+  plan_type: z.string(),
+})
+
 const UrologistTypeSchema = z.object({
   id: z.string(),
+  avatar: z.string(),
+  is_featured: z.boolean(),
+  is_allowed_booking_appointment: z.boolean(),
   name: z.string(),
   suffix: z.string(),
-  rate: z.number(),
-  avatar: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
-  board_certified: z.string(),
+  gender: z.string(),
   language: z.string(),
+  credentials: z.string(),
+  board_certified: z.string(),
   npi_id: z.string(),
   pac_id: z.string(),
   year_of_experience: z.number(),
-  is_allowed_booking_appointment: z.boolean(),
+  rate: z.number(),
+  latitude: z.number(),
+  longitude: z.number(),
   speciality: z.string(),
   educations: z.array(UrologistEducationTypeSchema),
   practice: UrologistPracticeTypeSchema,
   amthAffiliations: z.array(AmthAffiliationTypeSchema),
-  reviews: z.array(UrologistReviewTypeSchema),
+  insurances: z.array(UrologistInsuranceTypeSchema),
 })
 
 export const UrologistResponseSchema = z.object({
@@ -78,4 +80,3 @@ export const UrologistResponseSchema = z.object({
 
 export type UrologistResponse = z.infer<typeof UrologistResponseSchema>
 export type UrologistType = z.infer<typeof UrologistTypeSchema>
-export type UrologistReviewType = z.infer<typeof UrologistReviewTypeSchema>

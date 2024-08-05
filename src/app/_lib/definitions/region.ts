@@ -9,10 +9,7 @@ export const CitySchema = z.object({
   state_name: z.string(),
   country_code: z.string(),
   country_name: z.string(),
-  latitude: z.string(),
-  longitude: z.string(),
-  flag: z.boolean(),
+  latitude: z.number(),
+  longitude: z.number(),
   wikiDataId: z.string(),
-  created_at: z.string(),
-  updated_at: z.string(),
 })

@@ -1,21 +1,21 @@
 import { envVars } from '@/app/_lib/constants/env-vars'
-import { UrologistResponseSchema } from '@/app/_lib/definitions/urologist'
+import { UrologistReviewTypeSchema } from '@/app/_lib/definitions/urologist-review'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
 type Props = {
   name: string
 }
 
-export async function getUrologistProfile({ name }: Props) {
+export async function getUrologistReview({ name }: Props) {
   const fetchConfig: FetchConfigType = {
     // Note: Need to define app base URL for server-side fetch
-    url: `${envVars.APP_BASE_URL}/api/urologist/main-data?slug=${name}`,
+    url: `${envVars.APP_BASE_URL}/api/urologist/review-data?slug=${name}`,
     bodyData: null,
     method: 'GET',
   }
 
   const response = await fetcher<any>(fetchConfig)
-  const parsedData = UrologistResponseSchema.parse(response)
+  const parsedData = UrologistReviewTypeSchema.parse(response)
 
-  return parsedData.data
+  return parsedData
 }

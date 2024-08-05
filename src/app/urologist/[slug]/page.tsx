@@ -1,4 +1,5 @@
 import { getUrologistProfile } from '@/app/_lib/services/urologist/urologist-profile'
+import { getUrologistReview } from '@/app/_lib/services/urologist/urologist-review'
 import { AboutUrologist } from '../components/about-urologist'
 import { UrologistDescription } from '../components/urologist-description'
 import { UrologistLocation } from '../components/urologist-location'
@@ -12,6 +13,7 @@ type UrologistServerProps = {
 
 export default async function Urologist({ params }: UrologistServerProps) {
   const data = await getUrologistProfile({ name: params.slug })
+  const reviewData = await getUrologistReview({ name: params.slug })
 
   return (
     <div className="flex flex-col gap-y-4 max-w-[1140px] mx-auto">
@@ -29,7 +31,7 @@ export default async function Urologist({ params }: UrologistServerProps) {
         <div className="flex flex-col gap-6 tablet:flex-row">
           <div className="flex flex-col tablet:w-2/3">
             {/* Urologist Review section */}
-            <UrologistReview data={data.reviews} />
+            <UrologistReview reviewData={reviewData} />
             {/* Community Notes section */}
             <div className="flex flex-col">
               <div className="flex flex-col gap-3 border-b border-gray-300 py-4">
