@@ -15,7 +15,6 @@ type Props = {
 }
 
 export function UrologistDescription({ data }: Props) {
-  console.log(data)
   const [openVouchDialog, setOpenVouchDialog] = useState(false)
   const [openReviewDialog, setOpenReviewDialog] = useState(false)
 

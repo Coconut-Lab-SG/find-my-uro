@@ -71,7 +71,7 @@ function StarRating({ rating, hover, setRating, setHover }: StarRatingProps) {
 
         return (
           <div key={index} onClick={() => setRating(ratingValue)} onMouseEnter={() => setHover(ratingValue)} onMouseLeave={() => setHover(rating)}>
-            <StarIcon size={24} fill={ratingValue <= (hover || rating) ? '#ffbc0b' : '#c4c4c4'} />
+            <StarIcon size={24} fill={ratingValue <= (hover || rating) ? '#ffbc0b' : '#c4c4c4'} shape="full" />
           </div>
         )
       })}
