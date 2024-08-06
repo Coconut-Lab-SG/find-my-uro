@@ -33,5 +33,13 @@ export const UrologistReviewTypeSchema = z.object({
   number_of_rating: z.number(),
 })
 
+export const UrologistReviewFormSchema = z.object({
+  urologist_id: z.string(),
+  rating: z.number(),
+  review: z.string(),
+  author_email: z.string(),
+})
+
 export type UrologistReviewData = z.infer<typeof UrologistReviewDataSchema>
 export type UrologistReviewResponse = z.infer<typeof UrologistReviewTypeSchema>
+export type RateUrologistType = z.infer<typeof UrologistReviewFormSchema>

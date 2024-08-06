@@ -71,7 +71,7 @@ export function UrologistDescription({ data }: Props) {
       </ModalDialog>
 
       <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
-        <ReviewDialog />
+        <ReviewDialog name={data.name} avatar={data.avatar} urologist_id={data.id} />
       </ModalDialog>
     </>
   )
