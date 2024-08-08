@@ -10,13 +10,23 @@ import { useRouter } from 'next/navigation'
 type Props = {
   data: UrologistSearchResult
   idx: number
+  setUrologistCoordinate: (latitude: number, longitude: number) => void
 }
 
-export function UrologistResultCard({ data, idx }: Props) {
+export function UrologistResultCard({ data, idx, setUrologistCoordinate }: Props) {
   const router = useRouter()
 
   function redirectUrologist() {
     router.push(`/urologist/${data.slug}`)
+  }
+
+  function changeCoordinate(e: React.MouseEvent<HTMLButtonElement>) {
+    // Prevent clicking parent button
+    e.stopPropagation()
+
+    const urologistLatitude = data.latitude
+    const urologistLongitude = data.longitude
+    setUrologistCoordinate(urologistLatitude, urologistLongitude)
   }
 
   return (
@@ -33,7 +43,7 @@ export function UrologistResultCard({ data, idx }: Props) {
         <span className="italic font-medium">{data.name}</span>
         <StarGenerator rating={data.rate} />
         {data.is_featured && <UrologistLabel />}
-        <Button variant="ghost" className="flex items-center justify-start gap-1 text-[#432f91] p-0 hover:bg-transparent">
+        <Button variant="ghost" className="flex items-center justify-start gap-1 text-[#432f91] p-0 hover:bg-transparent" onClick={changeCoordinate}>
           <Map size={18} />
           <span>See on map</span>
         </Button>

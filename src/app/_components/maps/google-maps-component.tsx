@@ -4,8 +4,8 @@ we need to make this component client rendered as well else error occurs
 */
 'use client'
 
-import { envVars } from '@/app/_lib/constants/env-vars'
-import { GoogleMapsEmbed } from '@next/third-parties/google'
+import { GoogleMap, Marker } from '@react-google-maps/api'
+import { MapProvider } from './google-maps.provider'
 
 type GoogleMapProps = {
   location: {
@@ -14,24 +14,38 @@ type GoogleMapProps = {
   }
 }
 
+export const defaultMapContainerStyle = {
+  width: '100%',
+  height: '100%',
+}
+
 export const defaultMapLocation = {
   lat: 35.8799866,
   lng: 76.5048004,
 }
 
+const defaultMapOptions = {
+  zoomControl: true,
+  tilt: 0,
+  gestureHandling: 'greedy',
+  mapTypeId: 'roadmap',
+}
+
+const defaultMapZoom = 10
+
 export function GoogleMapsComponent({ location }: GoogleMapProps) {
   return (
-    <div className="h-full">
-      <GoogleMapsEmbed
-        apiKey={envVars.GOOGLE_MAP_API_KEY!}
-        height="100%;"
-        width="100%;"
-        mode="place"
-        q={`${location.lat},${location.lng}`}
-        center={`${location.lat},${location.lng}`}
-        allowfullscreen
-        loading="lazy"
-      />
-    </div>
+    <MapProvider>
+      <div className="size-full">
+        <GoogleMap
+          mapContainerStyle={defaultMapContainerStyle}
+          center={{ lat: location.lat, lng: location.lng }}
+          zoom={defaultMapZoom}
+          options={defaultMapOptions}
+        >
+          <Marker position={location} />
+        </GoogleMap>
+      </div>
+    </MapProvider>
   )
 }

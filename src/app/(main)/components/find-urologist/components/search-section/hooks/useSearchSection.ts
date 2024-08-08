@@ -33,7 +33,7 @@ export function useSearchSection() {
           },
         })
       }
-      return setLocationInput(inputValue)
+      return setLocationInput(inputValue.trim())
     }
     return setUrologistInput(inputValue)
   }
@@ -74,7 +74,7 @@ export function useSearchSection() {
         ...error,
         region: {
           isError: true,
-          message: 'Please enter region keyword.',
+          message: 'Please enter location keyword.',
         },
       })
     }

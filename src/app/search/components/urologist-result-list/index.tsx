@@ -3,11 +3,15 @@
 import { Loader2Icon } from 'lucide-react'
 import { SearchParamsProps } from '../../page'
 import { UrologistResultCard } from '../urologist-result-card'
-import { UrologistsPagination } from '../urologists-pagination'
 import { useUrologistResultList } from './hooks/useUrologistResultList'
 
-export function UrologistResultList(props: SearchParamsProps) {
-  const { urologistList, loading } = useUrologistResultList(props)
+type Props = {
+  queryParams: SearchParamsProps
+  setUrologistCoordinate: (latitude: number, longitude: number) => void
+}
+
+export function UrologistResultList({ queryParams, setUrologistCoordinate }: Props) {
+  const { urologistList, loading } = useUrologistResultList(queryParams)
 
   if (loading) {
     return (
@@ -28,9 +32,12 @@ export function UrologistResultList(props: SearchParamsProps) {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-5">
-        {urologistList?.map((urologist, idx) => <UrologistResultCard key={urologist.id} data={urologist} idx={idx + 1} />)}
+        {urologistList?.map((urologist, idx) => (
+          <UrologistResultCard key={urologist.id} data={urologist} idx={idx + 1} setUrologistCoordinate={setUrologistCoordinate} />
+        ))}
       </div>
-      <UrologistsPagination />
+      {/* TODO: Enable later */}
+      {/* <UrologistsPagination /> */}
     </div>
   )
 }
