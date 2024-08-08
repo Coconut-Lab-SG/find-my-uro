@@ -2,17 +2,28 @@ import { GoogleMapsComponent } from '@/app/_components/maps/google-maps-componen
 import { Button } from '@/app/_components/ui/button'
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
-import { UrologistResultCard } from './components/urologist-result-card'
-import { UrologistsPagination } from './components/urologists-pagination'
+import { UrologistResultList } from './components/urologist-result-list'
 
-export default function SearchUrologists() {
+export type SearchParamsProps = {
+  keyword: string
+  location: string
+  state_id: string
+  city_id: string
+  distance: string
+  latitude: string
+  longitude: string
+}
+
+export default function SearchUrologists({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  const queryParams = searchParams as SearchParamsProps
+
   return (
     <div className="flex flex-col gap-y-4 px-5 max-w-[1140px] mx-auto">
       <div className="flex flex-col gap-y-2.5 pb-10">
-        <div className="flex items-center gap-3">
+        <Link prefetch={false} href="/" className="flex items-center gap-3">
           <MoveLeft size={20} />
-          <span className="text-lg">New York, NY</span>
-        </div>
+          <span className="text-lg">{queryParams.location}</span>
+        </Link>
 
         <div className="flex flex-col gap-4 laptop:flex-row-reverse">
           {/* Map section */}
@@ -48,18 +59,7 @@ export default function SearchUrologists() {
                   <ButtonFilterChip label="Stent Experience" />
                 </div>
               </div>
-              <div className="flex flex-col gap-5">
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-                <UrologistResultCard />
-              </div>
-              <UrologistsPagination />
+              <UrologistResultList {...queryParams} />
 
               <div className="text-center">
                 <Link

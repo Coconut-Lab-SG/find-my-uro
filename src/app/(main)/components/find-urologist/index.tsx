@@ -1,6 +1,5 @@
-import { Button } from '@/app/_components/ui/button'
-import { Input } from '@/app/_components/ui/input'
 import Image from 'next/image'
+import { SearchSection } from './components/search-section'
 import { UrologistRatingCard } from './urologist-rating-card'
 
 export function FindUrologist() {
@@ -24,11 +23,7 @@ export function FindUrologist() {
           <span className="text-2xl italic font-medium">
             Find Your <span className="text-[#42328d]">Best</span> Provider
           </span>
-          <div className="grid grid-cols-1 mobileL:grid-cols-3 gap-4">
-            <Input className="h-11 text-lg bg-white" placeholder="Your City, State, or ZIP Code" />
-            <Input className="h-11 text-lg bg-white" placeholder="Name of Urologist" />
-            <Button className="bg-[#f6a404] text-white hover:bg-orange-300 h-full">Search</Button>
-          </div>
+          <SearchSection />
         </div>
       </div>
 

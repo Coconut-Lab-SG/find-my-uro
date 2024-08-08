@@ -21,15 +21,17 @@ export const defaultMapLocation = {
 
 export function GoogleMapsComponent({ location }: GoogleMapProps) {
   return (
-    <GoogleMapsEmbed
-      apiKey={envVars.GOOGLE_MAP_API_KEY!}
-      height="100%;"
-      width="100%;"
-      mode="place"
-      q={`${location.lat},${location.lng}`}
-      center={`${location.lat},${location.lng}`}
-      allowfullscreen
-      loading="lazy"
-    />
+    <div className="h-full">
+      <GoogleMapsEmbed
+        apiKey={envVars.GOOGLE_MAP_API_KEY!}
+        height="100%;"
+        width="100%;"
+        mode="place"
+        q={`${location.lat},${location.lng}`}
+        center={`${location.lat},${location.lng}`}
+        allowfullscreen
+        loading="lazy"
+      />
+    </div>
   )
 }
