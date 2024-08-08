@@ -8,6 +8,7 @@ import { cn } from '@/app/_lib/utils'
 import { format } from 'date-fns'
 import { CalendarDays } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useAppointmentDialog } from './hooks/useAppointmentDialog'
 
 type AppointmentDialogProps = {
@@ -105,17 +106,17 @@ export function AppointmentDialog({ data }: AppointmentDialogProps) {
 
           <p className="text-[#808080] text-sm">
             By clicking the "Submit Review" button, you agree to Find My Uro's{' '}
-            <a href="" target="_blank">
+            <Link href="/terms-of-use" target="_blank">
               Terms
-            </a>
+            </Link>
             ,{' '}
-            <a href="" target="_blank">
+            <Link href="/privacy" target="_blank">
               Privacy Policy
-            </a>
+            </Link>
             , and{' '}
-            <a href="" target="_blank">
-              Review Guideline
-            </a>
+            <Link href="/review-guidelines" target="_blank">
+              Review Guidelines
+            </Link>
           </p>
           <Button variant="ghost" type="submit" className="bg-[#f6a404] w-full text-xl text-white h-11 hover:bg-[#f6a404] hover:text-white">
             Submit

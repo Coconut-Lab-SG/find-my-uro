@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function FrequentlyAskedQuestions() {
   return (
     <div className="flex flex-col gap-y-4 px-5 max-w-[1140px] mx-auto">
@@ -35,9 +37,9 @@ export default function FrequentlyAskedQuestions() {
           <p>
             Reviews and star ratings shown are the average rating of various reviews available on the specific provider as well as reviews provided by
             users on FindMyUro. Please see our{' '}
-            <a href="https://www.findmyuro.com/review-guidelines" target="_blank">
+            <Link href="/review-guidelines" target="_blank">
               Review Guidelines
-            </a>
+            </Link>
             , if needed.
           </p>
         </div>
@@ -99,9 +101,9 @@ export default function FrequentlyAskedQuestions() {
           <p className="text-lg font-bold">Who can leave a review?</p>
           <p>
             You! Help out other patients find the right doctor by leaving a review. Please go through our complete{' '}
-            <a href="https://www.findmyuro.com/review-guidelines" target="_blank">
+            <Link href="/review-guidelines" target="_blank">
               Review Guidelines
-            </a>
+            </Link>
             , if needed.
           </p>
         </div>

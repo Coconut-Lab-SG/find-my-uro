@@ -29,13 +29,13 @@ export function VouchDialog({ data }: VouchDialogProps) {
       <div className="flex justify-center text-center p-3">
         <p className="text-[#808080] text-sm">
           By continuing, you agree to Find My Uro's{' '}
-          <a href="" target="_blank">
+          <Link href="/terms-of-use" target="_blank">
             Terms
-          </a>{' '}
+          </Link>{' '}
           and{' '}
-          <a href="" target="_blank">
+          <Link href="/privacy" target="_blank">
             Privacy Policy
-          </a>
+          </Link>
         </p>
       </div>
     </div>

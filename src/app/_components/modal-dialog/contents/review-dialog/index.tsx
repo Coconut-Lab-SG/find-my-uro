@@ -4,6 +4,7 @@ import { Form, FormControl, FormField, FormItem } from '@/app/_components/ui/for
 import { Input } from '@/app/_components/ui/input'
 import { Textarea } from '@/app/_components/ui/textarea'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useReviewDialog } from './hooks/useReviewDialog'
 
 type ReviewDialogProps = {
@@ -73,17 +74,17 @@ export function ReviewDialog({ name, avatar, urologist_id }: ReviewDialogProps) 
         <div className="flex justify-center text-center p-3">
           <p className="text-[#808080] text-sm">
             By clicking the "Submit Review" button, you agree to Find My Uro's{' '}
-            <a href="" target="_blank">
+            <Link href="/terms-of-use" target="_blank">
               Terms
-            </a>
+            </Link>
             ,{' '}
-            <a href="" target="_blank">
+            <Link href="/privacy" target="_blank">
               Privacy Policy
-            </a>
+            </Link>
             , and{' '}
-            <a href="" target="_blank">
-              Review Guideline
-            </a>
+            <Link href="/review-guidelines" target="_blank">
+              Review Guidelines
+            </Link>
           </p>
         </div>
 
