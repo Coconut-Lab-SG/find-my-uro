@@ -36,7 +36,9 @@ export function UrologistListContainer({ queryParams }: Props) {
         {/* Urologist result list */}
         <div className="flex flex-col gap-5 h-[440px] overflow-y-auto grow">
           {/* Filter */}
-          <div className="flex-shrink-0">
+
+          {/* NOTE: Taken down temporarily */}
+          {/* <div className="flex-shrink-0">
             <div className="flex gap-2.5 overflow-x-auto hide-scrollbar">
               <select className="button-chip focus:outline-none">
                 <option value="-">All Genders</option>
@@ -48,7 +50,7 @@ export function UrologistListContainer({ queryParams }: Props) {
               <ButtonFilterChip label="No Stent" />
               <ButtonFilterChip label="Stent Experience" />
             </div>
-          </div>
+          </div> */}
           <UrologistResultList queryParams={queryParams} setUrologistCoordinate={setUrologistCoordinate} />
 
           <div className="text-center">
