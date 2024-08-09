@@ -21,7 +21,7 @@ export function UrologistResultList({ queryParams, setUrologistCoordinate }: Pro
     )
   }
 
-  if (!urologistList?.length) {
+  if (urologistList?.length === 0) {
     return (
       <div className="flex justify-center h-52 items-center">
         <span className="text-xl">No urologist found.</span>

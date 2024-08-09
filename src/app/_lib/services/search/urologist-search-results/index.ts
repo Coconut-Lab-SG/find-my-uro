@@ -1,4 +1,4 @@
-import { UrologistSearchResultsResponseSchema } from '@/app/_lib/definitions/search-urologist'
+import { UrologistSearchResultsResponse } from '@/app/_lib/definitions/search-urologist'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
 type Props = {
@@ -13,7 +13,8 @@ export async function getUrologistSearchResult({ queryParams }: Props) {
     method: 'GET',
   }
 
-  const response = await fetcher<unknown>(fetchConfig)
-  const data = UrologistSearchResultsResponseSchema.parse(response)
-  return data
+  const response = await fetcher<UrologistSearchResultsResponse>(fetchConfig)
+  // TODO: Enable zod validation later if API data structure is fixed
+  // const data = UrologistSearchResultsResponseSchema.parse(response)
+  return response
 }
