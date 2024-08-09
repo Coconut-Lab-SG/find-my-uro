@@ -23,6 +23,7 @@ export function useSearchSection() {
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
     resetInputError()
     const inputValue = e.target.value
+
     if (e.target.name === 'region') {
       if (inputValue.length < 3) {
         setError({
@@ -33,7 +34,7 @@ export function useSearchSection() {
           },
         })
       }
-      return setLocationInput(inputValue.trim())
+      return setLocationInput(inputValue.trimStart()) // trim whitespace at the start of the keyword
     }
     return setUrologistInput(inputValue)
   }
@@ -64,7 +65,7 @@ export function useSearchSection() {
   function handleSelectLocation(input: LocationType) {
     setLocationInput(input.location)
     setSelectedLocation(input)
-    setLocationResults([])
+    setShowSuggestion(false)
   }
 
   function handleSubmitSearch() {
@@ -84,7 +85,7 @@ export function useSearchSection() {
       distance: 5000, // in km, TODO: adjust later accordingly with BE team
       location: selectedLocation?.location,
       latitude: selectedLocation?.latitude,
-      longitude: selectedLocation?.latitude,
+      longitude: selectedLocation?.longitude,
       state_id: selectedLocation?.state_id,
       keyword: urologistInput,
     }

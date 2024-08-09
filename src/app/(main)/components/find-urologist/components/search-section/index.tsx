@@ -22,15 +22,21 @@ export function SearchSection() {
         {/* Search result section */}
         {showSuggestion && (
           <section className="absolute top-[50px] border border-gray-100 bg-white shadow-md max-h-60 overflow-y-auto w-full">
-            {locationResults.map((location) => (
-              <div
-                key={location.city_id}
-                className="p-2 border-b cursor-pointer hover:bg-gray-200 last:border-none"
-                onClick={() => handleSelectLocation(location)}
-              >
-                {location.location}
+            {locationResults.length > 0 ? (
+              locationResults.map((location) => (
+                <div
+                  key={location.city_id}
+                  className="p-2 border-b cursor-pointer hover:bg-gray-200 last:border-none"
+                  onClick={() => handleSelectLocation(location)}
+                >
+                  {location.location}
+                </div>
+              ))
+            ) : (
+              <div className="p-2">
+                <span>Location not found.</span>
               </div>
-            ))}
+            )}
           </section>
         )}
       </div>
