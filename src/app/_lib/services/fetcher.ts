@@ -9,7 +9,7 @@ function fetcher<T>({ url, bodyData, method, token }: FetchConfigType): Promise<
   const params = {
     headers: {
       'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token ?? ''}` }),
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
     body: bodyData ? JSON.stringify(bodyData) : undefined,
     method,

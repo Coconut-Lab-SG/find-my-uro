@@ -3,6 +3,7 @@ import { Button } from '@/app/_components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
 import { Textarea } from '@/app/_components/ui/textarea'
+import { LoaderCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useReviewDialog } from './hooks/useReviewDialog'
@@ -11,10 +12,11 @@ type ReviewDialogProps = {
   urologist_id: string
   name: string
   avatar: string
+  closeReviewDialog: () => void
 }
 
-export function ReviewDialog({ name, avatar, urologist_id }: ReviewDialogProps) {
-  const { form, hover, disableBtn, setHover, submitReview } = useReviewDialog({ urologist_id })
+export function ReviewDialog({ name, avatar, urologist_id, closeReviewDialog }: ReviewDialogProps) {
+  const { userData, form, hover, disableBtn, loading, setHover, submitReview } = useReviewDialog({ urologist_id, closeReviewDialog })
 
   return (
     <Form {...form}>
@@ -92,9 +94,10 @@ export function ReviewDialog({ name, avatar, urologist_id }: ReviewDialogProps) 
           <Button
             type="submit"
             variant="ghost"
-            disabled={disableBtn}
-            className="bg-[#f6a404] w-full text-xl text-white h-11 hover:bg-[#f6a404] hover:text-white"
+            disabled={disableBtn || loading}
+            className="bg-[#f6a404] flex items-center gap-2 w-full text-xl text-white h-11 hover:bg-[#f6a404] hover:text-white"
           >
+            {loading && <LoaderCircle size={20} className="animate-spin" />}
             Submit Review
           </Button>
         </div>

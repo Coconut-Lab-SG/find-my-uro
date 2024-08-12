@@ -67,11 +67,11 @@ export function UrologistDescription({ data }: Props) {
       </div>
 
       <ModalDialog title="Find My Uro!" isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
-        <VouchDialog data={data} />
+        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} />
       </ModalDialog>
 
       <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
-        <ReviewDialog name={data.name} avatar={data.avatar} urologist_id={data.id} />
+        <ReviewDialog name={data.name} avatar={data.avatar} urologist_id={data.id} closeReviewDialog={() => setOpenReviewDialog(false)} />
       </ModalDialog>
     </>
   )
