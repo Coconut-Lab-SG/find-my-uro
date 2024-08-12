@@ -1,5 +1,5 @@
 import { envVars } from '@/app/_lib/constants/env-vars'
-import { MostSearchedCitiesResponse } from '@/app/_lib/definitions/region'
+import { MostSeachedCitiesResponseSchema } from '@/app/_lib/definitions/region'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
 export async function getMostSearchedCities(limit?: number) {
@@ -10,6 +10,7 @@ export async function getMostSearchedCities(limit?: number) {
     method: 'GET',
   }
 
-  const response = await fetcher<MostSearchedCitiesResponse>(fetchConfig)
-  return response.data
+  const response = await fetcher<unknown>(fetchConfig)
+  const data = MostSeachedCitiesResponseSchema.parse(response)
+  return data.data
 }

@@ -16,7 +16,7 @@ export const CitySchema = z.object({
   searches_count: z.number().nullable(),
 })
 
-const MostSeachedCitiesSchema = z.object({
+export const MostSeachedCitiesSchema = z.object({
   id: z.number(),
   country_id: z.number(),
   state_id: z.number(),
@@ -28,11 +28,11 @@ const MostSeachedCitiesSchema = z.object({
   country_name: z.string(),
   latitude: z.number(),
   longitude: z.number(),
-  wikiDataId: z.string(),
+  wikiDataId: z.string().nullable(),
   searches_count: z.number(),
 })
 
-const MostSeachedCitiesResponseSchema = z.object({
+export const MostSeachedCitiesResponseSchema = z.object({
   data: z.array(MostSeachedCitiesSchema),
 })
 
