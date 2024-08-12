@@ -1,5 +1,5 @@
 import { getHomepageDataset } from '../_lib/services/landing-page/homepage-dataset'
-// import { ArticleSection } from './components/article'
+import { ArticleSection } from './components/article'
 import { FeaturedUrologists } from './components/featured-urologists'
 import { FindUrologist } from './components/find-urologist'
 import { MostSearchedCities } from './components/most-searched-cities'
@@ -15,7 +15,7 @@ export default async function Home() {
         <FeaturedUrologists featured_urologist={data.featured} highest_rated_urologist={data.highest_rated} />
       </div>
       <PromotionBanner />
-      {/* <ArticleSection articles={data.articles} /> */}
+      <ArticleSection articles={data.articles} />
       <MostSearchedCities />
     </div>
   )

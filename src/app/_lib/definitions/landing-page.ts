@@ -6,6 +6,7 @@ const FeaturedUrologistSchema = z.object({
   name: z.string(),
   suffix: z.string(),
   rate: z.number(),
+  total_review: z.number(),
   avatar: z.string(),
   longitude: z.number(),
   latitude: z.number(),
