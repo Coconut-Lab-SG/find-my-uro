@@ -1,8 +1,13 @@
+import { ArticleThumbnailType } from '@/app/_lib/definitions/articles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArticleCard } from './article-card'
 
-export function ArticleSection() {
+type ArticleSectionProps = {
+  articles: ArticleThumbnailType[]
+}
+
+export function ArticleSection({ articles }: ArticleSectionProps) {
   return (
     <div className="flex flex-col gap-y-16 max-w-[1140px] mx-auto w-full px-5">
       {/* Title section */}
@@ -25,9 +30,9 @@ export function ArticleSection() {
         </div>
 
         <div className="flex flex-col gap-y-5">
-          <ArticleCard />
-          <ArticleCard />
-          <ArticleCard />
+          {articles.map((article) => (
+            <ArticleCard key={article.link} data={article} />
+          ))}
         </div>
 
         <Link href="/article">See all articles</Link>
