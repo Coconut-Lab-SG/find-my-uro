@@ -8,8 +8,12 @@ export type SearchParamsProps = {
   state_id: string
   city_id: string
   distance: string
+  location_based: string
   latitude: string
   longitude: string
+  is_featured: string
+  is_highest_rated: string
+  type?: string
 }
 
 export default function SearchUrologists({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
@@ -20,7 +24,7 @@ export default function SearchUrologists({ searchParams }: { searchParams: { [ke
       <div className="flex flex-col gap-y-2.5 pb-10">
         <Link prefetch={false} href="/" className="flex items-center gap-3">
           <MoveLeft size={20} />
-          <span className="text-lg">{queryParams.location}</span>
+          <span className="text-lg">{queryParams.location ?? 'Back to Home'}</span>
         </Link>
 
         {/* Page content section */}

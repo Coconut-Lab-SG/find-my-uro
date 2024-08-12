@@ -9,11 +9,12 @@ export function useUrologistResultList(props: SearchParamsProps) {
   const [loading, setLoading] = useState(true) // loading at initial state while fetching data
 
   async function fetchUrologistResult() {
+    // Delete type query params if any ('type' query is only intended for featured urologist/highest rated label)
+    delete props.type
     const query = objectToQueryString(props)
     setLoading(true)
     try {
       await getUrologistSearchResult({ queryParams: query }).then((resp) => {
-        console.log(resp)
         setData(resp)
       })
     } catch (error) {
