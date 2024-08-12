@@ -1,11 +1,11 @@
-// import { getHomepageDataset } from '../_lib/services/landing-page/homepage-dataset'
+import { getHomepageDataset } from '../_lib/services/landing-page/homepage-dataset'
 // import { ArticleSection } from './components/article'
 import { FindUrologist } from './components/find-urologist'
 import { MostSearchedCities } from './components/most-searched-cities'
 import { PromotionBanner } from './components/promotion-banner'
 
 export default async function Home() {
-  // const data = await getHomepageDataset()
+  const data = await getHomepageDataset()
 
   // console.log(data);
 
