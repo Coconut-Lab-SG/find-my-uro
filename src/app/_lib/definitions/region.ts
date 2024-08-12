@@ -37,3 +37,4 @@ export const MostSeachedCitiesResponseSchema = z.object({
 })
 
 export type MostSearchedCitiesResponse = z.infer<typeof MostSeachedCitiesResponseSchema>
+export type MostSearchedCityType = z.infer<typeof MostSeachedCitiesSchema>

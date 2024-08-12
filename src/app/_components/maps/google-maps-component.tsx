@@ -34,15 +34,15 @@ const defaultMapOptions = {
 const defaultMapZoom = 10
 
 export function GoogleMapsComponent({ location }: GoogleMapProps) {
+  const mapLocation = {
+    lat: !isNaN(location.lat) ? location.lat : defaultMapLocation.lat,
+    lng: !isNaN(location.lng) ? location.lng : defaultMapLocation.lng,
+  }
+
   return (
     <MapProvider>
       <div className="size-full">
-        <GoogleMap
-          mapContainerStyle={defaultMapContainerStyle}
-          center={{ lat: location.lat, lng: location.lng }}
-          zoom={defaultMapZoom}
-          options={defaultMapOptions}
-        >
+        <GoogleMap mapContainerStyle={defaultMapContainerStyle} center={mapLocation} zoom={defaultMapZoom} options={defaultMapOptions}>
           <Marker position={location} />
         </GoogleMap>
       </div>

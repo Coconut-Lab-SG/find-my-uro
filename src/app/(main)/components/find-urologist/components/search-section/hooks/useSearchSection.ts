@@ -83,6 +83,7 @@ export function useSearchSection() {
     const data = {
       city_id: selectedLocation?.city_id,
       distance: 5000, // in km, TODO: adjust later accordingly with BE team
+      location_based: 'yes',
       location: selectedLocation?.location,
       latitude: selectedLocation?.latitude,
       longitude: selectedLocation?.longitude,
@@ -90,7 +91,7 @@ export function useSearchSection() {
       keyword: urologistInput,
     }
 
-    const queryParams = `keyword=${data.keyword}&location=${data.location}&state_id=${data.state_id}&city_id=${data.city_id}&distance=${data.distance}&latitude=${data.latitude}&longitude=${data.longitude}`
+    const queryParams = `keyword=${data.keyword}&location=${data.location}&location_based=${data.location_based}&state_id=${data.state_id}&city_id=${data.city_id}&distance=${data.distance}&latitude=${data.latitude}&longitude=${data.longitude}`
     router.push(`/search?${queryParams}`)
   }
 
