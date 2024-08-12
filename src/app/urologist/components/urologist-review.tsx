@@ -43,7 +43,7 @@ function ReviewCard({ data }: ReviewCardProps) {
         <StarGenerator rating={data.rating} />
       </div>
       <p className="text-sm">
-        <a href={data.link} target="_blank">
+        <a href={data.link ?? ''} target="_blank">
           {data.user?.name || 'Unknown User'}
         </a>{' '}
         {formatDate(data.date)}

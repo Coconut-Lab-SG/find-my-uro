@@ -15,6 +15,7 @@ const PracticeHourSchema = z.object({
 
 const UrologistEducationTypeSchema = z.object({
   id: z.string(),
+  urologist_id: z.string(),
   type: z.string(),
   institution: z.string(),
   graduation_year: z.number().nullable(),
@@ -31,14 +32,14 @@ const UrologistPracticeTypeSchema = z.object({
   longitude: z.number(),
   latitude: z.number(),
   zip_code: z.string(),
-  city: CitySchema,
   phone_number: z.string(),
   fax_number: z.string().nullable(),
-  hours: z.array(PracticeHourSchema),
   email: z.string().nullable(),
   alternative_email: z.string().nullable(),
   website: z.string().nullable(),
   description: z.string().nullable(),
+  city: CitySchema,
+  hours: z.array(PracticeHourSchema),
 })
 
 const UrologistInsuranceTypeSchema = z.object({

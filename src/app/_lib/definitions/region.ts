@@ -5,6 +5,7 @@ export const CitySchema = z.object({
   country_id: z.number(),
   state_id: z.number(),
   name: z.string(),
+  location: z.string().nullable(),
   state_code: z.string(),
   state_name: z.string(),
   country_code: z.string(),
@@ -12,6 +13,7 @@ export const CitySchema = z.object({
   latitude: z.number(),
   longitude: z.number(),
   wikiDataId: z.string(),
+  searches_count: z.number().nullable(),
 })
 
 const MostSeachedCitiesSchema = z.object({

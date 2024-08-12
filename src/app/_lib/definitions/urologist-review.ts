@@ -4,12 +4,12 @@ import { UserSchema } from './user'
 const UrologistReviewDataSchema = z.object({
   id: z.string(),
   is_moderation_required: z.number(),
-  author_email: z.string(),
+  author_email: z.string().nullable(),
   rating: z.number(),
-  source: z.string(),
-  review: z.string(),
+  source: z.string().nullable(),
+  review: z.string().nullable(),
   date: z.string(),
-  link: z.string(),
+  link: z.string().nullable(),
   user: UserSchema.nullable(),
 })
 
