@@ -35,7 +35,7 @@ export function UrologistRatingCard({ data }: UrologistRatingCardProps) {
       />
       <div className="flex flex-col gap-y-2.5 text-black">
         <span className="text-lg font-medium">{data.name}</span>
-        <FeaturedUrologistLabel />
+        {data.is_featured && <FeaturedUrologistLabel />}
         <div className="flex items-center gap-2">
           <span className="text-sm">
             {data.rate} ({data.total_review})

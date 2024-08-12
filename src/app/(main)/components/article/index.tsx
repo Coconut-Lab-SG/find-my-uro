@@ -31,11 +31,13 @@ export function ArticleSection({ articles }: ArticleSectionProps) {
 
         <div className="flex flex-col gap-y-5">
           {articles.map((article) => (
-            <ArticleCard key={article.link} data={article} />
+            <ArticleCard key={article.title} data={article} />
           ))}
         </div>
 
-        <Link href="/article">See all articles</Link>
+        <Link prefetch={false} href="/article-list">
+          See all articles
+        </Link>
       </div>
 
       {/* Community Highlight banner section */}
