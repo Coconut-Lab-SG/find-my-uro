@@ -1,3 +1,4 @@
+import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistReviewFormSchema } from '@/app/_lib/definitions/urologist-review'
 import { getUserData } from '@/app/_lib/helpers/UserHelpers'
 import { urologistRatePost } from '@/app/_lib/services/urologist/urologist-rate-post'
@@ -15,6 +16,8 @@ type Props = {
 
 export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
   const router = useRouter()
+  const { toast } = useToast()
+
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
   const [disableBtn, setDisableBtn] = useState(true)
@@ -39,6 +42,9 @@ export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
     try {
       await urologistRatePost({ body: data, token: userToken }).then(() => {
         router.refresh()
+        toast({
+          description: 'Review urologist success!',
+        })
         closeReviewDialog()
       })
     } catch (error) {

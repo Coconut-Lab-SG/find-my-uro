@@ -7,6 +7,7 @@ import Footer from '@/app/_components/footer'
 import Header from '@/app/_components/header'
 import { cookies } from 'next/headers'
 
+import { Toaster } from './_components/ui/toaster'
 import './_styles/common.css'
 import './_styles/globals.css'
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         <div className="flex-1 py-4 w-full">{children}</div>
         {!cookieConsent && <CookieModal />}
         <Footer />
+        <Toaster />
       </body>
     </html>
   )
