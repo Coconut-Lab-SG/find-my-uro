@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { DEFAULT_AVATAR_PATH } from '../_lib/constants/string-vars'
 
 export default function Header() {
   const router = useRouter()
@@ -17,7 +18,7 @@ export default function Header() {
           <span className="bg-[#f6a404] h-fit self-end mb-1.5 text-xs text-center px-1 text-[#432f91] italic font-bold rounded-sm">BETA</span>
         </div>
         <Link prefetch={false} href="/account/profile">
-          <Image className="rounded-full" alt="user-avatar" src="/assets/icons/user-avatar.webp" width={40} height={40} />
+          <Image className="rounded-full" alt="user-avatar" src={DEFAULT_AVATAR_PATH} width={40} height={40} />
         </Link>
       </div>
     </div>

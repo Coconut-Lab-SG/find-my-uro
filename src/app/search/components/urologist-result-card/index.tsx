@@ -3,6 +3,7 @@
 import { FeaturedUrologistLabel } from '@/app/_components/featured-urologist-label'
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
+import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistSearchResult } from '@/app/_lib/definitions/search-urologist'
 import { Map } from 'lucide-react'
 import Image from 'next/image'
@@ -34,7 +35,7 @@ export function UrologistResultCard({ data, idx, setUrologistCoordinate }: Props
     <div className="flex items-center gap-7 laptopM:gap-10 px-3 cursor-pointer" onClick={redirectUrologist}>
       {/* Urologist profile image */}
       <div className="relative">
-        <Image alt="urologist-pict" src={data.avatar ?? '/assets/icons/user-avatar.webp'} width={80} height={80} className="rounded-full" />
+        <Image alt="urologist-pict" src={data.avatar ?? DEFAULT_AVATAR_PATH} width={80} height={80} className="rounded-full" />
         <div className="flex items-center justify-center absolute top-0 -left-2.5 bg-[#432f91] text-white w-[30px] h-[30px] rounded-full text-center font-bold">
           {idx}
         </div>

@@ -3,6 +3,7 @@ import { Calendar } from '@/app/_components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
 import { Input } from '@/app/_components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/app/_components/ui/popover'
+import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { cn } from '@/app/_lib/utils'
 import { format } from 'date-fns'
@@ -22,7 +23,7 @@ export function AppointmentDialog({ data }: AppointmentDialogProps) {
     <div className="flex flex-col w-full py-5 gap-6">
       <div className="flex flex-col gap-4 px-6">
         <div className="flex items-center justify-center gap-2">
-          <Image alt="urologist-img" src={data.avatar} width={87} height={95} className="rounded-full" />
+          <Image alt="urologist-img" src={data.avatar ?? DEFAULT_AVATAR_PATH} width={87} height={95} className="rounded-full" />
           <span className="text-xl text-[#303f9f]">{data.name}</span>
         </div>
       </div>
