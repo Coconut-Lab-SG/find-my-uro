@@ -30,7 +30,7 @@ export function VouchDialog({ data, closeVouchDialog }: VouchDialogProps) {
         {!isUserAuthenticated && (
           <div className="flex flex-col gap-2">
             <span className="text-base">To vouch for {data.name}, you will need to sign in</span>
-            <Link prefetch={false} href="/login">
+            <Link prefetch={false} href="/account/login">
               Continue with Email
             </Link>
           </div>
