@@ -53,7 +53,7 @@ const UrologistInsuranceTypeSchema = z.object({
 
 const UrologistTypeSchema = z.object({
   id: z.string(),
-  avatar: z.string(),
+  avatar: z.string().nullable(),
   is_featured: z.boolean(),
   is_allowed_booking_appointment: z.boolean(),
   name: z.string(),
@@ -77,6 +77,7 @@ const UrologistTypeSchema = z.object({
 
 export const UrologistResponseSchema = z.object({
   data: UrologistTypeSchema,
+  vouches_count: z.number(),
 })
 
 export type UrologistResponse = z.infer<typeof UrologistResponseSchema>

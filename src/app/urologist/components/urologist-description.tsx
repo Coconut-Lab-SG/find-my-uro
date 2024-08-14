@@ -5,6 +5,7 @@ import { ReviewDialog } from '@/app/_components/modal-dialog/contents/review-dia
 import { VouchDialog } from '@/app/_components/modal-dialog/contents/vouch-dialog'
 import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
+import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
@@ -32,7 +33,7 @@ export function UrologistDescription({ data }: Props) {
         {/* Urologist Description */}
         <div className="flex items-center gap-x-8">
           <div className="relative h-[105px] w-[105px]">
-            <Image alt="urologist-img" className="border-4 border-white rounded-full h-fit" src={data.avatar} fill />
+            <Image alt="urologist-img" className="border-4 border-white rounded-full h-fit" src={data.avatar ?? DEFAULT_AVATAR_PATH} fill />
           </div>
           <div className="flex flex-col gap-y-8">
             <span className="text-lg italic font-medium text-white">{data.name}</span>
@@ -67,11 +68,16 @@ export function UrologistDescription({ data }: Props) {
       </div>
 
       <ModalDialog title="Find My Uro!" isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
-        <VouchDialog data={data} />
+        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} />
       </ModalDialog>
 
       <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
-        <ReviewDialog name={data.name} avatar={data.avatar} urologist_id={data.id} />
+        <ReviewDialog
+          name={data.name}
+          avatar={data.avatar ?? DEFAULT_AVATAR_PATH}
+          urologist_id={data.id}
+          closeReviewDialog={() => setOpenReviewDialog(false)}
+        />
       </ModalDialog>
     </>
   )

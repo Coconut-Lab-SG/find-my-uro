@@ -1,19 +1,31 @@
+import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistReviewFormSchema } from '@/app/_lib/definitions/urologist-review'
+import { getUserData } from '@/app/_lib/helpers/UserHelpers'
 import { urologistRatePost } from '@/app/_lib/services/urologist/urologist-rate-post'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { getCookie } from 'cookies-next'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 type Props = {
   urologist_id: string
+  closeReviewDialog: () => void
 }
 
-export function useReviewDialog({ urologist_id }: Props) {
+export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
+  const router = useRouter()
+  const { toast } = useToast()
+
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
   const [disableBtn, setDisableBtn] = useState(true)
   const [loading, setLoading] = useState(false)
+
+  // User data
+  const userToken = getCookie('access_token') ?? ''
+  const userData = getUserData({ token: userToken })
 
   const form = useForm<z.infer<typeof UrologistReviewFormSchema>>({
     resolver: zodResolver(UrologistReviewFormSchema),
@@ -21,17 +33,19 @@ export function useReviewDialog({ urologist_id }: Props) {
       urologist_id: urologist_id,
       rating: 0,
       review: '',
-      author_email: '',
+      author_email: userData?.email ?? '',
     },
   })
 
   async function submitReview(data: z.infer<typeof UrologistReviewFormSchema>) {
     setLoading(true)
-    console.log(data)
     try {
-      // TODO: Post to API right here
-      await urologistRatePost({ body: data }).then(() => {
-        // Do logic here
+      await urologistRatePost({ body: data, token: userToken }).then(() => {
+        router.refresh()
+        toast({
+          description: 'Review urologist success!',
+        })
+        closeReviewDialog()
       })
     } catch (error) {
       console.error(error)
@@ -60,10 +74,12 @@ export function useReviewDialog({ urologist_id }: Props) {
   }, [watch])
 
   return {
+    userData: userData,
     rating,
     hover,
     form,
     disableBtn,
+    loading,
     setRating,
     setHover,
     submitReview,

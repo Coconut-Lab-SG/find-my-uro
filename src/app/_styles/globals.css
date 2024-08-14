@@ -75,20 +75,6 @@
     @apply bg-background text-foreground;
   }
 
-  ol {
-    counter-reset: item;
-  }
-
-  li {
-    display: block;
-  }
-
-  li:before {
-    content: counters(item, '.') ' ';
-    counter-increment: item;
-    padding-right: 12px;
-  }
-
   a {
     @apply text-blue-600 hover:text-blue-800 visited:text-purple-600;
   }

@@ -1,3 +1,6 @@
+// Prevent page from cache
+export const revalidate = 0
+
 import { getUrologistProfile } from '@/app/_lib/services/urologist/urologist-profile'
 import { getUrologistReview } from '@/app/_lib/services/urologist/urologist-review'
 import { AboutUrologist } from '../components/about-urologist'
@@ -12,8 +15,8 @@ type UrologistServerProps = {
 }
 
 export default async function Urologist({ params }: UrologistServerProps) {
-  const data = await getUrologistProfile({ name: params.slug })
-  const reviewData = await getUrologistReview({ name: params.slug })
+  const urologist = await getUrologistProfile({ name: params.slug })
+  const review = await getUrologistReview({ name: params.slug })
 
   return (
     <div className="flex flex-col gap-y-4 max-w-[1140px] mx-auto">
@@ -24,19 +27,23 @@ export default async function Urologist({ params }: UrologistServerProps) {
       <div className="flex flex-col gap-8 px-5 pb-5">
         {/* Urologist Details section */}
         <div className="flex flex-col gap-12 tablet:flex-row tablet:items-center tablet:justify-between">
-          <UrologistDescription data={data} />
-          <UrologistLocation data={data} />
+          <UrologistDescription data={urologist.data} />
+          <UrologistLocation data={urologist.data} />
         </div>
 
         <div className="flex flex-col gap-6 tablet:flex-row">
           <div className="flex flex-col tablet:w-2/3">
             {/* Urologist Review section */}
-            <UrologistReview reviewData={reviewData} />
+            <UrologistReview reviewData={review} />
             {/* Community Notes section */}
             <div className="flex flex-col">
               <div className="flex flex-col gap-3 border-b border-gray-300 py-4">
-                <span className="italic text-lg font-medium">Community Notes</span>
-                <p className="text-[#767676]">There are currently no notes. You can be the first to Vouch!</p>
+                <span className="italic text-lg font-medium">Vouches</span>
+                {urologist.vouches_count === 0 ? (
+                  <p className="text-[#767676]">There are currently no notes. You can be the first to Vouch!</p>
+                ) : (
+                  <p className="text-[#767676]">This urologist has been vouched {urologist.vouches_count} time(s).</p>
+                )}
               </div>
               {/* Insurance Plan section */}
               <div className="flex flex-col gap-3 border-b border-gray-300 py-4">
@@ -47,7 +54,7 @@ export default async function Urologist({ params }: UrologistServerProps) {
           </div>
           {/* About Urologist section */}
           <div className="flex-auto tablet:w-1/3">
-            <AboutUrologist data={data} />
+            <AboutUrologist data={urologist.data} />
           </div>
         </div>
 
