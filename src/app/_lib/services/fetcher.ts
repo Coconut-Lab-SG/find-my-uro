@@ -1,11 +1,13 @@
-export type FetchConfigType = {
+interface FetchConfig {
   url: string
   bodyData: unknown
   method: 'POST' | 'GET'
   token?: string
 }
 
-function fetcher<T>({ url, bodyData, method, token }: FetchConfigType): Promise<T> {
+export type FetchConfigType = FetchConfig & { cache?: RequestCache }
+
+function fetcher<T>({ url, bodyData, method, token, cache }: FetchConfigType): Promise<T> {
   const params = {
     headers: {
       'Content-Type': 'application/json',
@@ -13,6 +15,7 @@ function fetcher<T>({ url, bodyData, method, token }: FetchConfigType): Promise<
     },
     body: bodyData ? JSON.stringify(bodyData) : undefined,
     method,
+    cache: cache || 'default',
   }
 
   return fetch(url, params)
