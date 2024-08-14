@@ -12,7 +12,7 @@ export async function getUrologistProfile({ name }: Props) {
     url: `${envVars.APP_BASE_URL}/api/urologist/main-data?slug=${name}`,
     bodyData: null,
     method: 'GET',
-    cache: 'no-store'
+    cache: 'no-store',
   }
 
   const response = await fetcher<unknown>(fetchConfig)
