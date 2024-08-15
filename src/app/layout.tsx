@@ -6,6 +6,7 @@ import { CookieModal } from '@/app/_components/cookie-modal'
 import Footer from '@/app/_components/footer'
 import Header from '@/app/_components/header'
 import { cookies } from 'next/headers'
+import NextTopLoader from 'nextjs-toploader'
 
 import { Toaster } from './_components/ui/toaster'
 import './_styles/common.css'
@@ -38,6 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
+        {/* Progress Bar for server side load */}
+        <NextTopLoader />
+
         <Header />
         <div className="flex-1 py-4 w-full">{children}</div>
         {!cookieConsent && <CookieModal />}
