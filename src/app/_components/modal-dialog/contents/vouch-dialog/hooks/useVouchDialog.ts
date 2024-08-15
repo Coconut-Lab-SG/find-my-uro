@@ -6,10 +6,11 @@ import { useState } from 'react'
 
 type Props = {
   urologist_id: string
+  isUserAlreadyVouched: boolean
   closeVouchDialog: () => void
 }
 
-export function useVouchDialog({ urologist_id, closeVouchDialog }: Props) {
+export function useVouchDialog({ urologist_id, isUserAlreadyVouched, closeVouchDialog }: Props) {
   const { toast } = useToast()
   const router = useRouter()
 
@@ -24,9 +25,15 @@ export function useVouchDialog({ urologist_id, closeVouchDialog }: Props) {
           urologist_id: urologist_id,
         }
         await vouchUrologist({ body: bodyData, token: token }).then(() => {
-          toast({
-            description: 'Vouch urologist success!',
-          })
+          if (!isUserAlreadyVouched) {
+            toast({
+              description: 'Vouch urologist success!',
+            })
+          } else {
+            toast({
+              description: 'Unvouch urologist success!',
+            })
+          }
           router.refresh()
           closeVouchDialog()
         })
