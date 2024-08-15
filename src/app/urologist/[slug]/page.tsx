@@ -1,8 +1,11 @@
 // Prevent page from cache
 export const revalidate = 0
 
+import { UserDetailResponse } from '@/app/_lib/definitions/user'
 import { getUrologistProfile } from '@/app/_lib/services/urologist/urologist-profile'
 import { getUrologistReview } from '@/app/_lib/services/urologist/urologist-review'
+import { getUserDetail } from '@/app/_lib/services/user/getUserDetail'
+import { cookies } from 'next/headers'
 import { AboutUrologist } from '../components/about-urologist'
 import { UrologistDescription } from '../components/urologist-description'
 import { UrologistLocation } from '../components/urologist-location'
@@ -18,6 +21,12 @@ export default async function Urologist({ params }: UrologistServerProps) {
   const urologist = await getUrologistProfile({ name: params.slug })
   const review = await getUrologistReview({ name: params.slug })
 
+  const token = cookies().get('access_token')?.value
+  let user: UserDetailResponse | null = null
+  if (token) {
+    user = await getUserDetail({ token: token })
+  }
+
   return (
     <div className="flex flex-col gap-y-4 max-w-[1140px] mx-auto">
       <div className="relative">
@@ -27,7 +36,7 @@ export default async function Urologist({ params }: UrologistServerProps) {
       <div className="flex flex-col gap-8 px-5 pb-5">
         {/* Urologist Details section */}
         <div className="flex flex-col gap-12 tablet:flex-row tablet:items-center tablet:justify-between">
-          <UrologistDescription data={urologist.data} />
+          <UrologistDescription data={urologist.data} user={user} />
           <UrologistLocation data={urologist.data} />
         </div>
 

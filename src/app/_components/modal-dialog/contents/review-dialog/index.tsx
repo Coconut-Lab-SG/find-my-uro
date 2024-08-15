@@ -17,7 +17,7 @@ type ReviewDialogProps = {
 }
 
 export function ReviewDialog({ name, avatar, urologist_id, closeReviewDialog }: ReviewDialogProps) {
-  const { userData, form, hover, disableBtn, loading, setHover, submitReview } = useReviewDialog({ urologist_id, closeReviewDialog })
+  const { form, hover, disableBtn, loading, setHover, submitReview } = useReviewDialog({ urologist_id, closeReviewDialog })
 
   return (
     <Form {...form}>

@@ -7,17 +7,22 @@ import { StarGenerator } from '@/app/_components/star-generator'
 import { Button } from '@/app/_components/ui/button'
 import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
+import { UserDetailResponse } from '@/app/_lib/definitions/user'
 import { Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
 type Props = {
   data: UrologistType
+  user: UserDetailResponse | null
 }
 
-export function UrologistDescription({ data }: Props) {
+export function UrologistDescription({ data, user }: Props) {
   const [openVouchDialog, setOpenVouchDialog] = useState(false)
   const [openReviewDialog, setOpenReviewDialog] = useState(false)
+
+  // Flag for vouch-unvouch urologist
+  const isUserAlreadyVouch = !!user?.vouches.filter((urologist) => urologist.urologist_id === data.id).length
 
   function toggleVouchDialog(val: boolean) {
     setOpenVouchDialog(val)
@@ -68,7 +73,7 @@ export function UrologistDescription({ data }: Props) {
       </div>
 
       <ModalDialog title="Find My Uro!" isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
-        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} />
+        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} isUserAlreadyVouched={isUserAlreadyVouch} />
       </ModalDialog>
 
       <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>
