@@ -1,8 +1,9 @@
 import { z } from 'zod'
 
-const AppointmentFormSchema = z.object({
-  time: z.string(), // Example: 2024-09-10 09:30
-  phone_number: z.number(),
+export const AppointmentFormSchema = z.object({
+  date: z.date({ required_error: 'Please provide a valid date' }),
+  time: z.string().min(1, { message: 'Please provide a valid time' }),
+  phone_number: z.string().min(1, { message: 'Please enter your phone number.' }),
   urologist_practice_id: z.string(),
 })
 
@@ -10,4 +11,8 @@ export const CreateAppointmentResponseSchema = z.object({
   message: z.string(),
 })
 
-export type AppointmentFormType = z.infer<typeof AppointmentFormSchema>
+export type AppointmentFormType = {
+  time: string
+  phone_number: number
+  urologist_practice_id: string
+}
