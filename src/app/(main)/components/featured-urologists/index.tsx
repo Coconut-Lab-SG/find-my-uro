@@ -32,7 +32,7 @@ export function FeaturedUrologists({ featured_urologist, highest_rated_urologist
       <div className="flex flex-col gap-y-4">
         <div className="flex items-center justify-between">
           <p className="text-2xl italic font-medium">
-            Highest Rated Urologists Near <span className="text-[#42328d]">(Area)</span>
+            Highest Rated <span className="text-[#42328d]">Urologists</span> Near Your Area
           </p>
           <Link prefetch={false} href={`/search?${seeAllHighestRatedQuery}`}>
             see all
