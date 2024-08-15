@@ -8,10 +8,11 @@ import { useVouchDialog } from './hooks/useVouchDialog'
 
 type VouchDialogProps = {
   data: UrologistType
+  isUserAlreadyVouched: boolean
   closeVouchDialog: () => void
 }
 
-export function VouchDialog({ data, closeVouchDialog }: VouchDialogProps) {
+export function VouchDialog({ data, isUserAlreadyVouched, closeVouchDialog }: VouchDialogProps) {
   const { isUserAuthenticated, loading, submitVouch } = useVouchDialog({ urologist_id: data.id, closeVouchDialog })
 
   return (
@@ -36,27 +37,48 @@ export function VouchDialog({ data, closeVouchDialog }: VouchDialogProps) {
           </div>
         )}
 
-        {isUserAuthenticated && (
-          <div className="flex flex-col gap-2">
-            <span>
-              Are you sure you want to vouch <strong className="capitalize">{data.name}</strong>?
-            </span>
-            <div className="flex items-center justify-center gap-3">
-              <Button
-                variant="ghost"
-                disabled={loading}
-                className="flex items-center gap-2 p-2 rounded-md bg-sky-500 text-white hover:bg-sky-700 hover:text-white"
-                onClick={submitVouch}
-              >
-                {loading && <LoaderCircle size={20} className="animate-spin" />}
-                Vouch
-              </Button>
-              <Button variant="ghost" className="p-2 rounded-md bg-red-400 text-white hover:bg-red-500 hover:text-white" onClick={closeVouchDialog}>
-                Cancel
-              </Button>
+        {isUserAuthenticated &&
+          (!isUserAlreadyVouched ? (
+            <div className="flex flex-col gap-2">
+              <span>
+                Are you sure you want to vouch <strong className="capitalize">{data.name}</strong>?
+              </span>
+              <div className="flex items-center justify-center gap-3">
+                <Button
+                  variant="ghost"
+                  disabled={loading}
+                  className="flex items-center gap-2 p-2 rounded-md bg-sky-500 text-white hover:bg-sky-700 hover:text-white"
+                  onClick={submitVouch}
+                >
+                  {loading && <LoaderCircle size={20} className="animate-spin" />}
+                  Vouch
+                </Button>
+                <Button variant="ghost" className="p-2 rounded-md bg-red-400 text-white hover:bg-red-500 hover:text-white" onClick={closeVouchDialog}>
+                  Cancel
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="flex flex-col gap-2">
+              <span>
+                Are you sure you want to un-vouch <strong className="capitalize">{data.name}</strong>?
+              </span>
+              <div className="flex items-center justify-center gap-3">
+                <Button
+                  variant="ghost"
+                  disabled={loading}
+                  className="flex items-center gap-2 p-2 rounded-md bg-sky-500 text-white hover:bg-sky-700 hover:text-white"
+                  onClick={submitVouch}
+                >
+                  {loading && <LoaderCircle size={20} className="animate-spin" />}
+                  Unvouch
+                </Button>
+                <Button variant="ghost" className="p-2 rounded-md bg-red-400 text-white hover:bg-red-500 hover:text-white" onClick={closeVouchDialog}>
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          ))}
       </div>
 
       <div className="flex justify-center text-center p-3">

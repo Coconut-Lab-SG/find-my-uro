@@ -55,7 +55,7 @@ export function AppointmentDialog({ data }: AppointmentDialogProps) {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="urologist_name"
             render={({ field }) => (
@@ -66,7 +66,7 @@ export function AppointmentDialog({ data }: AppointmentDialogProps) {
                 <FormMessage className="text-base" />
               </FormItem>
             )}
-          />
+          /> */}
           <FormField
             control={form.control}
             name="time"
