@@ -68,7 +68,7 @@ export function UrologistLocation({ data }: Props) {
         </div>
       </div>
       <ModalDialog isOpen={openAppointmentDialog} setOpen={toggleAppointmentModal} title="Request Appointment">
-        <AppointmentDialog data={data} />
+        <AppointmentDialog data={data} closeAppointmentDialog={() => toggleAppointmentModal(false)} />
       </ModalDialog>
     </>
   )

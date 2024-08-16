@@ -26,3 +26,20 @@ export function convertTo12HourFormat(time: string) {
 
   return `${formattedHour}:${formattedMinute} ${period}`
 }
+
+/**
+ * Format Shadcn Calendar input
+ * Example input: Fri Aug 09 2024 00:00:00 GMT+0700 (Western Indonesia Time)
+ * Example output: 2024-08-09
+ */
+export function formatCalendarInput(date: Date) {
+  const dateTime = new Date(date)
+
+  // Extract the parts
+  const year = dateTime.getFullYear()
+  const month = String(dateTime.getMonth() + 1).padStart(2, '0') // Months are zero-based
+  const day = String(dateTime.getDate()).padStart(2, '0')
+
+  // Format the date string
+  return `${year}-${month}-${day}`
+}
