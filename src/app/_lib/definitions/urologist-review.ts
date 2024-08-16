@@ -13,21 +13,16 @@ const UrologistReviewDataSchema = z.object({
   user: UserSchema.nullable(),
 })
 
-export const UrologistReviewTypeSchema = z.object({
+const UrologistReviewMetaSchema = z.object({
+  path: z.string(),
+  per_page: z.number(),
+  next_cursor: z.string().nullable(),
+  prev_cursor: z.string().nullable(),
+})
+
+export const UrologistReviewResponseSchema = z.object({
   data: z.array(UrologistReviewDataSchema),
-  // TODO: Might need to add this later
-  // links: z.object({
-  //   first: null,
-  //   last: null,
-  //   prev: null,
-  //   next: null
-  // }),
-  // meta: z.object({
-  //   path: z.string(),
-  //   per_page: z.number(),
-  //   next_cursor: z,
-  //   prev_cursor: null
-  // }),
+  meta: UrologistReviewMetaSchema,
   average_rating: z.number(),
   number_of_review: z.number(),
   number_of_rating: z.number(),
@@ -41,5 +36,6 @@ export const UrologistReviewFormSchema = z.object({
 })
 
 export type UrologistReviewData = z.infer<typeof UrologistReviewDataSchema>
-export type UrologistReviewResponse = z.infer<typeof UrologistReviewTypeSchema>
+export type UrologistReviewMeta = z.infer<typeof UrologistReviewMetaSchema>
+export type UrologistReviewResponse = z.infer<typeof UrologistReviewResponseSchema>
 export type RateUrologistType = z.infer<typeof UrologistReviewFormSchema>

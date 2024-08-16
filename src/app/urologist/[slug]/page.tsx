@@ -3,7 +3,6 @@ export const revalidate = 0
 
 import { UserDetailResponse } from '@/app/_lib/definitions/user'
 import { getUrologistProfile } from '@/app/_lib/services/urologist/urologist-profile'
-import { getUrologistReview } from '@/app/_lib/services/urologist/urologist-review'
 import { getUserDetail } from '@/app/_lib/services/user/getUserDetail'
 import { cookies } from 'next/headers'
 import { AboutUrologist } from '../components/about-urologist'
@@ -19,7 +18,6 @@ type UrologistServerProps = {
 
 export default async function Urologist({ params }: UrologistServerProps) {
   const urologist = await getUrologistProfile({ name: params.slug })
-  const review = await getUrologistReview({ name: params.slug })
 
   const token = cookies().get('access_token')?.value
   let user: UserDetailResponse | null = null
@@ -43,7 +41,7 @@ export default async function Urologist({ params }: UrologistServerProps) {
         <div className="flex flex-col gap-6 tablet:flex-row">
           <div className="flex flex-col tablet:w-2/3">
             {/* Urologist Review section */}
-            <UrologistReview reviewData={review} />
+            <UrologistReview slug={params.slug} />
             {/* Community Notes section */}
             <div className="flex flex-col">
               <div className="flex flex-col gap-3 border-b border-gray-300 py-4">
