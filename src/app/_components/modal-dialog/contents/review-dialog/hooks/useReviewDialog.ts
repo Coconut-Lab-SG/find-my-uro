@@ -2,9 +2,9 @@ import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistReviewFormSchema } from '@/app/_lib/definitions/urologist-review'
 import { getUserData } from '@/app/_lib/helpers/UserHelpers'
 import { urologistRatePost } from '@/app/_lib/services/urologist/urologist-rate-post'
+import useUrologistReviewStore from '@/app/_lib/store/urologist-review'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -15,7 +15,7 @@ type Props = {
 }
 
 export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
-  const router = useRouter()
+  const { increaseRefreshKey } = useUrologistReviewStore()
   const { toast } = useToast()
 
   const [rating, setRating] = useState(0)
@@ -41,7 +41,7 @@ export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
     setLoading(true)
     try {
       await urologistRatePost({ body: data, token: userToken }).then(() => {
-        router.refresh()
+        increaseRefreshKey()
         toast({
           description: 'Review urologist success!',
         })
