@@ -1,3 +1,4 @@
+import { useToast } from '@/app/_components/ui/use-toast'
 import { AppointmentFormSchema } from '@/app/_lib/definitions/appointment'
 import { formatCalendarInput } from '@/app/_lib/helpers/DateTimeHelpers'
 import { createAppointment } from '@/app/_lib/services/appointment/create-appointment'
@@ -8,10 +9,13 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 type Props = {
-  urologist_id: string
+  urologist_practice_id: string
+  closeAppointmentDialog: () => void
 }
 
-export function useAppointmentDialog({ urologist_id }: Props) {
+export function useAppointmentDialog({ urologist_practice_id, closeAppointmentDialog }: Props) {
+  const { toast } = useToast()
+  const token = getCookie('access_token')
   const [loading, setLoading] = useState(false)
 
   const form = useForm<z.infer<typeof AppointmentFormSchema>>({
@@ -20,7 +24,7 @@ export function useAppointmentDialog({ urologist_id }: Props) {
       phone_number: '',
       date: new Date(),
       time: '',
-      urologist_practice_id: urologist_id,
+      urologist_practice_id: urologist_practice_id,
     },
   })
 
@@ -28,7 +32,7 @@ export function useAppointmentDialog({ urologist_id }: Props) {
     // Processed data for request body
     const bodyData = {
       phone_number: parseInt(values.phone_number),
-      time: `${formatCalendarInput(values.date)} ${values.time}`,
+      time: `${formatCalendarInput(values.date)} ${values.time}:00`,
       urologist_practice_id: values.urologist_practice_id,
     }
 
@@ -36,7 +40,11 @@ export function useAppointmentDialog({ urologist_id }: Props) {
     try {
       setLoading(true)
       await createAppointment({ body: bodyData, token: access_token }).then((resp) => {
-        console.log(resp)
+        toast({
+          description: 'Successfully created appointment!',
+        })
+
+        closeAppointmentDialog()
       })
     } catch (error) {
       console.error(error)
@@ -46,6 +54,7 @@ export function useAppointmentDialog({ urologist_id }: Props) {
   }
 
   return {
+    isUserAuthenticated: !!token,
     form,
     loading,
     onSubmit,
