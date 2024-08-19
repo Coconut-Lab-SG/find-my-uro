@@ -48,7 +48,7 @@ export function AppointmentDialog({ data, closeAppointmentDialog }: AppointmentD
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <CustomPhoneInput placeholder="Enter a phone number" className='h-[50px] border-[#ced4da]' {...field} />
+                    <CustomPhoneInput placeholder="Enter a phone number" className="h-[50px] border-[#ced4da]" {...field} />
                   </FormControl>
                   <FormMessage className="text-base" />
                 </FormItem>

@@ -27,15 +27,17 @@ export function UrologistListContainer({ queryParams }: Props) {
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-col gap-3 text-center border-b border-gray-300 pb-3">
           <span className="text-lg font-medium">Top Urologist</span>
-          {queryParams.location ? (
+          {queryParams.location && (
             <p className="text-sm italic">
               Looking for <strong>top urologist in {queryParams.location}</strong>? <br /> Search from our wide range of well-equipped and
               highly-skilled doctors, to find the best fit for YOUR urology condition. Discover <strong>local urologist near you now!</strong>
             </p>
-          ) : (
+          )}
+
+          {queryParams.title && (
             <p className="text-sm italic">
-              Search result for: <strong>{queryParams.type}</strong>. <br /> Search from our wide range of well-equipped and highly-skilled doctors,
-              to find the best fit for YOUR urology condition. Discover <strong>local urologist near you now!</strong>
+              Search result for: <strong>{decodeURIComponent(queryParams.title)}</strong>. <br /> Search from our wide range of well-equipped and
+              highly-skilled doctors, to find the best fit for YOUR urology condition. Discover <strong>local urologist near you now!</strong>
             </p>
           )}
         </div>
