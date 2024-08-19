@@ -5,8 +5,6 @@ import { SearchParamsProps } from '../../page'
 import { UrologistResultCard } from '../urologist-result-card'
 import { useUrologistResultList } from './hooks/useUrologistResultList'
 
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/app/_components/ui/pagination'
-
 type Props = {
   queryParams: SearchParamsProps
   setUrologistCoordinate: (latitude: number, longitude: number) => void
@@ -38,24 +36,17 @@ export function UrologistResultList({ queryParams, setUrologistCoordinate }: Pro
           <UrologistResultCard key={urologist.id} data={urologist} idx={idx + 1} setUrologistCoordinate={setUrologistCoordinate} />
         ))}
       </div>
-      {/* TODO: Enable later */}
-      {/* <UrologistsPagination /> */}
-      <Pagination>
+      {/* TODO: Still WIP, enable later */}
+      {/* <Pagination>
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="#" />
           </PaginationItem>
-          {/* <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem> */}
           <PaginationItem>
             <PaginationNext onClick={toNextPage} />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </Pagination> */}
     </div>
   )
 }
