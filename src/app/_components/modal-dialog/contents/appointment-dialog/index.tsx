@@ -1,7 +1,7 @@
+import { CustomPhoneInput } from '@/app/_components/custom-phone-input'
 import { Button } from '@/app/_components/ui/button'
 import { Calendar } from '@/app/_components/ui/calendar'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/app/_components/ui/form'
-import { Input } from '@/app/_components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/app/_components/ui/popover'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/app/_components/ui/select'
 import { DEFAULT_AVATAR_PATH, UROLOGIST_TIMESLOT_SCHEDULE } from '@/app/_lib/constants/string-vars'
@@ -48,13 +48,7 @@ export function AppointmentDialog({ data, closeAppointmentDialog }: AppointmentD
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input
-                      type="number"
-                      placeholder="Phone Number*"
-                      className="h-[50px] border-[#ced4da]"
-                      {...field}
-                      onChange={(e) => field.onChange(e.target.value.toString())}
-                    />
+                    <CustomPhoneInput placeholder="Enter a phone number" className='h-[50px] border-[#ced4da]' {...field} />
                   </FormControl>
                   <FormMessage className="text-base" />
                 </FormItem>
