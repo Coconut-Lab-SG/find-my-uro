@@ -5,7 +5,6 @@ import { Button } from '@/app/_components/ui/button'
 import { UrologistReviewData } from '@/app/_lib/definitions/urologist-review'
 import { formatDate } from '@/app/_lib/helpers/DateTimeHelpers'
 import { LoaderCircle } from 'lucide-react'
-import Link from 'next/link'
 import { useUrologistReview } from './hooks/useUrologistReview'
 import { UrologistReviewSkeleton } from './urologist-review-skeleton'
 
@@ -75,12 +74,11 @@ function ReviewCard({ data }: ReviewCardProps) {
         <p className="text-sm line-clamp-2">{data.review}</p>
         <StarGenerator rating={data.rating} />
       </div>
-      <p className="text-sm">
-        <Link prefetch={false} href={data.link ?? ''} target="_blank">
-          {data.user?.name || 'Unknown User'}
-        </Link>{' '}
-        {formatDate(data.date)}
-      </p>
+      <div className="flex flex-col gap-1 text-sm">
+        <span>
+          {data.user?.name || 'Unknown User'} on {formatDate(data.date)}
+        </span>
+      </div>
     </div>
   )
 }

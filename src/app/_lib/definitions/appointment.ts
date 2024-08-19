@@ -1,12 +1,10 @@
+import { isValidPhoneNumber } from 'react-phone-number-input'
 import { z } from 'zod'
 
 export const AppointmentFormSchema = z.object({
   date: z.date({ required_error: 'Please provide a valid date' }),
   time: z.string().min(1, { message: 'Please provide a valid time' }),
-  phone_number: z
-    .string()
-    .min(1, { message: 'Please enter your phone number.' })
-    .regex(/^\+?[1-9]\d{1,14}$/, { message: 'Please enter a valid phone number.' }),
+  phone_number: z.string().refine(isValidPhoneNumber, { message: 'Invalid phone number' }),
   urologist_practice_id: z.string(),
 })
 
