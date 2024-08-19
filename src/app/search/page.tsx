@@ -13,7 +13,7 @@ export type SearchParamsProps = {
   longitude: string
   is_featured: string
   is_highest_rated: string
-  type?: string
+  title?: string
 }
 
 export default function SearchUrologists({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {

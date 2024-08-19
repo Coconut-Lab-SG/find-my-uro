@@ -28,8 +28,19 @@ export const LocationResponseSchema = z.object({
 
 export const UrologistSearchResultsResponseSchema = z.object({
   data: z.array(UrologistSearchResultSchema),
-  found: z.number(),
-  searched_location: z.string(),
+  links: z.object({
+    first: z.string().nullable(),
+    last: z.string().nullable(),
+    prev: z.string().nullable(),
+    next: z.string().nullable(),
+  }),
+  meta: z.object({
+    current_page: z.number(),
+    from: z.number(),
+    last_page: z.number(),
+  }),
+  total: z.number(),
+  searched_location: z.string().nullable(),
   searched_city: z.object({
     id: z.number(),
     name: z.string(),

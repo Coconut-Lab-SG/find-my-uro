@@ -19,7 +19,9 @@ type Props = {
 }
 
 function CityLabel({ city }: Props) {
-  const query = `city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}&type=Most Searched Cities`
+  const titleQuery = encodeURIComponent(city.location)
+  const query = `city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}&title=${titleQuery}`
+
   return (
     <Link prefetch={false} href={`/search?${query}`}>
       {city.state_name}, {city.state_code}

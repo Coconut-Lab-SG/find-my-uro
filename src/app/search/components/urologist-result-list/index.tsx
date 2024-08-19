@@ -11,7 +11,7 @@ type Props = {
 }
 
 export function UrologistResultList({ queryParams, setUrologistCoordinate }: Props) {
-  const { urologistList, loading } = useUrologistResultList(queryParams)
+  const { urologistList, loading, toNextPage } = useUrologistResultList(queryParams)
 
   if (loading) {
     return (
@@ -36,8 +36,17 @@ export function UrologistResultList({ queryParams, setUrologistCoordinate }: Pro
           <UrologistResultCard key={urologist.id} data={urologist} idx={idx + 1} setUrologistCoordinate={setUrologistCoordinate} />
         ))}
       </div>
-      {/* TODO: Enable later */}
-      {/* <UrologistsPagination /> */}
+      {/* TODO: Still WIP, enable later */}
+      {/* <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext onClick={toNextPage} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination> */}
     </div>
   )
 }
