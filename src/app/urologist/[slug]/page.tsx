@@ -49,7 +49,9 @@ export default async function Urologist({ params }: UrologistServerProps) {
                 {urologist.vouches_count === 0 ? (
                   <p className="text-[#767676]">There are currently no notes. You can be the first to Vouch!</p>
                 ) : (
-                  <p className="text-[#767676]">This urologist has been vouched {urologist.vouches_count} time(s).</p>
+                  <p className="text-[#767676]">
+                    This urologist has been vouched {urologist.vouches_count} {urologist.vouches_count < 2 ? 'time' : 'times'}.
+                  </p>
                 )}
               </div>
               {/* Insurance Plan section */}
