@@ -7,7 +7,7 @@ const FeaturedUrologistSchema = z.object({
   suffix: z.string(),
   rate: z.number(),
   total_review: z.number(),
-  avatar: z.string(),
+  avatar: z.string().nullable(),
   longitude: z.number(),
   latitude: z.number(),
   slug: z.string(),

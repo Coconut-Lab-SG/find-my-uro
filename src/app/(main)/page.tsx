@@ -1,3 +1,6 @@
+// Prevent page from cache
+export const revalidate = 0
+
 import { getHomepageDataset } from '../_lib/services/landing-page/homepage-dataset'
 import { ArticleSection } from './components/article'
 import { FeaturedUrologists } from './components/featured-urologists'

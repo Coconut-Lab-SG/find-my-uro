@@ -29,7 +29,7 @@ export function UrologistRatingCard({ data }: UrologistRatingCardProps) {
       <Image
         className="rounded-full w-[80px] h-[80px]"
         alt="urologist-img"
-        src={data.avatar ?? '/assets/icons/user-avatgar.webp'}
+        src={data.avatar ?? '/assets/icons/user-avatar.webp'}
         width={80}
         height={80}
       />
