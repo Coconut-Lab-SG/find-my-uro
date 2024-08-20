@@ -17,9 +17,6 @@ export default function Footer() {
             <Link href="/frequently-asked-questions" className="hover:text-[#432f91]">
               FAQ
             </Link>
-            <Link href="/#" className="hover:text-[#432f91]">
-              Sitemap
-            </Link>
           </div>
           <Image alt="hipaa-badge" src="/assets/images/HIPAA-badge.webp" width={100} height={35} />
         </div>

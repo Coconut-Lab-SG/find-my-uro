@@ -8,7 +8,7 @@ export function BackButton() {
   const router = useRouter()
 
   return (
-    <Button variant="ghost" className="justify-start w-fit p-0" onClick={() => router.back()}>
+    <Button variant="ghost" className="justify-start w-fit p-0 hover:bg-transparent" onClick={() => router.back()}>
       <MoveLeft size={20} strokeWidth={2} />
     </Button>
   )
