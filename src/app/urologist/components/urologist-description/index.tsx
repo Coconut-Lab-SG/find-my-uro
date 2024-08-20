@@ -8,9 +8,9 @@ import { Button } from '@/app/_components/ui/button'
 import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { UserDetailResponse } from '@/app/_lib/definitions/user'
-import { Heart, Share2, Star } from 'lucide-react'
+import { CheckIcon, Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useUrologistDescription } from './hooks/useUrologistDescription'
 
 type Props = {
   data: UrologistType
@@ -18,19 +18,8 @@ type Props = {
 }
 
 export function UrologistDescription({ data, user }: Props) {
-  const [openVouchDialog, setOpenVouchDialog] = useState(false)
-  const [openReviewDialog, setOpenReviewDialog] = useState(false)
-
-  // Flag for vouch-unvouch urologist
-  const isUserAlreadyVouch = !!user?.vouches.filter((urologist) => urologist.urologist_id === data.id).length
-
-  function toggleVouchDialog(val: boolean) {
-    setOpenVouchDialog(val)
-  }
-
-  function toggleReviewDialog(val: boolean) {
-    setOpenReviewDialog(val)
-  }
+  const { copySuccess, isUserAlreadyVouch, openReviewDialog, openVouchDialog, setOpenReviewDialog, setOpenVouchDialog, handleShareUrologist } =
+    useUrologistDescription({ data, user })
 
   return (
     <>
@@ -54,7 +43,7 @@ export function UrologistDescription({ data, user }: Props) {
             variant="default"
             className="rounded-lg w-[135px]"
             style={{ background: 'linear-gradient(96.65deg, #b20000 0%, #ff7c52 95.82%)' }}
-            onClick={() => toggleVouchDialog(true)}
+            onClick={() => setOpenVouchDialog(true)}
           >
             <Heart size="16" />
           </Button>
@@ -62,12 +51,12 @@ export function UrologistDescription({ data, user }: Props) {
             variant="default"
             className="rounded-lg w-[135px]"
             style={{ background: 'linear-gradient(90.49deg,#243b6c .28%,#432f91 96.69%)' }}
-            onClick={() => toggleReviewDialog(true)}
+            onClick={() => setOpenReviewDialog(true)}
           >
             <Star size="16" />
           </Button>
-          <Button variant="default" className="rounded-lg w-[135px] bg-[#dadada]">
-            <Share2 size="16" className="text-black" />
+          <Button variant="default" disabled={copySuccess} className="rounded-lg w-[135px] bg-[#dadada]" onClick={handleShareUrologist}>
+            {copySuccess ? <CheckIcon size="16" className="text-black" /> : <Share2 size="16" className="text-black" />}
           </Button>
         </div>
       </div>
