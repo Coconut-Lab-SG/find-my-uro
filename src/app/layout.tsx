@@ -38,6 +38,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.worstpainever.com" crossOrigin="anonymous" />
+      </head>
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         {/* Progress Bar for server side load */}
         <NextTopLoader />

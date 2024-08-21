@@ -8,7 +8,7 @@ type ArticleThumbnailProps = {
 
 export function ArticleThumbnail({ data }: ArticleThumbnailProps) {
   return (
-    <Link prefetch={false} href={data.link} target="_blank" className="flex flex-col gap-4">
+    <Link prefetch={false} href={data.link} target="_blank" className="flex flex-col gap-4 transition-all hover:scale-105">
       <Image
         alt="article-thumbnail-img"
         width={0}
@@ -16,9 +16,10 @@ export function ArticleThumbnail({ data }: ArticleThumbnailProps) {
         src={data.thumbnail ?? '/assets/images/home/stone-supplement-thumbnail.webp'}
         style={{ width: 'auto', height: 'auto', objectFit: 'contain' }}
         sizes="100vw"
+        priority
       />
       <span className="text-[#9D9D9D] text-xl">Expert Opinion</span>
-      <p className="text-2xl text-[#3d5294] font-extrabold leading-9">{data.title}</p>
+      <p className="text-2xl text-[#3d5294] font-extrabold leading-9 line-clamp-2">{data.title}</p>
 
       <p className="text-xl text-black line-clamp-5 leading-8 tablet:line-clamp-4">{data.description}</p>
     </Link>
