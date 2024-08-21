@@ -1,8 +1,8 @@
-import * as React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon, DotsHorizontalIcon } from '@radix-ui/react-icons'
+import * as React from 'react'
 
-import { cn } from '@/app/_lib/utils'
 import { ButtonProps, buttonVariants } from '@/app/_components/ui/button'
+import { cn } from '@/app/_lib/utils'
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav role="navigation" aria-label="pagination" className={cn('mx-auto flex w-full justify-center', className)} {...props} />
@@ -32,6 +32,8 @@ const PaginationLink = ({ className, isActive, size = 'icon', ...props }: Pagina
         variant: isActive ? 'outline' : 'ghost',
         size,
       }),
+      isActive ? 'bg-blue-500 text-white' : '',
+      'cursor-pointer',
       className
     )}
     {...props}
@@ -63,4 +65,4 @@ const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'
 )
 PaginationEllipsis.displayName = 'PaginationEllipsis'
 
-export { Pagination, PaginationContent, PaginationLink, PaginationItem, PaginationPrevious, PaginationNext, PaginationEllipsis }
+export { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious }

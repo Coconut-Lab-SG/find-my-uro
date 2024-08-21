@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { PaginationMetaSchema } from './pagination'
 
 const LocationSchema = z.object({
   location: z.string(),
@@ -34,11 +35,7 @@ export const UrologistSearchResultsResponseSchema = z.object({
     prev: z.string().nullable(),
     next: z.string().nullable(),
   }),
-  meta: z.object({
-    current_page: z.number(),
-    from: z.number(),
-    last_page: z.number(),
-  }),
+  meta: PaginationMetaSchema,
   total: z.number(),
   searched_location: z.string().nullable(),
   searched_city: z.object({
