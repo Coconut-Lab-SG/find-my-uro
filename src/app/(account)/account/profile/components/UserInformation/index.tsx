@@ -20,15 +20,17 @@ export function UserInformation({ data }: UserInformationProps) {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <h1>Profile page</h1>
-      <div className="flex flex-col gap-3">
-        <span>Hello, {`${data.first_name} ${data.last_name}`}</span>
-        <Button variant="ghost" className="flex items-center gap-2 w-fit bg-red-400 hover:bg-red-400" onClick={logoutUser} disabled={loading}>
-          {loading && <LoaderCircle size={20} className="animate-spin" />}
-          Log Out
-        </Button>
-      </div>
+    <div className="flex items-center flex-col gap-3">
+      <span className="text-lg">Hello, {`${data.first_name} ${data.last_name}`}!</span>
+      <Button
+        variant="ghost"
+        className="flex items-center gap-2 w-fit rounded-full text-white bg-red-400 hover:bg-red-500 hover:text-white"
+        onClick={logoutUser}
+        disabled={loading}
+      >
+        {loading && <LoaderCircle size={20} className="animate-spin" />}
+        Log Out
+      </Button>
     </div>
   )
 }
