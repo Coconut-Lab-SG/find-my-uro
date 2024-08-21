@@ -1,11 +1,14 @@
-import { envVars } from '@/app/_lib/constants/env-vars'
 import { ArticleListSchema } from '@/app/_lib/definitions/articles'
 import fetcher, { FetchConfigType } from '../../fetcher'
 
-export async function getAllArticles() {
+type Props = {
+  query?: string
+}
+
+export async function getAllArticles({ query }: Props) {
   const fetchConfig: FetchConfigType = {
     // Note: Need to define app base URL for server-side fetch
-    url: `${envVars.APP_BASE_URL}/api/article/list-articles`,
+    url: query ? `/api/article/list-articles?page=${query}&limit=6` : `/api/article/list-articles?limit=6`,
     bodyData: null,
     method: 'GET',
   }

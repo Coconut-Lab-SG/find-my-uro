@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { PaginationMetaSchema } from './pagination'
 
 export const ArticleThumbnailSchema = z.object({
   title: z.string(),
@@ -16,15 +17,7 @@ export const ArticleListSchema = z.object({
     prev: z.string().nullable(),
     next: z.string().nullable(),
   }),
-  meta: z.object({
-    current_page: z.number(),
-    from: z.number(),
-    last_page: z.number(),
-    path: z.string().nullable(),
-    per_page: z.number(),
-    to: z.number(),
-    total: z.number(),
-  }),
+  meta: PaginationMetaSchema,
 })
 
 export type ArticleThumbnailType = z.infer<typeof ArticleThumbnailSchema>
