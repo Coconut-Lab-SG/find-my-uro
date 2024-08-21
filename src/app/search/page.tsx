@@ -14,6 +14,7 @@ export type SearchParamsProps = {
   is_featured: string
   is_highest_rated: string
   title?: string
+  page?: string
 }
 
 export default function SearchUrologists({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {

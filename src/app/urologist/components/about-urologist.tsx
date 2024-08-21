@@ -21,7 +21,9 @@ export function AboutUrologist({ data }: Props) {
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Experience</span>
-            <span>{data.year_of_experience} year(s)</span>
+            <span>
+              {data.year_of_experience} {data.year_of_experience < 2 ? 'year' : 'years'}
+            </span>
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Language Spoken</span>

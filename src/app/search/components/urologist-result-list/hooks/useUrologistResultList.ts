@@ -1,29 +1,18 @@
+import { PaginationMetaType } from '@/app/_lib/definitions/pagination'
 import { UrologistSearchResultsResponse } from '@/app/_lib/definitions/search-urologist'
 import { objectToQueryString } from '@/app/_lib/helpers/StringHelpers'
 import { getUrologistSearchResult } from '@/app/_lib/services/search/urologist-search-results'
 import { SearchParamsProps } from '@/app/search/page'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function useUrologistResultList(props: SearchParamsProps) {
-  const router = useRouter()
   const currentSearchParams = useSearchParams()
   const [data, setData] = useState<UrologistSearchResultsResponse | null>(null)
   const [loading, setLoading] = useState(true) // loading at initial state while fetching data
 
-  function toNextPage() {
-    const params = new URLSearchParams(currentSearchParams.toString())
-
-    params.set('page', '1') // Change later
-    router.push(`?${params.toString()}`)
-  }
-
-  function toPrevPage() {
-    const params = new URLSearchParams(currentSearchParams.toString())
-
-    params.set('page', '1') // Change later
-    router.push(`?${params.toString()}`)
-  }
+  // Pagination state
+  const [meta, setMeta] = useState<PaginationMetaType | null>(null)
 
   async function fetchUrologistResult() {
     const { title, ...restProps } = props // Destructure to exclude "title" without deleting it from query params
@@ -32,6 +21,7 @@ export function useUrologistResultList(props: SearchParamsProps) {
     try {
       await getUrologistSearchResult({ queryParams: query }).then((resp) => {
         setData(resp)
+        setMeta(resp.meta)
       })
     } catch (error) {
       console.error(error)
@@ -47,8 +37,7 @@ export function useUrologistResultList(props: SearchParamsProps) {
 
   return {
     urologistList: data?.data,
+    meta,
     loading,
-    toNextPage,
-    toPrevPage,
   }
 }
