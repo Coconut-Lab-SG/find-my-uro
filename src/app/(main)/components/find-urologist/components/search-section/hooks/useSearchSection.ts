@@ -5,10 +5,15 @@ import { ChangeEvent, useEffect, useState } from 'react'
 
 export function useSearchSection() {
   const router = useRouter()
+
   // Input field state
   const [locationInput, setLocationInput] = useState('')
   const [urologistInput, setUrologistInput] = useState('')
   const [error, setError] = useState({
+    emptyValue: {
+      isError: false,
+      message: '',
+    },
     region: {
       isError: false,
       message: '',
@@ -16,6 +21,7 @@ export function useSearchSection() {
   })
 
   // Location search results state
+  const [loadingLocation, setLoadingLocation] = useState(false)
   const [locationResults, setLocationResults] = useState<LocationType[]>([])
   const [showSuggestion, setShowSuggestion] = useState(false)
   const [selectedLocation, setSelectedLocation] = useState<LocationType | null>(null)
@@ -32,7 +38,18 @@ export function useSearchSection() {
             isError: true,
             message: 'The keyword must be at least 3 characters.',
           },
+          emptyValue: {
+            isError: false,
+            message: '',
+          },
         })
+        // Hide suggestion and loading location loader if input is below minimum
+        setLoadingLocation(false)
+        setShowSuggestion(false)
+      } else {
+        // When user modified location input, show loading state on suggestion section
+        setLoadingLocation(true)
+        setShowSuggestion(true)
       }
       return setLocationInput(inputValue.trimStart()) // trim whitespace at the start of the keyword
     }
@@ -44,7 +61,7 @@ export function useSearchSection() {
       try {
         await searchRegion({ keyword }).then((resp) => {
           setLocationResults(resp.data)
-          setShowSuggestion(true)
+          setLoadingLocation(false)
         })
       } catch (error) {
         console.error(error)
@@ -54,12 +71,15 @@ export function useSearchSection() {
 
   function resetInputError() {
     setError({
+      emptyValue: {
+        isError: false,
+        message: '',
+      },
       region: {
         isError: false,
         message: '',
       },
     })
-    setShowSuggestion(false)
   }
 
   function handleSelectLocation(input: LocationType) {
@@ -69,36 +89,66 @@ export function useSearchSection() {
   }
 
   function handleSubmitSearch() {
-    // Error validation
-    if (!locationInput) {
+    // Error validation if both location and keyword input are empty
+    if (!locationInput && !urologistInput) {
       return setError({
         ...error,
-        region: {
+        emptyValue: {
           isError: true,
-          message: 'Please enter location keyword.',
+          message: 'You must fill at least 1 field',
         },
       })
     }
 
-    const data = {
-      city_id: selectedLocation?.city_id,
-      distance: 5000, // in km, TODO: adjust later accordingly with BE team
-      location_based: 'yes',
-      location: selectedLocation?.location,
-      latitude: selectedLocation?.latitude,
-      longitude: selectedLocation?.longitude,
-      state_id: selectedLocation?.state_id,
-      keyword: urologistInput,
+    // Show error if urologist input is filled and location input also already filled
+    if (urologistInput.length > 0) {
+      if (locationInput.length > 0 && locationInput.length < 3) {
+        return setError({
+          region: {
+            isError: true,
+            message: 'The keyword must be at least 3 characters.',
+          },
+          emptyValue: {
+            isError: false,
+            message: '',
+          },
+        })
+      }
     }
 
-    const queryParams = `keyword=${data.keyword}&location=${data.location}&location_based=${data.location_based}&state_id=${data.state_id}&city_id=${data.city_id}&distance=${data.distance}&latitude=${data.latitude}&longitude=${data.longitude}`
+    // Default body data structure with mandatory properties
+    const data: Record<string, any> = {
+      location_based: 'no',
+      keyword: urologistInput,
+
+      /* Add title query for search result page title
+      // For example: 
+      // urologistInput = "Maria" -> Search page title will be "Search result for: Maria."
+      */
+      title: urologistInput,
+    }
+
+    // Conditionally add more properties if locationInput is not null or an empty string
+    if (locationInput) {
+      data.city_id = selectedLocation?.city_id
+      data.distance = 5000
+      data.location_based = 'yes'
+      data.location = selectedLocation?.location
+      data.latitude = selectedLocation?.latitude
+      data.longitude = selectedLocation?.longitude
+      data.state_id = selectedLocation?.state_id
+
+      // Remove title props since we're gonna use data.location for search page title
+      delete data.title
+    }
+
+    // Construct query string based on final data object
+    const queryParams = new URLSearchParams(data).toString()
     router.push(`/search?${queryParams}`)
   }
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
-      if (showSuggestion) return
-
       if (locationInput) {
         handleRegionInput(locationInput)
       }
@@ -110,6 +160,7 @@ export function useSearchSection() {
   }, [locationInput])
 
   return {
+    loadingLocation,
     locationInput,
     urologistInput,
     locationResults,
