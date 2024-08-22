@@ -52,10 +52,11 @@ export function UrologistLocation({ data }: Props) {
               className="rounded py-1 text-center"
               style={{ background: 'linear-gradient(90.49deg, #02616A 0.28%, #00838F 96.69%)' }}
               onClick={() => toggleAppointmentModal(true)}
+              disabled={!data.is_allowed_booking_appointment}
             >
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <Calendar size="17" />
-                <span>Appointment</span>
+                {data.is_allowed_booking_appointment ? <span>Appointment</span> : <span>Not Available</span>}
               </div>
             </Button>
             <Button className="rounded py-1 text-center bg-[#f6a404]" onClick={redirectPhoneNumber}>
