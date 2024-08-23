@@ -1,6 +1,6 @@
 import { useToast } from '@/app/_components/ui/use-toast'
 import { AppointmentFormSchema } from '@/app/_lib/definitions/appointment'
-import { formatCalendarInput } from '@/app/_lib/helpers/DateTimeHelpers'
+import { formatCalendarInput, getNextBusinessDay } from '@/app/_lib/helpers/DateTimeHelpers'
 import { createAppointment } from '@/app/_lib/services/appointment/create-appointment'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getCookie } from 'cookies-next'
@@ -22,7 +22,7 @@ export function useAppointmentDialog({ urologist_practice_id, closeAppointmentDi
     resolver: zodResolver(AppointmentFormSchema),
     defaultValues: {
       phone_number: '',
-      date: new Date(),
+      date: getNextBusinessDay(),
       time: '',
       urologist_practice_id: urologist_practice_id,
     },
