@@ -9,12 +9,12 @@ export const MetaLinkSchema = z.object({
 
 export const PaginationMetaSchema = z.object({
   current_page: z.number(),
-  from: z.number(),
+  from: z.number().nullable(),
   last_page: z.number(),
   links: z.array(MetaLinkSchema),
   path: z.string(),
   per_page: z.number(),
-  to: z.number(),
+  to: z.number().nullable(),
   total: z.number(),
 })
 
