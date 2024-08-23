@@ -6,6 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/app/_components/ui/po
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/app/_components/ui/select'
 import { DEFAULT_AVATAR_PATH, UROLOGIST_TIMESLOT_SCHEDULE } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
+import { getNextBusinessDay, isWeekend } from '@/app/_lib/helpers/DateTimeHelpers'
 import { cn } from '@/app/_lib/utils'
 import { format } from 'date-fns'
 import { CalendarDays, LoaderCircle } from 'lucide-react'
@@ -72,7 +73,14 @@ export function AppointmentDialog({ data, closeAppointmentDialog }: AppointmentD
                       </FormControl>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar mode="single" selected={field.value} onSelect={field.onChange} fromDate={new Date()} initialFocus />
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        fromDate={getNextBusinessDay()}
+                        disabled={isWeekend}
+                        initialFocus
+                      />
                     </PopoverContent>
                   </Popover>
                   <FormMessage className="text-base" />

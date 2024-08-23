@@ -43,3 +43,31 @@ export function formatCalendarInput(date: Date) {
   // Format the date string
   return `${year}-${month}-${day}`
 }
+
+/**
+ * Determine if a date is a weekend
+ * @param date
+ * @returns {boolean}
+ */
+export function isWeekend(date: Date) {
+  const day = date.getDay()
+  return day === 0 || day === 6 // Disable Sunday (0) and Saturday (6)
+}
+
+/**
+ * Get the next business day (excluding weekends)
+ * @returns {Date}
+ */
+export function getNextBusinessDay() {
+  let date = new Date()
+  date.setDate(date.getDate() + 1) // Start with tomorrow
+
+  // Check if the new date is a Saturday (6) or Sunday (0) and adjust accordingly
+  if (date.getDay() === 6) {
+    date.setDate(date.getDate() + 2) // If Saturday, move to Monday
+  } else if (date.getDay() === 0) {
+    date.setDate(date.getDate() + 1) // If Sunday, move to Monday
+  }
+
+  return date
+}
