@@ -11,13 +11,13 @@ import { useState } from 'react'
 
 type Props = {
   data: UrologistType
+  slug: string
 }
 
-export function UrologistLocation({ data }: Props) {
+export function UrologistLocation({ data, slug }: Props) {
   const { practice } = data
   const [openAppointmentDialog, setOpenAppointmentDialog] = useState(false)
 
-  // TODO: tweak later
   function toggleAppointmentModal(val: boolean) {
     setOpenAppointmentDialog(val)
   }
@@ -69,7 +69,7 @@ export function UrologistLocation({ data }: Props) {
         </div>
       </div>
       <ModalDialog isOpen={openAppointmentDialog} setOpen={toggleAppointmentModal} title="Request Appointment">
-        <AppointmentDialog data={data} closeAppointmentDialog={() => toggleAppointmentModal(false)} />
+        <AppointmentDialog data={data} slug={slug} closeAppointmentDialog={() => toggleAppointmentModal(false)} />
       </ModalDialog>
     </>
   )

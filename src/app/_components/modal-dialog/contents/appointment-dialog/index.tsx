@@ -16,10 +16,11 @@ import { useAppointmentDialog } from './hooks/useAppointmentDialog'
 
 type AppointmentDialogProps = {
   data: UrologistType
+  slug: string
   closeAppointmentDialog: () => void
 }
 
-export function AppointmentDialog({ data, closeAppointmentDialog }: AppointmentDialogProps) {
+export function AppointmentDialog({ data, slug, closeAppointmentDialog }: AppointmentDialogProps) {
   const { isUserAuthenticated, form, loading, onSubmit } = useAppointmentDialog({ urologist_practice_id: data.practice.id, closeAppointmentDialog })
 
   return (
@@ -35,7 +36,7 @@ export function AppointmentDialog({ data, closeAppointmentDialog }: AppointmentD
           <p className="text-base">
             To create an appointment with <span className="capitalize font-bold">{data.name}</span>, you will need to sign in
           </p>
-          <Link prefetch={false} href="/account/login">
+          <Link prefetch={false} href={`/account/login?referrer=/urologist/${slug}`}>
             Continue with Email
           </Link>
         </div>
