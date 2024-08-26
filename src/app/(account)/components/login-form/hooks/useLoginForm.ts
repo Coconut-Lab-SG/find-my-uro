@@ -2,12 +2,13 @@ import { loginSchema } from '@/app/_lib/definitions/authentication-form'
 import { Login } from '@/app/_lib/services/authentication/login'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 export function useLoginForm() {
+  const searchParams = useSearchParams()
   const router = useRouter()
 
   const [loading, setLoading] = useState(false)
@@ -38,8 +39,10 @@ export function useLoginForm() {
   }, [watch, error.isError])
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
+    const referrer = searchParams.get('referrer')
     setLoading(true)
     setError({ ...error, isError: false })
+
     try {
       await Login({ body: values }).then((data) => {
         const token = data.access_token
@@ -49,8 +52,14 @@ export function useLoginForm() {
           maxAge: data.expires_in,
         })
 
-        // Redirect to profile page
-        router.push('/account/profile')
+        if (referrer) {
+          // Redirect to previous accessed link that provided from referrer query param
+          router.push(referrer)
+        } else {
+          // Redirect to profile page
+          router.push('/account/profile')
+        }
+
         router.refresh()
       })
     } catch (error: any) {

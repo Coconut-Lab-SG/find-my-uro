@@ -8,11 +8,12 @@ import { useVouchDialog } from './hooks/useVouchDialog'
 
 type VouchDialogProps = {
   data: UrologistType
+  slug: string
   isUserAlreadyVouched: boolean
   closeVouchDialog: () => void
 }
 
-export function VouchDialog({ data, isUserAlreadyVouched, closeVouchDialog }: VouchDialogProps) {
+export function VouchDialog({ data, slug, isUserAlreadyVouched, closeVouchDialog }: VouchDialogProps) {
   const { isUserAuthenticated, loading, submitVouch } = useVouchDialog({ urologist_id: data.id, closeVouchDialog, isUserAlreadyVouched })
 
   return (
@@ -31,7 +32,7 @@ export function VouchDialog({ data, isUserAlreadyVouched, closeVouchDialog }: Vo
         {!isUserAuthenticated && (
           <div className="flex flex-col gap-2">
             <span className="text-base">To vouch for {data.name}, you will need to sign in</span>
-            <Link prefetch={false} href="/account/login">
+            <Link prefetch={false} href={`/account/login?referrer=/urologist/${slug}`}>
               Continue with Email
             </Link>
           </div>

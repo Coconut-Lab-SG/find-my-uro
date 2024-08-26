@@ -14,10 +14,11 @@ import { useUrologistDescription } from './hooks/useUrologistDescription'
 
 type Props = {
   data: UrologistType
+  slug: string
   user: UserDetailResponse | null
 }
 
-export function UrologistDescription({ data, user }: Props) {
+export function UrologistDescription({ data, slug, user }: Props) {
   const { copySuccess, isUserAlreadyVouch, openReviewDialog, openVouchDialog, setOpenReviewDialog, setOpenVouchDialog, handleShareUrologist } =
     useUrologistDescription({ data, user })
 
@@ -62,7 +63,7 @@ export function UrologistDescription({ data, user }: Props) {
       </div>
 
       <ModalDialog title="Find My Uro!" isOpen={openVouchDialog} setOpen={setOpenVouchDialog}>
-        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} isUserAlreadyVouched={isUserAlreadyVouch} />
+        <VouchDialog data={data} closeVouchDialog={() => setOpenVouchDialog(false)} isUserAlreadyVouched={isUserAlreadyVouch} slug={slug} />
       </ModalDialog>
 
       <ModalDialog title="Write a review" isOpen={openReviewDialog} setOpen={setOpenReviewDialog}>

@@ -34,8 +34,8 @@ export default async function Urologist({ params }: UrologistServerProps) {
       <div className="flex flex-col gap-8 px-5 pb-5">
         {/* Urologist Details section */}
         <div className="flex flex-col gap-12 tablet:flex-row tablet:items-center tablet:justify-between">
-          <UrologistDescription data={urologist.data} user={user} />
-          <UrologistLocation data={urologist.data} />
+          <UrologistDescription data={urologist.data} user={user} slug={params.slug} />
+          <UrologistLocation data={urologist.data} slug={params.slug} />
         </div>
 
         <div className="flex flex-col gap-6 tablet:flex-row">

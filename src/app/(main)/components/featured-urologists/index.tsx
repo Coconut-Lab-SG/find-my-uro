@@ -8,8 +8,8 @@ type Props = {
 }
 
 export function FeaturedUrologists({ featured_urologist, highest_rated_urologist }: Props) {
-  const seeAllFeaturedQuery = `is_featured=1&is_highest_rated=0&location_based=no&distance=0&title=${encodeURIComponent('Featured Urologists Of The Month')}`
-  const seeAllHighestRatedQuery = `is_featured=0&is_highest_rated=1&location_based=no&distance=0&title=${encodeURIComponent('Highest Rated Urologists Near Your Area')}`
+  const seeAllFeaturedQuery = `is_featured=yes&is_highest_rated=no&location_based=no&distance=0&title=${encodeURIComponent('Featured Urologists Of The Month')}`
+  const seeAllHighestRatedQuery = `is_featured=no&is_highest_rated=yes&location_based=no&distance=0&title=${encodeURIComponent('Highest Rated Urologists Near Your Area')}`
 
   return (
     <div className="flex flex-col gap-16 max-w-[1140px] w-full mx-auto px-5">
