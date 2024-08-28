@@ -8,7 +8,7 @@ export async function MostSearchedCities() {
   return (
     <div className="flex flex-col gap-y-2 max-w-[1140px] mx-auto w-full px-5">
       <p className="text-2xl italic font-medium">Most Searched Cities</p>
-      <div className="grid grid-cols-2 p-4 gap-3 mobileL:grid-cols-4">{data?.map((city) => <CityLabel key={city.id} city={city} />)}</div>
+      <div className="grid grid-cols-2 p-4 gap-4 mobileL:grid-cols-4">{data?.map((city) => <CityLabel key={city.id} city={city} />)}</div>
     </div>
   )
 }
@@ -23,8 +23,8 @@ function CityLabel({ city }: Props) {
   const query = `location=${city.location}&city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}`
 
   return (
-    <Link prefetch={false} href={`/search?${query}`}>
-      {city.state_name}, {city.state_code}
+    <Link prefetch={false} href={`/search?${query}`} className="line-clamp-1">
+      {city.location}
     </Link>
   )
 }

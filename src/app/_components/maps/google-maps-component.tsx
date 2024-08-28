@@ -20,8 +20,8 @@ export const defaultMapContainerStyle = {
 }
 
 export const defaultMapLocation = {
-  lat: 35.8799866,
-  lng: 76.5048004,
+  lat: 0,
+  lng: 0,
 }
 
 const defaultMapOptions = {
