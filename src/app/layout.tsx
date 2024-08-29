@@ -40,8 +40,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-MBMXMNV5" />
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
-        <GoogleTagManager gtmId="GTM-MBMXMNV5" />
         {/* Progress Bar for server side load */}
         <NextTopLoader />
 
@@ -50,6 +50,17 @@ export default function RootLayout({
         {!cookieConsent && <CookieModal />}
         <Footer />
         <Toaster />
+
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MBMXMNV5"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        {/* End of Google Tag Manager (noscript) */}
       </body>
     </html>
   )
