@@ -40,8 +40,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-MBMXMNV5" />
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
+        <GoogleTagManager gtmId="GTM-MBMXMNV5" />
         {/* Progress Bar for server side load */}
         <NextTopLoader />
 
