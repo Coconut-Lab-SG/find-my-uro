@@ -12,6 +12,8 @@ import { Toaster } from './_components/ui/toaster'
 import './_styles/common.css'
 import './_styles/globals.css'
 
+import { GoogleTagManager } from '@next/third-parties/google'
+
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
@@ -38,9 +40,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://www.worstpainever.com" crossOrigin="anonymous" />
-      </head>
+      <GoogleTagManager gtmId="GTM-MBMXMNV5" />
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         {/* Progress Bar for server side load */}
         <NextTopLoader />
