@@ -3,8 +3,7 @@ import Script from 'next/script'
 import { envVars } from '../_lib/constants/env-vars'
 
 export default function CustomGoogleAnalytics() {
-  // return process.env.NEXT_PUBLIC_ENVIRONMENT === "production" ? (
-  return (
+  return process.env.NODE_ENV !== 'development' ? (
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${envVars.GOOGLE_ANALYTICS_ID}`} strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -18,6 +17,5 @@ export default function CustomGoogleAnalytics() {
       </Script>
       <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} />
     </>
-  )
-  // ) : null;
+  ) : null
 }
