@@ -8,11 +8,10 @@ import Header from '@/app/_components/header'
 import { cookies } from 'next/headers'
 import NextTopLoader from 'nextjs-toploader'
 
+import CustomGoogleAnalytics from './_components/google-analytics'
 import { Toaster } from './_components/ui/toaster'
 import './_styles/common.css'
 import './_styles/globals.css'
-
-import { GoogleTagManager } from '@next/third-parties/google'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -40,7 +39,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-MBMXMNV5" />
+      <CustomGoogleAnalytics />
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         {/* Progress Bar for server side load */}
         <NextTopLoader />
@@ -50,17 +49,6 @@ export default function RootLayout({
         {!cookieConsent && <CookieModal />}
         <Footer />
         <Toaster />
-
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MBMXMNV5"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          ></iframe>
-        </noscript>
-        {/* End of Google Tag Manager (noscript) */}
       </body>
     </html>
   )
