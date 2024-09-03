@@ -1,6 +1,7 @@
 import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { UserDetailResponse } from '@/app/_lib/definitions/user'
+import { shareUrologist } from '@/app/_lib/services/urologist/share-urologist'
 import { useState } from 'react'
 
 type Props = {
@@ -24,6 +25,13 @@ export function useUrologistDescription({ user, data }: Props) {
     toast({
       description: 'Copied to clipboard!',
     })
+
+    // Post request API
+    try {
+      shareUrologist({ urologistId: data.id })
+    } catch (error) {
+      console.error(error)
+    }
 
     setTimeout(() => {
       setCopySuccess(false)
