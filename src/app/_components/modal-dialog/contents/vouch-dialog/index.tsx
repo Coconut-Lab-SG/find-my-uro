@@ -14,7 +14,12 @@ type VouchDialogProps = {
 }
 
 export function VouchDialog({ data, slug, isUserAlreadyVouched, closeVouchDialog }: VouchDialogProps) {
-  const { isUserAuthenticated, loading, submitVouch } = useVouchDialog({ urologist_id: data.id, closeVouchDialog, isUserAlreadyVouched })
+  const { isUserAuthenticated, loading, submitVouch } = useVouchDialog({
+    urologist_id: data.id,
+    urologist_name: data.name,
+    closeVouchDialog,
+    isUserAlreadyVouched,
+  })
 
   return (
     <div className="flex flex-col w-full">

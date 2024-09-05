@@ -1,4 +1,5 @@
 import { LocationType } from '@/app/_lib/definitions/search-urologist'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { searchRegion } from '@/app/_lib/services/landing-page/search-region'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -144,6 +145,16 @@ export function useSearchSection() {
 
     // Construct query string based on final data object
     const queryParams = new URLSearchParams(data).toString()
+
+    // Send event to GA
+    if (data.keyword && !data.location) {
+      sendAnalyticEvent({
+        event_category: 'search',
+        event_value: {},
+      })
+    }
+
+    // Redirect to search page
     router.push(`/search?${queryParams}`)
   }
 

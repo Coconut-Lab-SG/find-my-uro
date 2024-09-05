@@ -1,6 +1,5 @@
-import { MostSearchedCityType } from '@/app/_lib/definitions/region'
 import { getMostSearchedCities } from '@/app/_lib/services/landing-page/most-searched-cities'
-import Link from 'next/link'
+import { CityLabel } from './components/city-label'
 
 export async function MostSearchedCities() {
   const data = await getMostSearchedCities()
@@ -10,21 +9,5 @@ export async function MostSearchedCities() {
       <p className="text-2xl italic font-medium">Most Searched Cities</p>
       <div className="grid grid-cols-2 p-4 gap-4 mobileL:grid-cols-4">{data?.map((city) => <CityLabel key={city.id} city={city} />)}</div>
     </div>
-  )
-}
-
-// Composing component
-type Props = {
-  city: MostSearchedCityType
-}
-
-function CityLabel({ city }: Props) {
-  const titleQuery = encodeURIComponent(city.location)
-  const query = `location=${city.location}&city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}`
-
-  return (
-    <Link prefetch={false} href={`/search?${query}`} className="line-clamp-1">
-      {city.location}
-    </Link>
   )
 }

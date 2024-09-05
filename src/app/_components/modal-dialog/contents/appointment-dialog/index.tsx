@@ -21,7 +21,11 @@ type AppointmentDialogProps = {
 }
 
 export function AppointmentDialog({ data, slug, closeAppointmentDialog }: AppointmentDialogProps) {
-  const { isUserAuthenticated, form, loading, onSubmit } = useAppointmentDialog({ urologist_practice_id: data.practice.id, closeAppointmentDialog })
+  const { isUserAuthenticated, form, loading, onSubmit } = useAppointmentDialog({
+    urologist_practice_id: data.practice.id,
+    closeAppointmentDialog,
+    urologist_name: data.name,
+  })
 
   return (
     <div className="flex flex-col w-full py-5 gap-6">

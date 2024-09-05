@@ -1,5 +1,6 @@
 import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistReviewFormSchema } from '@/app/_lib/definitions/urologist-review'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { getUserData } from '@/app/_lib/helpers/UserHelpers'
 import { urologistRatePost } from '@/app/_lib/services/urologist/urologist-rate-post'
 import useUrologistReviewStore from '@/app/_lib/store/urologist-review'
@@ -11,10 +12,11 @@ import { z } from 'zod'
 
 type Props = {
   urologist_id: string
+  urologist_name: string
   closeReviewDialog: () => void
 }
 
-export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
+export function useReviewDialog({ urologist_id, urologist_name, closeReviewDialog }: Props) {
   const { increaseRefreshKey } = useUrologistReviewStore()
   const { toast } = useToast()
 
@@ -45,6 +47,8 @@ export function useReviewDialog({ urologist_id, closeReviewDialog }: Props) {
         toast({
           description: 'Review urologist success!',
         })
+
+        sendAnalyticEvent({ event_category: 'user_review', event_value: { uroname: urologist_name } })
         closeReviewDialog()
       })
     } catch (error) {
