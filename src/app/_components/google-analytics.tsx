@@ -1,11 +1,9 @@
-import { GoogleTagManager } from '@next/third-parties/google'
-import Script from 'next/script'
-import { envVars } from '../_lib/constants/env-vars'
+// import Script from 'next/script'
 
 export default function CustomGoogleAnalytics() {
-  return process.env.NODE_ENV !== 'development' ? (
+  return process.env.NODE_ENV === 'development' ? (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${envVars.GOOGLE_ANALYTICS_ID}`} strategy="afterInteractive" />
+      {/* <Script src={`https://www.googletagmanager.com/gtag/js?id=${envVars.GOOGLE_ANALYTICS_ID}`} strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -14,8 +12,9 @@ export default function CustomGoogleAnalytics() {
  
           gtag('config', '${envVars.GOOGLE_ANALYTICS_ID}');
         `}
-      </Script>
-      <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} />
+      </Script> */}
+      {/* <GoogleAnalytics gaId={envVars.GOOGLE_ANALYTICS_ID!} />
+      <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} /> */}
     </>
   ) : null
 }

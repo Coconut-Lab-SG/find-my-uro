@@ -64,7 +64,7 @@ const UrologistTypeSchema = z.object({
   board_certified: z.string(),
   npi_id: z.string(),
   pac_id: z.string(),
-  year_of_experience: z.number(),
+  year_of_experience: z.number().nullable(),
   rate: z.number(),
   latitude: z.number(),
   longitude: z.number(),

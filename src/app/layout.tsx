@@ -8,8 +8,9 @@ import Header from '@/app/_components/header'
 import { cookies } from 'next/headers'
 import NextTopLoader from 'nextjs-toploader'
 
-import CustomGoogleAnalytics from './_components/google-analytics'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { Toaster } from './_components/ui/toaster'
+import { envVars } from './_lib/constants/env-vars'
 import './_styles/common.css'
 import './_styles/globals.css'
 
@@ -39,7 +40,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <CustomGoogleAnalytics />
+      <GoogleAnalytics gaId={envVars.GOOGLE_ANALYTICS_ID!} />
+      <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} />
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         {/* Progress Bar for server side load */}
         <NextTopLoader />

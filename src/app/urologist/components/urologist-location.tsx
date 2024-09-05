@@ -5,6 +5,7 @@ import { ModalDialog } from '@/app/_components/modal-dialog'
 import { AppointmentDialog } from '@/app/_components/modal-dialog/contents/appointment-dialog'
 import { Button } from '@/app/_components/ui/button'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { formatPhoneNumber } from '@/app/_lib/helpers/NumberHelpers'
 import { Calendar, Phone } from 'lucide-react'
 import { useState } from 'react'
@@ -20,10 +21,19 @@ export function UrologistLocation({ data, slug }: Props) {
 
   function toggleAppointmentModal(val: boolean) {
     setOpenAppointmentDialog(val)
+    sendAnalyticEvent({ event_category: 'button_clicks', event_value: { type: 'Appointment' } })
   }
 
   function redirectPhoneNumber() {
     window.open(`https://wa.me/${formatPhoneNumber(practice.phone_number)}`)
+    sendAnalyticEvent({
+      event_category: 'inquiry_uro',
+      event_value: {
+        website: window.location.href,
+        uroname: data.name,
+        isAffiliation: data.amthAffiliations.map((affiliation) => affiliation.name).join(', '),
+      },
+    })
   }
 
   return (

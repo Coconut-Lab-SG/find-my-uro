@@ -1,4 +1,5 @@
 import { loginSchema } from '@/app/_lib/definitions/authentication-form'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { Login } from '@/app/_lib/services/authentication/login'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
@@ -51,6 +52,7 @@ export function useLoginForm() {
         setCookie('access_token', token, {
           maxAge: data.expires_in,
         })
+        sendAnalyticEvent({ event_category: 'login', event_value: { itemid: data.email, type: 'email' } })
 
         if (referrer) {
           // Redirect to previous accessed link that provided from referrer query param

@@ -1,5 +1,10 @@
+'use client'
+
+import { Button } from '@/app/_components/ui/button'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { convertTo12HourFormat } from '@/app/_lib/helpers/DateTimeHelpers'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
+import { formatPhoneNumber } from '@/app/_lib/helpers/NumberHelpers'
 import { Check, Clock, Info, MapPin, Phone } from 'lucide-react'
 
 type Props = {
@@ -8,6 +13,8 @@ type Props = {
 
 export function AboutUrologist({ data }: Props) {
   const { practice } = data
+
+  console.log(practice.hours)
 
   return (
     <div className="flex flex-col gap-3">
@@ -21,9 +28,13 @@ export function AboutUrologist({ data }: Props) {
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Experience</span>
-            <span>
-              {data.year_of_experience} {data.year_of_experience < 2 ? 'year' : 'years'}
-            </span>
+            {data.year_of_experience ? (
+              <span>
+                {data.year_of_experience} {data.year_of_experience < 2 ? 'year' : 'years'}
+              </span>
+            ) : (
+              '0 year'
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Language Spoken</span>
@@ -48,7 +59,23 @@ export function AboutUrologist({ data }: Props) {
           </div>
           <div className="flex gap-3 items-center">
             <Phone size={20} />
-            <a className="flex-1">{practice.phone_number}</a>
+            <Button
+              variant="ghost"
+              className="flex-1 justify-start p-0 h-fit text-blue-500 bg-transparent hover:bg-transparent hover:text-blue-500"
+              onClick={() => {
+                window.open(`https://wa.me/${formatPhoneNumber(practice.phone_number)}`)
+                sendAnalyticEvent({
+                  event_category: 'inquiry_uro',
+                  event_value: {
+                    website: window.location.href,
+                    uroname: data.name,
+                    isAffiliation: data.amthAffiliations.map((affiliation) => affiliation.name).join(', '),
+                  },
+                })
+              }}
+            >
+              {practice.phone_number}
+            </Button>
           </div>
           <div className="flex gap-3 items-center">
             <Check size={20} />
@@ -57,13 +84,14 @@ export function AboutUrologist({ data }: Props) {
           <div className="flex gap-3">
             <Clock size={20} />
             <div className="flex flex-col flex-1">
-              {practice.hours.map(
-                (time) =>
-                  time.is_practice === 1 && (
-                    <span
-                      key={time.id}
-                    >{`${time.day} ${convertTo12HourFormat(time.practice_start)} - ${convertTo12HourFormat(time.practice_end)}`}</span>
-                  )
+              {practice.hours.map((time) =>
+                time.is_practice === 1 ? (
+                  <span
+                    key={time.id}
+                  >{`${time.day} ${convertTo12HourFormat(time.practice_start)} - ${convertTo12HourFormat(time.practice_end)}`}</span>
+                ) : (
+                  <span>No Schedule.</span>
+                )
               )}
             </div>
           </div>

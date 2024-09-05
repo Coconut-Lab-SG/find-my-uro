@@ -68,7 +68,9 @@ export default async function Urologist({ params }: UrologistServerProps) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <a href="mailto:info@findmyuro.com?subject=Claim%20this%20profile,%20Find%20My%20Uro%20-%20Dr.%20Yaniv%20Larish">Claim this profile</a>
+          <a href={`mailto:info@findmyuro.com?subject=Claim this profile, Find My Uro - ${urologist.data.suffix}. ${urologist.data.name}`}>
+            Claim this profile
+          </a>
           <a
             href="https://forms.office.com/pages/responsepage.aspx?id=tXzsnSV_jkWuqf22QWHt-W6KMDTPCD5HkLgtkIWuSnRURVlXSzhBMzRJWDQ5WDdWVkJESFVUUEdSTy4u"
             target="_blank"

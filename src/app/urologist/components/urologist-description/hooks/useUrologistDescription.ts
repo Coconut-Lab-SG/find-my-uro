@@ -1,6 +1,7 @@
 import { useToast } from '@/app/_components/ui/use-toast'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { UserDetailResponse } from '@/app/_lib/definitions/user'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { shareUrologist } from '@/app/_lib/services/urologist/share-urologist'
 import { useState } from 'react'
 
@@ -25,6 +26,7 @@ export function useUrologistDescription({ user, data }: Props) {
     toast({
       description: 'Copied to clipboard!',
     })
+    sendAnalyticEvent({ event_category: 'share', event_value: { uroname: data.name } })
 
     // Post request API
     try {

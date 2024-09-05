@@ -18,7 +18,7 @@ export function CityLabel({ city }: Props) {
   const query = `location=${city.location}&city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}`
 
   function handleClick() {
-    sendAnalyticEvent({ event_category: 'most_search_city', event_value: { location: city.location } })
+    sendAnalyticEvent({ event_category: 'search_city', event_value: { location: city.location } })
     router.push(`/search?${query}`)
   }
 

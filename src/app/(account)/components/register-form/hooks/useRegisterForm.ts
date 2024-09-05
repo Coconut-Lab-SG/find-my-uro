@@ -1,4 +1,5 @@
 import { registerSchema } from '@/app/_lib/definitions/authentication-form'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { Register } from '@/app/_lib/services/authentication/register'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { setCookie } from 'cookies-next'
@@ -59,6 +60,7 @@ export function useRegisterForm() {
         setCookie('access_token', token, {
           maxAge: data.expires_in,
         })
+        sendAnalyticEvent({ event_category: 'register', event_value: { type: 'email' } })
 
         // Redirect to profile page
         router.push('/account/profile')

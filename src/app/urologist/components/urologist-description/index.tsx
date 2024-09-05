@@ -8,8 +8,10 @@ import { Button } from '@/app/_components/ui/button'
 import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
 import { UserDetailResponse } from '@/app/_lib/definitions/user'
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { CheckIcon, Heart, Share2, Star } from 'lucide-react'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import { useUrologistDescription } from './hooks/useUrologistDescription'
 
 type Props = {
@@ -21,6 +23,11 @@ type Props = {
 export function UrologistDescription({ data, slug, user }: Props) {
   const { copySuccess, isUserAlreadyVouch, openReviewDialog, openVouchDialog, setOpenReviewDialog, setOpenVouchDialog, handleShareUrologist } =
     useUrologistDescription({ data, user })
+
+  useEffect(() => {
+    const affiliations = data.amthAffiliations.map((affiliation) => affiliation.name).join(', ')
+    sendAnalyticEvent({ event_category: 'view_uro', event_value: { uroname: data.name, isAffiliation: affiliations } })
+  }, [])
 
   return (
     <>

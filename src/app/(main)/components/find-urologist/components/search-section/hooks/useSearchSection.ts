@@ -147,10 +147,23 @@ export function useSearchSection() {
     const queryParams = new URLSearchParams(data).toString()
 
     // Send event to GA
-    if (data.keyword && !data.location) {
+    if (data.keyword !== '' && !data.location) {
+      // Send uroname only
       sendAnalyticEvent({
         event_category: 'search',
-        event_value: {},
+        event_value: { uroname: data.keyword },
+      })
+    } else if (data.keyword === '' && data.location) {
+      // Send location only
+      sendAnalyticEvent({
+        event_category: 'search',
+        event_value: { location: data.location },
+      })
+    } else {
+      // Send both location & uroname
+      sendAnalyticEvent({
+        event_category: 'search',
+        event_value: { location: data.location, uroname: data.keyword },
       })
     }
 

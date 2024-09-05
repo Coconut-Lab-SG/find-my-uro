@@ -1,3 +1,4 @@
+import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { Logout } from '@/app/_lib/services/authentication/logout'
 import { getCookie, setCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
@@ -16,6 +17,7 @@ export function useUserInformation() {
           maxAge: 0,
         })
 
+        sendAnalyticEvent({ event_category: 'logout', event_value: { itemid: 'Logout Success' } })
         router.push('/account/login')
 
         /* Sometimes the page is cached, even though we're already load it as a new page or redirected from other page.
