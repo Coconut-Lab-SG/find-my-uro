@@ -10,6 +10,7 @@ export function getUserData({ token }: { token: string }) {
     email: userData.email,
     first_name: userData.first_name,
     last_name: userData.last_name,
+    avatar: userData.avatar,
   }
   return effectiveData
 }

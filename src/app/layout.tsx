@@ -40,8 +40,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <GoogleAnalytics gaId={envVars.GOOGLE_ANALYTICS_ID!} />
-      <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} />
+      {process.env.NODE_ENV !== 'development' && (
+        <>
+          <GoogleAnalytics gaId={envVars.GOOGLE_ANALYTICS_ID!} />
+          <GoogleTagManager gtmId={envVars.GOOGLE_TAG_MANAGER_ID!} />
+        </>
+      )}
       <body className={cn('flex flex-col h-dvh', roboto.className)}>
         {/* Progress Bar for server side load */}
         <NextTopLoader />
