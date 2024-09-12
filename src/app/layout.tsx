@@ -37,7 +37,6 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const cookieConsent = cookies().get('cookie_consent')
-  console.log(process.env.NODE_ENV)
 
   return (
     <html lang="en">
