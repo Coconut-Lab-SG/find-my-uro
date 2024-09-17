@@ -68,7 +68,7 @@ export default async function Urologist({ params }: UrologistServerProps) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <a href={`mailto:info@findmyuro.com?subject=Claim this profile, Find My Uro - ${urologist.data.suffix}. ${urologist.data.name}`}>
+          <a href={`mailto:info@findmyuro.com?subject=Claim this profile, Find My Uro - ${urologist.data.suffix ?? ''}. ${urologist.data.name}`}>
             Claim this profile
           </a>
           <a

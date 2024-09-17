@@ -27,11 +27,12 @@ export function UrologistRatingCard({ data }: UrologistRatingCardProps) {
       className="flex italic px-5 py-[30px] gap-x-[30px] rounded-[20px] h-[182px] shadow-lg transition-all hover:scale-105"
     >
       <Image
-        className="rounded-full w-[80px] h-[80px]"
         alt="urologist-img"
         src={data.avatar ?? '/assets/icons/user-avatar.webp'}
         width={80}
         height={80}
+        className="rounded-full w-[80px] h-[80px] object-cover"
+        priority
       />
       <div className="flex flex-col gap-y-2.5 text-black">
         <span className="text-lg font-medium">{data.name}</span>

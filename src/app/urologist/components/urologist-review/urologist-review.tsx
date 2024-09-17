@@ -71,7 +71,7 @@ function ReviewCard({ data }: ReviewCardProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-1 bg-[#f2f2f2] rounded-xl p-4">
-        <p className="text-sm line-clamp-2">{data.review}</p>
+        <p className="text-sm">{data.review}</p>
         <StarGenerator rating={data.rating} />
       </div>
       <div className="flex flex-col gap-1 text-sm">

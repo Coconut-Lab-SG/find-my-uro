@@ -10,6 +10,26 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'via.placeholder.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.webmd.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'a.mktgcdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mdxvitals-res.cloudinary.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.mayoclinic.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'a.doctor.com',
+      },
     ],
   },
   async rewrites() {

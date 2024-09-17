@@ -32,7 +32,6 @@ export function useUrologistResultList(props: SearchParamsProps) {
 
   useEffect(() => {
     fetchUrologistResult()
-    console.log('fetch urologists data')
   }, [currentSearchParams])
 
   return {
