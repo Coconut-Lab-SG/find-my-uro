@@ -14,8 +14,6 @@ type Props = {
 export function AboutUrologist({ data }: Props) {
   const { practice } = data
 
-  console.log(practice.hours)
-
   return (
     <div className="flex flex-col gap-3">
       {/* Urologist About */}
@@ -24,7 +22,7 @@ export function AboutUrologist({ data }: Props) {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">NPI</span>
-            <span>{data.npi_id}</span>
+            <span>{data.npi_id ?? '-'}</span>
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Experience</span>

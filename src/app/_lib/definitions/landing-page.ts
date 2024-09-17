@@ -4,7 +4,7 @@ import { ArticleThumbnailSchema } from './articles'
 const FeaturedUrologistSchema = z.object({
   id: z.string(),
   name: z.string(),
-  suffix: z.string(),
+  suffix: z.string().nullable(),
   rate: z.number(),
   total_review: z.number(),
   avatar: z.string().nullable(),

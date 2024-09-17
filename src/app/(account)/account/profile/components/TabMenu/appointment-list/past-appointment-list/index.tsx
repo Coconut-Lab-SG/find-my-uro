@@ -5,8 +5,6 @@ import { useAppointmentList } from '../hooks/useAppointmentList'
 export function PastAppointmentList() {
   const { appointment, loading } = useAppointmentList({ appointmentType: 'past' })
 
-  console.log(appointment)
-
   if (appointment === null || loading) {
     return (
       <div className="flex items-center gap-3 justify-center">
