@@ -25,7 +25,7 @@ export function CityLabel({ city }: Props) {
   return (
     <Button
       variant="ghost"
-      className="p-0 h-fit line-clamp-1 bg-transparent text-blue-400 hover:bg-transparent hover:text-blue-500"
+      className="p-0 h-fit line-clamp-1 text-left bg-transparent text-blue-400 hover:bg-transparent hover:text-blue-500"
       onClick={handleClick}
     >
       {city.location}

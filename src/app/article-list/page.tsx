@@ -10,7 +10,9 @@ export default function Articles() {
     <div className="flex flex-col gap-y-5 px-5 max-w-[1140px] mx-auto pb-10">
       <div className="flex items-center gap-2">
         <BackButton />
-        <span>Back To Home</span>
+        <Link prefetch={false} href="/">
+          Back to Home
+        </Link>
       </div>
 
       <div className="flex">

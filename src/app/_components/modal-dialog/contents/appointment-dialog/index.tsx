@@ -16,13 +16,14 @@ import { useAppointmentDialog } from './hooks/useAppointmentDialog'
 
 type AppointmentDialogProps = {
   data: UrologistType
+  practice_id: string
   slug: string
   closeAppointmentDialog: () => void
 }
 
-export function AppointmentDialog({ data, slug, closeAppointmentDialog }: AppointmentDialogProps) {
+export function AppointmentDialog({ data, practice_id, slug, closeAppointmentDialog }: AppointmentDialogProps) {
   const { isUserAuthenticated, form, loading, onSubmit } = useAppointmentDialog({
-    urologist_practice_id: data.practice.id,
+    urologist_practice_id: practice_id,
     closeAppointmentDialog,
     urologist_name: data.name,
   })
@@ -30,8 +31,14 @@ export function AppointmentDialog({ data, slug, closeAppointmentDialog }: Appoin
   return (
     <div className="flex flex-col w-full py-5 gap-6">
       <div className="flex flex-col gap-4 px-6">
-        <div className="flex items-center justify-center gap-2">
-          <Image alt="urologist-img" src={data.avatar ?? DEFAULT_AVATAR_PATH} width={87} height={95} className="rounded-full" />
+        <div className="flex items-center justify-center gap-4">
+          <Image
+            alt="urologist-img"
+            src={data.avatar ?? DEFAULT_AVATAR_PATH}
+            width={87}
+            height={95}
+            className="rounded-full w-[87px] h-[95px] object-cover"
+          />
           <span className="text-xl text-[#303f9f] text-center">{data.name}</span>
         </div>
       </div>

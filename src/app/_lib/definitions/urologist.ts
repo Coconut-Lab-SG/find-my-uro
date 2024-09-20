@@ -70,7 +70,7 @@ const UrologistTypeSchema = z.object({
   longitude: z.number(),
   speciality: z.string(),
   educations: z.array(UrologistEducationTypeSchema),
-  practice: UrologistPracticeTypeSchema,
+  practices: z.array(UrologistPracticeTypeSchema),
   amthAffiliations: z.array(AmthAffiliationTypeSchema),
   insurances: z.array(UrologistInsuranceTypeSchema),
 })
@@ -82,3 +82,4 @@ export const UrologistResponseSchema = z.object({
 
 export type UrologistResponse = z.infer<typeof UrologistResponseSchema>
 export type UrologistType = z.infer<typeof UrologistTypeSchema>
+export type UrologistPracticesType = z.infer<typeof UrologistPracticeTypeSchema>

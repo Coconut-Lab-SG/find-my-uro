@@ -24,8 +24,14 @@ export function VouchDialog({ data, slug, isUserAlreadyVouched, closeVouchDialog
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col gap-5 justify-center items-center border-b border-gray-300 pb-10 px-6 text-center">
-        <div className="flex items-center gap-2 p-4">
-          <Image alt="urologist-img" src={data.avatar ?? DEFAULT_AVATAR_PATH} width={87} height={95} className="rounded-full" />
+        <div className="flex items-center gap-4 p-4">
+          <Image
+            alt="urologist-img"
+            src={data.avatar ?? DEFAULT_AVATAR_PATH}
+            width={87}
+            height={95}
+            className="rounded-full w-[87px] h-[95px] object-cover"
+          />
           <div
             className="flex justify-center items-center rounded-full text-white w-[50px] h-[50px]"
             style={{ background: 'linear-gradient(96.65deg, #b20000 0%, #ff7c52 95.82%)' }}
