@@ -61,7 +61,6 @@ export function useLoginForm() {
           // Redirect to profile page
           router.push('/account/profile')
         }
-
         router.refresh()
       })
     } catch (error: any) {

@@ -6,16 +6,17 @@ export function middleware(req: NextRequest) {
   const protectedRoutes = ['/account/profile']
 
   const token = cookies().get('access_token') // Adjust the cookie name as per your auth cookie
+  const isAuthenticated = !!token
 
   // TODO: Enable later if needed
-  // const unauthenticatedRoutes = ['/account/login', '/account/register', '/account/forgot-password']
+  const unauthenticatedRoutes = ['/account/login', '/account/register', '/account/forgot-password']
   // Guard unauthenticated routes -> User has logged in
-  // if (unauthenticatedRoutes.includes(pathname)) {
-  //   // If authenticated, redirect to the home page or any other page
-  //   if (isAuthenticated) {
-  //     return NextResponse.redirect(new URL('/account/profile', req.url))
-  //   }
-  // }
+  if (unauthenticatedRoutes.includes(pathname)) {
+    // If authenticated, redirect to the home page or any other page
+    if (isAuthenticated) {
+      return NextResponse.redirect(new URL('/account/profile', req.url))
+    }
+  }
 
   // Guard protected routes -> User has not logged in yet
   if (protectedRoutes.includes(pathname)) {
