@@ -38,7 +38,7 @@ const UserVouchDataSchema = z.object({
   user_id: z.string(),
   urologist_id: z.string(),
   deleted_at: z.string().nullable(),
-  urologist: UserUrologistVouchSchema,
+  urologist: UserUrologistVouchSchema.nullable(),
 })
 
 export const UserDetailSchema = z.object({
@@ -52,7 +52,7 @@ export const UserDetailSchema = z.object({
   facebook_id: z.string().nullable(),
   created_at: z.string(),
   updated_at: z.string(),
-  vouches: z.array(UserVouchDataSchema),
+  vouches: z.array(UserVouchDataSchema).nullable(),
 })
 
 export const UserDetailResponseSchema = z.object({

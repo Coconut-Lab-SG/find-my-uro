@@ -3,9 +3,10 @@
 import { Button } from '@/app/_components/ui/button'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/app/_components/ui/carousel'
 import { UrologistType } from '@/app/_lib/definitions/urologist'
+import { convertTo12HourFormat } from '@/app/_lib/helpers/DateTimeHelpers'
 import { sendAnalyticEvent } from '@/app/_lib/helpers/GoogleAnalyticsHelpers'
 import { formatPhoneNumber } from '@/app/_lib/helpers/NumberHelpers'
-import { Check, Info, MapPin, Phone } from 'lucide-react'
+import { Check, Clock, Info, MapPin, Phone } from 'lucide-react'
 
 type Props = {
   data: UrologistType
@@ -112,20 +113,24 @@ export function AboutUrologist({ data }: Props) {
                     <span className="flex-1">Accepting New Patients</span>
                   </div>
                   {/* TODO: Enable later after we get clear information from BE regarding practice hours */}
-                  {/* <div className="flex gap-3">
+                  <div className="flex gap-3">
                     <Clock size={20} />
-                    <div className="flex flex-col flex-1">
-                      {practice.hours.map((time) =>
-                        time.is_practice === 1 ? (
-                          <span
-                            key={time.id}
-                          >{`${time.day} ${convertTo12HourFormat(time.practice_start)} - ${convertTo12HourFormat(time.practice_end)}`}</span>
-                        ) : (
-                          <span>No Schedule.</span>
-                        )
-                      )}
-                    </div>
-                  </div> */}
+                    {practice.hours.length ? (
+                      <div className="flex flex-col flex-1">
+                        {practice.hours.map((time) =>
+                          time.is_practice === 1 ? (
+                            <span
+                              key={time.id}
+                            >{`${time.day} ${convertTo12HourFormat(time.practice_start)} - ${convertTo12HourFormat(time.practice_end)}`}</span>
+                          ) : (
+                            <span>No Schedule.</span>
+                          )
+                        )}
+                      </div>
+                    ) : (
+                      <span>No available information at the moment</span>
+                    )}
+                  </div>
                 </div>
               </CarouselItem>
             ))}
