@@ -38,11 +38,15 @@ export function AboutUrologist({ data }: Props) {
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Educations</span>
-            {data.educations.map((education) => (
-              <div key={education.id} className="flex flex-col gap-1">
-                <span>- {education.institution}</span>
-              </div>
-            ))}
+            {data.educations ? (
+              <ul className="flex flex-col gap-1 list-disc">
+                {data.educations.map((education) => (
+                  <li key={education.id}>{education.institution}</li>
+                ))}
+              </ul>
+            ) : (
+              <span>-</span>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <span className="italic font-medium">Experience</span>
