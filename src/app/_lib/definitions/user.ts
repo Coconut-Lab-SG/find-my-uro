@@ -52,7 +52,7 @@ export const UserDetailSchema = z.object({
   facebook_id: z.string().nullable(),
   created_at: z.string(),
   updated_at: z.string(),
-  vouches: z.array(UserVouchDataSchema).nullable(),
+  vouches: z.array(UserVouchDataSchema),
 })
 
 export const UserDetailResponseSchema = z.object({
