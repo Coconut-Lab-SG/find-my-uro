@@ -7,6 +7,7 @@ import { DEFAULT_AVATAR_PATH } from '@/app/_lib/constants/string-vars'
 import { UrologistSearchResult } from '@/app/_lib/definitions/search-urologist'
 import { Map } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 type Props = {
@@ -24,7 +25,8 @@ export function UrologistResultCard({ data, idx, setUrologistCoordinate }: Props
 
   function changeCoordinate(e: React.MouseEvent<HTMLButtonElement>) {
     // Prevent clicking parent button
-    e.stopPropagation()
+    e.preventDefault()
+    e.nativeEvent.stopImmediatePropagation()
 
     const urologistLatitude = data.latitude
     const urologistLongitude = data.longitude
@@ -32,31 +34,39 @@ export function UrologistResultCard({ data, idx, setUrologistCoordinate }: Props
   }
 
   return (
-    <div className="flex items-center gap-7 laptopM:gap-10 px-3 cursor-pointer" onClick={redirectUrologist}>
-      {/* Urologist profile image */}
-      <div className="relative">
-        <Image
-          alt="urologist-pict"
-          src={data.avatar ?? DEFAULT_AVATAR_PATH}
-          width={80}
-          height={80}
-          className="rounded-full w-[80px] h-[80px] object-cover"
-          priority
-        />
-        <div className="flex items-center justify-center absolute top-0 -left-2.5 bg-[#432f91] text-white w-[30px] h-[30px] rounded-full text-center font-bold">
-          {idx}
+    <Link prefetch={false} href={`/urologist/${data.slug}`}>
+      <div className="flex items-center gap-7 laptopM:gap-10 px-3 cursor-pointer">
+        {/* Urologist profile image */}
+        <div className="relative">
+          <Image
+            alt="urologist-pict"
+            src={data.avatar ?? DEFAULT_AVATAR_PATH}
+            width={80}
+            height={80}
+            className="rounded-full w-[80px] h-[80px] object-cover"
+            priority
+          />
+          <div className="flex items-center justify-center absolute top-0 -left-2.5 bg-[#432f91] text-white w-[30px] h-[30px] rounded-full text-center font-bold">
+            {idx}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <span className="italic font-medium text-black">{data.name}</span>
+          <StarGenerator rating={data.rate} />
+          {data.is_featured && <FeaturedUrologistLabel />}
+          <Button
+            variant="ghost"
+            className="flex items-center justify-start gap-1 text-[#432f91] p-0 hover:bg-transparent"
+            onClick={changeCoordinate}
+          >
+            <div className="flex items-center gap-1 text-blue-500 hover:text-blue-600">
+              <Map size={18} />
+              <span>See on map</span>
+            </div>
+          </Button>
         </div>
       </div>
-
-      <div className="flex flex-col gap-1">
-        <span className="italic font-medium">{data.name}</span>
-        <StarGenerator rating={data.rate} />
-        {data.is_featured && <FeaturedUrologistLabel />}
-        <Button variant="ghost" className="flex items-center justify-start gap-1 text-[#432f91] p-0 hover:bg-transparent" onClick={changeCoordinate}>
-          <Map size={18} />
-          <span>See on map</span>
-        </Button>
-      </div>
-    </div>
+    </Link>
   )
 }

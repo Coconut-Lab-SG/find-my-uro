@@ -19,7 +19,7 @@ export function FeaturedUrologists({ featured_urologist, highest_rated_urologist
             Featured <span className="text-[#42328d]">Urologists</span> Of The Month{' '}
           </p>
           <Link prefetch={false} href={`/search?${seeAllFeaturedQuery}`}>
-            see all
+            See All
           </Link>
         </div>
         <div className="grid grid-rows-1 tablet:grid-cols-3 gap-8">
@@ -35,7 +35,7 @@ export function FeaturedUrologists({ featured_urologist, highest_rated_urologist
             Highest Rated <span className="text-[#42328d]">Urologists</span> Near Your Area
           </p>
           <Link prefetch={false} href={`/search?${seeAllHighestRatedQuery}`}>
-            see all
+            See All
           </Link>
         </div>
         <div className="grid grid-rows-1 tablet:grid-cols-3 gap-8">

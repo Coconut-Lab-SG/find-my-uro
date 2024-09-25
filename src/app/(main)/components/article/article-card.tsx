@@ -9,7 +9,7 @@ type ArticleCardProps = {
 export function ArticleCard({ data }: ArticleCardProps) {
   return (
     <Link prefetch={false} href={data.link} target="_blank">
-      <div className="flex flex-col items-center gap-5 mobileL:flex-row">
+      <div className="flex flex-col items-center gap-5 text-black hover:text-blue-500 transition-all hover:scale-105 mobileL:flex-row">
         <Image
           alt="article-thumbnail"
           src={data.thumbnail ?? '/assets/images/home/stone-supplement-thumbnail.webp'}

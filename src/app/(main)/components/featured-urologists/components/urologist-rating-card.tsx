@@ -9,17 +9,6 @@ type UrologistRatingCardProps = {
 }
 
 export function UrologistRatingCard({ data }: UrologistRatingCardProps) {
-  // TODO: change into dynamic data from API later
-  const dummyData = {
-    name: 'Yaniv Larish, M.D',
-    rating: {
-      number: '5.0',
-      count: 71,
-      stars: 5,
-    },
-    imgSrc: '/assets/images/home/urologist-img-placeholder.webp',
-  }
-
   return (
     <Link
       prefetch={false}

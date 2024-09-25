@@ -12,9 +12,6 @@ type Props = {
 export function CityLabel({ city }: Props) {
   const router = useRouter()
 
-  // TODO: Enable later(?)
-  const titleQuery = encodeURIComponent(city.location)
-
   const query = `location=${city.location}&city_id=${city.id}&state_id=${city.state_id}&distance=5000&location_based=yes&latitude=${city.latitude}&longitude=${city.longitude}`
 
   function handleClick() {

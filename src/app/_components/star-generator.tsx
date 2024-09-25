@@ -31,7 +31,7 @@ export function StarGenerator({ rating }: Props) {
           return <StarIcon key={index} size={17} fill={fillColor} shape="full" />
         })}
       </div>
-      <span className="text-sm">{rating} out of 5</span>
+      <span className="text-sm text-black">{rating} out of 5</span>
     </div>
   )
 }
