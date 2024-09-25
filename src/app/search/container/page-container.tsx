@@ -19,7 +19,6 @@ export function UrologistListContainer({ queryParams }: Props) {
       {/* Map section */}
       <div className="relative -mx-5 laptopM:mx-0">
         <div className="h-[230px] w-screen bg-gray-400 mx-auto laptopM:h-[824px] laptopM:w-[360px]">
-          {/* TODO: Change lat lng accordingly based on API data later */}
           <GoogleMapsComponent location={{ lat: coordinate.latitude, lng: coordinate.longitude }} />
         </div>
       </div>

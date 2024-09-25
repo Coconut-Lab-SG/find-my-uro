@@ -29,7 +29,7 @@ export default function Login() {
               Terms
             </Link>{' '}
             and{' '}
-            <Link href="privacy" target="_blank">
+            <Link href="/privacy" target="_blank">
               Privacy Policy
             </Link>
           </p>

@@ -112,7 +112,6 @@ export function AboutUrologist({ data }: Props) {
                     <Check size={20} />
                     <span className="flex-1">Accepting New Patients</span>
                   </div>
-                  {/* TODO: Enable later after we get clear information from BE regarding practice hours */}
                   <div className="flex gap-3">
                     <Clock size={20} />
                     {practice.hours.length ? (

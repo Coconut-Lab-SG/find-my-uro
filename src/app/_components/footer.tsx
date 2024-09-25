@@ -14,6 +14,9 @@ export default function Footer() {
             <Link href="/privacy" className="hover:text-[#432f91]">
               Privacy
             </Link>
+            <Link href="/review-guidelines" className="hover:text-[#432f91]">
+              Review Guidelines
+            </Link>
             <Link href="/frequently-asked-questions" className="hover:text-[#432f91]">
               FAQ
             </Link>

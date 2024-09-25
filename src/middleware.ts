@@ -8,7 +8,6 @@ export function middleware(req: NextRequest) {
   const token = cookies().get('access_token') // Adjust the cookie name as per your auth cookie
   const isAuthenticated = !!token
 
-  // TODO: Enable later if needed
   const unauthenticatedRoutes = ['/account/login', '/account/register', '/account/forgot-password']
   // Guard unauthenticated routes -> User has logged in
   if (unauthenticatedRoutes.includes(pathname)) {

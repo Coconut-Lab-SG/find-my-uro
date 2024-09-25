@@ -48,7 +48,6 @@ export function UrologistLocation({ data, slug }: Props) {
               <div key={practice.id} className="flex flex-col bg-white gap-4 shadow tablet:flex-row tablet:w-[455px]">
                 {/* Google Map container */}
                 <div className="h-[172px] tablet:w-[220px] tablet:h-auto bg-slate-400 w-full">
-                  {/* TODO: Change lat lng accordingly based on API data later */}
                   <GoogleMapsComponent location={{ lat: practice.latitude, lng: practice.longitude }} />
                 </div>
                 <div className="flex flex-col gap-2.5 px-2 py-4 text-center tablet:text-left">
