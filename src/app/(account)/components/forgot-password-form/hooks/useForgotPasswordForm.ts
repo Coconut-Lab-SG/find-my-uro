@@ -1,7 +1,7 @@
 import { forgotPasswordSchema } from '@/app/_lib/definitions/authentication-form'
 import { ResetPassword } from '@/app/_lib/services/authentication/reset-password'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -19,6 +19,19 @@ export function useForgotPasswordForm() {
       email: '',
     },
   })
+
+  const { watch } = form
+
+  useEffect(() => {
+    const subscription = watch(() => {
+      // Remove error message if a field is changed (on type)
+      if (error.isError) {
+        setError({ isError: false, message: '' })
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [watch, error.isError])
 
   async function onSubmit(value: z.infer<typeof forgotPasswordSchema>) {
     setLoading(true)

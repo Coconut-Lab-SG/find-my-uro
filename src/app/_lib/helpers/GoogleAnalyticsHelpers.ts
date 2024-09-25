@@ -8,5 +8,6 @@ type GAEventProps = {
 }
 
 export function sendAnalyticEvent({ event_category, event_value }: GAEventProps) {
+  if (window.gtag !== 'function') return
   window.gtag('event', event_category, event_value)
 }

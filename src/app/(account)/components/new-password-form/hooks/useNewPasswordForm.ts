@@ -60,8 +60,8 @@ export function useNewPasswordForm({ userToken }: Props) {
       }
 
       await NewPassword(body).then(() => {
-        // Redirect to profile page
-        router.push('/account/profile')
+        // Redirect to login page
+        router.push('/account/login')
         router.refresh()
       })
     } catch (error: any) {
