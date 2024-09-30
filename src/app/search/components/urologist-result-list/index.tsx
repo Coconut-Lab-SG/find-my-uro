@@ -36,7 +36,12 @@ export function UrologistResultList({ queryParams, setUrologistCoordinate }: Pro
       {/* Urologist list section */}
       <div className="flex flex-col gap-5">
         {urologistList?.map((urologist, idx) => (
-          <UrologistResultCard key={urologist.id} data={urologist} idx={idx + 1} setUrologistCoordinate={setUrologistCoordinate} />
+          <UrologistResultCard
+            key={urologist.id}
+            data={urologist}
+            idx={(parseInt(currentPage) - 1) * 10 + (idx + 1)}
+            setUrologistCoordinate={setUrologistCoordinate}
+          />
         ))}
       </div>
 
